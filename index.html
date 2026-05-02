@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudio Bastos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --negro: #111111;
+      --gris: #888888;
+      --fondo: #f5f4f0;
+      --blanco: #ffffff;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--fondo);
+      color: var(--negro);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background-color: var(--fondo);
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      color: var(--negro);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--negro);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gris);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem;
+      padding-bottom: 6rem;
+    }
+
+    .hero-tagline {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-titulo {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+    }
+
+    .hero-titulo em {
+      font-style: italic;
+      color: var(--gris);
+    }
+
+    /* SERVICIOS */
+    .servicios {
+      padding: 8rem 3rem;
+      border-top: 1px solid #ddd;
+    }
+
+    .seccion-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-bottom: 4rem;
+    }
+
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .servicio {
+      padding: 2.5rem 0;
+      border-top: 1px solid #ddd;
+    }
+
+    .servicio-num {
+      font-size: 0.75rem;
+      color: var(--gris);
+      margin-bottom: 1.5rem;
+    }
+
+    .servicio-nombre {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .servicio-desc {
+      font-size: 0.9rem;
+      color: var(--gris);
+      line-height: 1.7;
+    }
+
+    /* SOBRE */
+    .sobre {
+      padding: 8rem 3rem;
+      border-top: 1px solid #ddd;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .sobre-texto {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1.35;
+      grid-column: 2;
+    }
+
+    .sobre-label {
+      grid-column: 1;
+      grid-row: 1;
+      padding-top: 0.5rem;
+    }
+
+    /* CONTACTO */
+    .contacto {
+      padding: 8rem 3rem;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .contacto-titulo {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1.0;
+    }
+
+    .contacto-info {
+      text-align: right;
+    }
+
+    .contacto-info a {
+      display: block;
+      text-decoration: none;
+      color: var(--negro);
+      font-size: 0.9rem;
+      line-height: 2;
+      transition: color 0.2s;
+    }
+
+    .contacto-info a:hover {
+      color: var(--gris);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--gris);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1.25rem 1.5rem;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .hero, .servicios, .sobre, .contacto {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .servicios-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sobre {
+        grid-template-columns: 1fr;
+      }
+
+      .sobre-label {
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      .sobre-texto {
+        grid-column: 1;
+      }
+
+      .contacto {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3rem;
+      }
+
+      .contacto-info {
+        text-align: left;
+      }
+
+      footer {
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Estudio Bastos</a>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#sobre">Estudio</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-tagline">Diseño · Comunicación · Identidad</p>
+    <h1 class="hero-titulo">Diseño que <em>comunica</em> con intención</h1>
+  </section>
+
+  <section class="servicios" id="servicios">
+    <p class="seccion-label">Servicios</p>
+    <div class="servicios-grid">
+      <div class="servicio">
+        <p class="servicio-num">01</p>
+        <h2 class="servicio-nombre">Diseño Estratégico</h2>
+        <p class="servicio-desc">Pensamos el diseño desde la raíz. Alineamos objetivos, audiencia y forma para que cada decisión visual tenga propósito.</p>
+      </div>
+      <div class="servicio">
+        <p class="servicio-num">02</p>
+        <h2 class="servicio-nombre">Diseño Editorial</h2>
+        <p class="servicio-desc">Publicaciones, libros y piezas impresas con criterio tipográfico y narrativo. Donde el contenido y la forma se encuentran.</p>
+      </div>
+      <div class="servicio">
+        <p class="servicio-num">03</p>
+        <h2 class="servicio-nombre">Diseño de Identidad</h2>
+        <p class="servicio-desc">Marcas con carácter. Sistemas visuales coherentes que funcionan en todos los contextos y perduran en el tiempo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sobre" id="sobre">
+    <div class="sobre-label">
+      <p class="seccion-label">Estudio</p>
+    </div>
+    <p class="sobre-texto">Estudio Bastos es un estudio de diseño y comunicación. Trabajamos con organizaciones y marcas que entienden el valor del diseño como herramienta estratégica.</p>
+  </section>
+
+  <section class="contacto" id="contacto">
+    <h2 class="contacto-titulo">Hablemos</h2>
+    <div class="contacto-info">
+      <a href="mailto:hola@estudiobastos.com">hola@estudiobastos.com</a>
+      <a href="https://instagram.com/estudiobastos" target="_blank">@estudiobastos</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Estudio Bastos</span>
+    <span>Madrid</span>
+  </footer>
+
+</body>
+</html>
