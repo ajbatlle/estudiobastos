@@ -1,213 +1,907 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudio Bastos | Estrategia, Editorial e Identidad</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        /* VARIABLES DE DISEÑO (Colores estilo Pichón) */
-        :root {
-            --bg-color: #f9f8f4; /* Blanco hueso/papel */
-            --text-color: #1a1a1a; /* Negro tinta */
-            --border-color: #d1d1d1;
-            --accent-color: #3b4d42; /* Verde bosque muy oscuro */
-            --margin: 5vw;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.4;
-            padding: 0 var(--margin);
-        }
-
-        /* --- NAVEGACIÓN --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: 40px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 700;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            margin-left: 30px;
-        }
-
-        /* --- HERO --- */
-        .hero {
-            padding: 10vh 0;
-            max-width: 900px;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            line-height: 1.1;
-            font-weight: 400;
-            margin-bottom: 30px;
-        }
-
-        .hero h1 em { font-style: italic; }
-
-        /* --- GRILLA DE TRABAJOS (ESTILO PICHÓN) --- */
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 40px;
-            margin-bottom: 100px;
-        }
-
-        .project {
-            grid-column: span 12;
-            margin-bottom: 20px;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* Variaciones de la grilla para que no sea monótona */
-        .project.medium { grid-column: span 8; }
-        .project.small { grid-column: span 4; }
-
-        .image-box {
-            width: 100%;
-            background-color: #eee; /* Fondo mientras carga imagen */
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            aspect-ratio: 16 / 9; /* Imagen principal */
-        }
-
-        .project.medium .image-box, .project.small .image-box {
-            aspect-ratio: 4 / 5; /* Imágenes verticales */
-        }
-
-        .image-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .project:hover img { transform: scale(1.05); }
-
-        .project-meta {
-            margin-top: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            border-top: 1px solid var(--border-color);
-            padding-top: 10px;
-        }
-
-        .project-meta h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-        }
-
-        .project-meta span {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #666;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            padding: 100px 0 50px;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .footer-big-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            max-width: 500px;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .project.medium, .project.small { grid-column: span 12; }
-            footer { flex-direction: column; gap: 40px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bastos — Estudio de diseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --azul: #0072CE;
+    --rosa: #F9C5D5;
+    --fondo: #F2F2F2;
+    --oscuro: #1F1F23;
+    --blanco: #ffffff;
+    --gris-texto: #5a5a5d;
+    --fuente: 'Roboto Serif', Georgia, serif;
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    font-family: var(--fuente);
+    background: var(--fondo);
+    color: var(--oscuro);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+ 
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--fondo);
+    border-bottom: 1px solid #dcdcdc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    height: 58px;
+  }
+ 
+  .nav-logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--oscuro);
+    text-decoration: none;
+  }
+ 
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+ 
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--gris-texto);
+    transition: color 0.2s;
+  }
+ 
+  .nav-links a:hover { color: var(--oscuro); }
+ 
+  .nav-cta {
+    background: var(--azul) !important;
+    color: var(--blanco) !important;
+    padding: 0.35rem 1rem;
+    border-radius: 2px;
+  }
+ 
+  .nav-cta:hover { background: var(--oscuro) !important; }
+ 
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    background: var(--fondo);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 58px;
+  }
+ 
+  .hero-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 3rem 5rem 3rem;
+    gap: 1.5rem;
+  }
+ 
+  .hero-titulo {
+    font-size: clamp(2rem, 3.2vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--oscuro);
+  }
+ 
+  .hero-bajada {
+    font-size: 0.92rem;
+    font-weight: 300;
+    color: var(--gris-texto);
+    line-height: 1.8;
+    max-width: 360px;
+  }
+ 
+  .hero-acciones {
+    display: flex;
+    gap: 0.75rem;
+  }
+ 
+  .hero-imagen-area {
+    background: #dcdcdc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+  }
+ 
+  .hero-img-placeholder {
+    font-size: 0.7rem;
+    color: #aaa;
+    text-align: center;
+    line-height: 2;
+  }
+ 
+  .hero-derecha { display: none; }
+ 
+  .btn-p {
+    background: var(--azul);
+    color: var(--blanco);
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 400;
+    transition: background 0.2s;
+    display: inline-block;
+  }
+ 
+  .btn-p:hover { background: var(--oscuro); }
+ 
+  .btn-s {
+    border: 1px solid #b0b0b0;
+    color: var(--gris-texto);
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 400;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+ 
+  .btn-s:hover { border-color: var(--oscuro); color: var(--oscuro); }
+ 
+  /* SECCIONES */
+  section { padding: 5.5rem 3rem; }
+ 
+  .s-titulo {
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+    color: var(--oscuro);
+  }
+ 
+  .s-titulo em { font-style: italic; color: var(--azul); }
+ 
+  .s-texto {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--gris-texto);
+    line-height: 1.85;
+  }
+ 
+  /* PORTAFOLIO */
+  #portafolio { background: var(--fondo); padding-top: 4rem; }
+ 
+  .portafolio-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+ 
+  .portafolio-cabecera h2 {
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--oscuro);
+  }
+ 
+  .filtros {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.82rem;
+    font-weight: 400;
+  }
+ 
+  .filtro {
+    color: var(--gris-texto);
+    cursor: pointer;
+    transition: color 0.2s;
+    user-select: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+  }
+ 
+  .filtro:hover { color: var(--oscuro); }
+  .filtro.activo { color: var(--oscuro); border-bottom-color: var(--oscuro); }
+ 
+  .portafolio-grilla {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: #cccccc;
+    border: 2px solid #cccccc;
+  }
+ 
+  .proyecto-card {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    cursor: pointer;
+    background: #2a2a2e;
+  }
+ 
+  .proyecto-card.oculto { display: none; }
+  .proyecto-card:hover .proyecto-overlay { opacity: 1; }
+  .proyecto-card:hover .proyecto-img-bg { transform: scale(1.04); }
+ 
+  .proyecto-img-bg {
+    position: absolute;
+    inset: 0;
+    background: #2a2a2e;
+    transition: transform 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.07);
+    text-align: center;
+    line-height: 1.8;
+  }
+ 
+  .proyecto-img-bg img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+ 
+  .proyecto-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.1rem;
+  }
+ 
+  .proyecto-tit { color: var(--blanco); font-size: 0.83rem; font-weight: 600; line-height: 1.3; }
+  .proyecto-cat { color: rgba(255,255,255,0.55); font-size: 0.72rem; margin-top: 0.2rem; }
+ 
+  .proyecto-base {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: var(--blanco);
+    padding: 0.6rem 0.85rem;
+    border-top: 2px solid var(--azul);
+  }
+ 
+  .proyecto-base h3 { font-size: 0.76rem; font-weight: 600; color: var(--oscuro); line-height: 1.3; }
+  .proyecto-base span { font-size: 0.68rem; color: var(--azul); }
+ 
+  /* MODAL */
+  .modal-fondo {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(31,31,35,0.82);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+ 
+  .modal-fondo.activo { display: flex; }
+ 
+  .modal-contenido {
+    background: var(--blanco);
+    max-width: 860px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 2px;
+    position: relative;
+  }
+ 
+  .modal-cerrar {
+    position: absolute;
+    top: 0.9rem; right: 0.9rem;
+    background: none; border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--gris-texto);
+    z-index: 10;
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+  }
+ 
+  .modal-cerrar:hover { color: var(--azul); }
+ 
+  .modal-fotos {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    background: #ccc;
+    height: 360px;
+  }
+ 
+  .modal-foto-p {
+    grid-row: span 2;
+    background: #2a2a2e;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.08); font-size: 0.6rem;
+  }
+ 
+  .modal-foto-s {
+    background: #3a3a3e;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.08); font-size: 0.6rem;
+  }
+ 
+  .modal-foto-p img, .modal-foto-s img { width: 100%; height: 100%; object-fit: cover; display: block; }
+ 
+  .modal-info { padding: 1.75rem 2.25rem; }
+ 
+  .modal-cat { font-size: 0.78rem; color: var(--azul); margin-bottom: 0.4rem; font-weight: 400; }
+ 
+  .modal-tit {
+    font-size: 1.45rem; font-weight: 700;
+    line-height: 1.15; letter-spacing: -0.02em;
+    color: var(--oscuro); margin-bottom: 0.9rem;
+  }
+ 
+  .modal-desc {
+    font-size: 0.9rem; font-weight: 300;
+    color: var(--gris-texto); line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+ 
+  .modal-meta {
+    display: flex; gap: 2rem;
+    border-top: 1px solid #ebebeb;
+    padding-top: 1.1rem;
+  }
+ 
+  .modal-meta-i label { display: block; font-size: 0.7rem; color: var(--azul); margin-bottom: 0.15rem; }
+  .modal-meta-i span { font-size: 0.85rem; font-weight: 500; color: var(--oscuro); }
+ 
+  /* NOSOTROS */
+  #nosotros {
+    background: var(--oscuro);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    padding: 6rem 3rem;
+  }
+ 
+  #nosotros .s-titulo { color: var(--blanco); margin-bottom: 1.25rem; }
+  #nosotros .s-texto { color: rgba(255,255,255,0.58); max-width: 100%; }
+ 
+  .nosotros-firma {
+    margin-top: 2rem;
+    font-size: 0.83rem;
+    color: rgba(255,255,255,0.28);
+    font-style: italic;
+  }
+ 
+  .nosotros-img {
+    aspect-ratio: 3/4;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.08);
+    font-size: 0.68rem; text-align: center; line-height: 2;
+  }
+ 
+  /* CÓMO TRABAJAMOS */
+  #metodologia { background: var(--blanco); }
+ 
+  .etapas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+ 
+  .etapa { border-top: 2px solid var(--azul); padding-top: 1.5rem; }
+ 
+  .etapa-num {
+    font-size: 2.2rem; font-weight: 200;
+    color: #d8d8d8; line-height: 1;
+    margin-bottom: 0.9rem; letter-spacing: -0.03em;
+  }
+ 
+  .etapa-nombre { font-size: 0.95rem; font-weight: 700; color: var(--oscuro); margin-bottom: 0.55rem; }
+  .etapa-texto { font-size: 0.86rem; color: var(--gris-texto); font-weight: 300; line-height: 1.8; }
+ 
+  /* SERVICIOS */
+  #servicios { background: var(--fondo); }
+ 
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: #ccc;
+    border: 2px solid #ccc;
+    margin-top: 2.5rem;
+  }
+ 
+  .servicio-card {
+    background: var(--blanco);
+    padding: 2.25rem;
+  }
+ 
+  .serv-acento { width: 24px; height: 2px; background: var(--azul); margin-bottom: 1.4rem; }
+ 
+  .serv-nombre { font-size: 1rem; font-weight: 700; color: var(--oscuro); margin-bottom: 0.65rem; line-height: 1.3; }
+ 
+  .serv-desc { font-size: 0.86rem; color: var(--gris-texto); font-weight: 300; line-height: 1.8; margin-bottom: 1.1rem; }
+ 
+  .serv-link { font-size: 0.82rem; color: var(--azul); text-decoration: none; font-weight: 400; }
+  .serv-link:hover { color: var(--oscuro); }
+ 
+  /* REPOSITORIO */
+  #repositorio { background: var(--fondo); border-top: 1px solid #dcdcdc; }
+ 
+  .repo-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+ 
+  .repo-lista { display: flex; flex-direction: column; gap: 2px; }
+ 
+  .repo-item {
+    background: var(--blanco);
+    padding: 1.35rem 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: var(--oscuro);
+    border-left: 2px solid transparent;
+    transition: border-color 0.2s;
+  }
+ 
+  .repo-item:hover { border-left-color: var(--azul); }
+  .repo-item h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.18rem; line-height: 1.3; }
+  .repo-item span { font-size: 0.75rem; color: var(--gris-texto); font-weight: 300; }
+  .repo-arrow { color: var(--azul); font-size: 0.95rem; flex-shrink: 0; margin-left: 1rem; }
+ 
+  /* CONTACTO */
+  #contacto {
+    background: var(--oscuro);
+    padding: 6rem 3rem;
+    text-align: center;
+  }
+ 
+  #contacto .s-titulo { color: var(--blanco); max-width: 560px; margin: 0 auto 2.5rem; }
+ 
+  .contacto-form {
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    text-align: left;
+  }
+ 
+  .contacto-form input,
+  .contacto-form textarea,
+  .contacto-form select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--blanco);
+    font-family: var(--fuente);
+    font-size: 0.88rem;
+    font-weight: 300;
+    border-radius: 2px;
+    transition: border-color 0.2s;
+  }
+ 
+  .contacto-form input::placeholder,
+  .contacto-form textarea::placeholder { color: rgba(255,255,255,0.22); }
+ 
+  .contacto-form input:focus,
+  .contacto-form textarea:focus,
+  .contacto-form select:focus { outline: none; border-color: var(--azul); }
+ 
+  .contacto-form select { color: rgba(255,255,255,0.45); }
+  .contacto-form select option { background: var(--oscuro); color: var(--blanco); }
+  .contacto-form textarea { resize: vertical; min-height: 100px; }
+ 
+  .contacto-submit {
+    background: var(--azul);
+    color: var(--blanco);
+    border: none;
+    padding: 0.8rem 1.8rem;
+    font-family: var(--fuente);
+    font-size: 0.85rem;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+ 
+  .contacto-submit:hover { background: #005aaa; }
+ 
+  .contacto-datos {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3.5rem;
+    flex-wrap: wrap;
+  }
+ 
+  .contacto-dato label { display: block; font-size: 0.72rem; color: rgba(255,255,255,0.28); margin-bottom: 0.25rem; }
+  .contacto-dato a, .contacto-dato span { color: rgba(255,255,255,0.6); font-size: 0.88rem; font-weight: 300; text-decoration: none; }
+  .contacto-dato a:hover { color: var(--blanco); }
+ 
+  /* FOOTER */
+  footer {
+    background: #111114;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+ 
+  .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.18); font-weight: 300; }
+ 
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.75rem; color: rgba(255,255,255,0.18); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(255,255,255,0.6); }
+ 
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .portafolio-grilla { grid-template-columns: repeat(3, 1fr); }
+    .servicios-grid { grid-template-columns: repeat(2, 1fr); }
+    .etapas { grid-template-columns: repeat(2, 1fr); }
+  }
+ 
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-imagen-area { min-height: 280px; }
+    .portafolio-grilla { grid-template-columns: repeat(2, 1fr); }
+    .portafolio-cabecera { flex-direction: column; align-items: flex-start; }
+    #nosotros { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 0; }
+    .nosotros-img { display: none; }
+    .etapas { grid-template-columns: 1fr; }
+    .servicios-grid { grid-template-columns: 1fr; }
+    .repo-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .modal-fotos { grid-template-columns: 1fr; grid-template-rows: auto; height: auto; }
+    .modal-foto-p { grid-row: span 1; height: 200px; }
+    .modal-foto-s { height: 140px; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
 </head>
 <body>
-
-    <nav>
-        <a href="#" class="logo">Estudio Bastos</a>
-        <div class="nav-links">
-            <a href="#trabajos">Proyectos</a>
-            <a href="#estudio">El Estudio</a>
-            <a href="#contacto">Contacto</a>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <h1>Diseño <em>editorial</em>, identidad visual y estrategia de comunicación.</h1>
-    </header>
-
-    <main id="trabajos" class="work-grid">
-
-        <a href="#" class="project">
-            <div class="image-box">
-                <img src="https://images.unsplash.com/photo-1544476073-725849007c1e?auto=format&fit=crop&q=80&w=1200" alt="Proyecto Editorial">
-            </div>
-            <div class="project-meta">
-                <h3>Gaceta Cultural 2024</h3>
-                <span>Editorial / Dirección de Arte</span>
-            </div>
-        </a>
-
-        <a href="#" class="project medium">
-            <div class="image-box">
-                <img src="https://images.unsplash.com/photo-1586717791821-3f44a563dc4c?auto=format&fit=crop&q=80&w=800" alt="Branding">
-            </div>
-            <div class="project-meta">
-                <h3>Archivo Arkhos</h3>
-                <span>Identidad Visual</span>
-            </div>
-        </a>
-
-        <a href="#" class="project small">
-            <div class="image-box">
-                <img src="https://images.unsplash.com/photo-1512485694743-9c9538b4e6e0?auto=format&fit=crop&q=80&w=600" alt="Estrategia">
-            </div>
-            <div class="project-meta">
-                <h3>Nexo Humano</h3>
-                <span>Estrategia</span>
-            </div>
-        </a>
-
-    </main>
-
-    <footer id="contacto">
-        <div class="footer-big-text">Hagamos que tu mensaje trascienda.</div>
+ 
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Bastos</a>
+  <ul class="nav-links">
+    <li><a href="#portafolio">Proyectos</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#metodologia">Cómo trabajamos</a></li>
+    <li><a href="#repositorio">Repositorio</a></li>
+    <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
+  </ul>
+</nav>
+ 
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-texto">
+    <h1 class="hero-titulo">Somos un estudio de diseño y comunicaciones</h1>
+    <p class="hero-bajada">Trabajamos en proyectos editoriales y de identidad de marca.</p>
+    <div class="hero-acciones">
+      <a href="#portafolio" class="btn-p">Ver proyectos</a>
+      <a href="#contacto" class="btn-s">Conversemos</a>
+    </div>
+  </div>
+  <div class="hero-imagen-area">
+    <div class="hero-img-placeholder">
+      assets/hero.jpg<br>1200 × 1500 px
+    </div>
+  </div>
+</section>
+ 
+<!-- PROYECTOS -->
+<section id="portafolio">
+  <div class="portafolio-cabecera">
+    <h2>Proyectos</h2>
+    <div class="filtros">
+      <span class="filtro activo" data-filtro="todos">Todos</span>
+      <span class="filtro" data-filtro="editorial">Diseño editorial</span>
+      <span class="filtro" data-filtro="identidad">Identidad de marca</span>
+    </div>
+  </div>
+  <div class="portafolio-grilla" id="grilla-portafolio"></div>
+</section>
+ 
+<!-- Modal -->
+<div class="modal-fondo" id="modal-proyecto" role="dialog" aria-modal="true">
+  <div class="modal-contenido">
+    <button class="modal-cerrar" id="modal-cerrar" aria-label="Cerrar">✕</button>
+    <div class="modal-fotos">
+      <div class="modal-foto-p" id="modal-foto-1">foto-1.jpg</div>
+      <div class="modal-foto-s" id="modal-foto-2">foto-2.jpg</div>
+      <div class="modal-foto-s" id="modal-foto-3">foto-3.jpg</div>
+    </div>
+    <div class="modal-info">
+      <p class="modal-cat" id="modal-cat"></p>
+      <h3 class="modal-tit" id="modal-tit"></h3>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-meta">
+        <div class="modal-meta-i"><label>Cliente</label><span id="modal-cliente"></span></div>
+        <div class="modal-meta-i"><label>Año</label><span id="modal-anio"></span></div>
+        <div class="modal-meta-i"><label>Disciplina</label><span id="modal-disc"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div>
+    <h2 class="s-titulo">Nosotros</h2>
+    <p class="s-texto">
+      Somos Bastos, un estudio de diseño editorial e identidad de marca con sede en Santiago de Chile.
+      Lo dirige Antonio Batlle, diseñador con diplomado en diseño editorial y máster en creación literaria.
+    </p>
+    <p class="s-texto" style="margin-top:1.1rem;">
+      Nos interesa trabajar en los proyectos desde el principio. Participar en la definición del problema,
+      ordenar el contenido, construir el sistema gráfico y llegar hasta la producción final.
+      Somos cuidadosos con el detalle y creemos que la claridad es una forma de respeto hacia quien lee.
+    </p>
+    <p class="nosotros-firma">— Antonio Batlle</p>
+  </div>
+  <div class="nosotros-img">
+    Foto Antonio Batlle<br>assets/antonio.jpg<br>900 × 1200 px
+  </div>
+</section>
+ 
+<!-- CÓMO TRABAJAMOS -->
+<section id="metodologia">
+  <h2 class="s-titulo">Cómo trabajamos</h2>
+  <div class="etapas">
+    <div class="etapa">
+      <p class="etapa-num">01</p>
+      <h3 class="etapa-nombre">Exploración</h3>
+      <p class="etapa-texto">
+        Abrimos el campo de posibilidades. Analizamos el material disponible, revisamos referencias
+        y hacemos primeras pruebas formales. El objetivo es ponernos de acuerdo en la línea gráfica:
+        qué recursos vamos a usar, qué concepto orienta el proyecto. Sin esos acuerdos, no avanzamos.
+      </p>
+    </div>
+    <div class="etapa">
+      <p class="etapa-num">02</p>
+      <h3 class="etapa-nombre">Composición</h3>
+      <p class="etapa-texto">
+        Tomamos decisiones concretas a partir de los acuerdos de la etapa anterior. Desarrollamos
+        dos o tres propuestas integradas, probamos el sistema gráfico y evaluamos juntos.
+        En este momento todavía es posible cambiar de dirección.
+      </p>
+    </div>
+    <div class="etapa">
+      <p class="etapa-num">03</p>
+      <h3 class="etapa-nombre">Consolidación</h3>
+      <p class="etapa-texto">
+        Se define la solución final. A partir de aquí se ejecuta: los ajustes son formales,
+        no conceptuales. Esta etapa existe porque creemos que las decisiones gráficas
+        deben tomarse antes, no durante la producción.
+      </p>
+    </div>
+  </div>
+</section>
+ 
+<!-- SERVICIOS -->
+<section id="servicios">
+  <h2 class="s-titulo">Servicios</h2>
+  <div class="servicios-grid">
+    <div class="servicio-card">
+      <div class="serv-acento"></div>
+      <h3 class="serv-nombre">Diseño editorial</h3>
+      <p class="serv-desc">
+        Libros, memorias anuales, publicaciones institucionales, plataformas digitales editoriales,
+        homenajes y libros de memoria familiar. Todo lo que tiene páginas y necesita ser bien diseñado.
+      </p>
+      <a href="#contacto" class="serv-link">Conversemos</a>
+    </div>
+    <div class="servicio-card">
+      <div class="serv-acento"></div>
+      <h3 class="serv-nombre">Identidad de marca</h3>
+      <p class="serv-desc">
+        Sistemas visuales para organizaciones e instituciones. Logotipo, tipografía, color,
+        manual de uso y piezas de comunicación.
+      </p>
+      <a href="#contacto" class="serv-link">Conversemos</a>
+    </div>
+    <div class="servicio-card">
+      <div class="serv-acento"></div>
+      <h3 class="serv-nombre">Talleres y acompañamiento</h3>
+      <p class="serv-desc">
+        Procesos de escritura para personas u organizaciones que quieren contar su historia
+        y no saben cómo empezar. En grupo o de manera individual.
+      </p>
+      <a href="#contacto" class="serv-link">Conversemos</a>
+    </div>
+  </div>
+</section>
+ 
+<!-- REPOSITORIO -->
+<section id="repositorio">
+  <div class="repo-inner">
+    <div>
+      <h2 class="s-titulo">Repositorio de proyectos</h2>
+      <p class="s-texto">[Texto pendiente]</p>
+    </div>
+    <div class="repo-lista">
+      <a href="#" class="repo-item">
         <div>
-            <p>Escríbenos:</p>
-            <p><strong>hola@estudiobastos.com</strong></p>
-            <br>
-            <p>Madrid, España.</p>
+          <h4>[Título del proyecto de poesía]</h4>
+          <span>Poesía · Web + plaquette impreso</span>
         </div>
-    </footer>
-
+        <span class="repo-arrow">→</span>
+      </a>
+      <a href="#" class="repo-item">
+        <div>
+          <h4>[Otro proyecto]</h4>
+          <span>En proceso</span>
+        </div>
+        <span class="repo-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+ 
+<!-- CONTACTO -->
+<section id="contacto">
+  <h2 class="s-titulo">Cuéntanos tu proyecto</h2>
+  <form class="contacto-form" onsubmit="return false;">
+    <input type="text" placeholder="Nombre">
+    <input type="email" placeholder="Correo electrónico">
+    <select>
+      <option value="" disabled selected>Tipo de proyecto</option>
+      <option>Diseño editorial</option>
+      <option>Identidad de marca</option>
+      <option>Taller o acompañamiento en escritura</option>
+      <option>Otro</option>
+    </select>
+    <textarea placeholder="Cuéntanos de tu proyecto…"></textarea>
+    <button type="submit" class="contacto-submit">Enviar</button>
+  </form>
+  <div class="contacto-datos">
+    <div class="contacto-dato">
+      <label>Correo</label>
+      <a href="mailto:hola@bastos.cl">hola@bastos.cl</a>
+    </div>
+    <div class="contacto-dato">
+      <label>Instagram</label>
+      <a href="#">@bastos</a>
+    </div>
+    <div class="contacto-dato">
+      <label>Ciudad</label>
+      <span>Santiago, Chile</span>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <p class="footer-copy">© 2025 Bastos</p>
+  <ul class="footer-links">
+    <li><a href="#portafolio">Proyectos</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</footer>
+ 
+<script>
+const proyectos = [
+  { id:1, titulo:"Diagnóstico territorial climático", cat:"editorial", catLabel:"Diseño editorial", cliente:"Organización sociedad civil", anio:"2024", disc:"Diseño editorial digital", desc:"[Descripción pendiente]" },
+  { id:2, titulo:"Memoria anual institucional", cat:"editorial", catLabel:"Diseño editorial", cliente:"ONG", anio:"2023", disc:"Diseño editorial", desc:"[Descripción pendiente]" },
+  { id:3, titulo:"Identidad de marca organizacional", cat:"identidad", catLabel:"Identidad de marca", cliente:"Fundación", anio:"2024", disc:"Identidad de marca", desc:"[Descripción pendiente]" },
+  { id:4, titulo:"Libro de historia familiar", cat:"editorial", catLabel:"Diseño editorial", cliente:"Familia", anio:"2024", disc:"Libro de memoria", desc:"[Descripción pendiente]" },
+  { id:5, titulo:"Informe de impacto territorial", cat:"editorial", catLabel:"Diseño editorial", cliente:"Municipio", anio:"2023", disc:"Diseño editorial", desc:"[Descripción pendiente]" },
+  { id:6, titulo:"Libro homenaje a trabajadores", cat:"editorial", catLabel:"Diseño editorial", cliente:"Empresa privada", anio:"2024", disc:"Libro de memoria", desc:"[Descripción pendiente]" },
+  { id:7, titulo:"Catálogo programa social", cat:"editorial", catLabel:"Diseño editorial", cliente:"ONG", anio:"2022", disc:"Diseño editorial", desc:"[Descripción pendiente]" },
+  { id:8, titulo:"Sistema de comunicaciones", cat:"identidad", catLabel:"Identidad de marca", cliente:"Fundación", anio:"2023", disc:"Comunicaciones", desc:"[Descripción pendiente]" },
+  { id:9, titulo:"Libro aniversario empresarial", cat:"editorial", catLabel:"Diseño editorial", cliente:"Empresa privada", anio:"2024", disc:"Diseño editorial", desc:"[Descripción pendiente]" },
+  { id:10, titulo:"Diagnóstico educativo", cat:"editorial", catLabel:"Diseño editorial", cliente:"Red educacional", anio:"2023", disc:"Diseño editorial digital", desc:"[Descripción pendiente]" },
+  { id:11, titulo:"Libro de poesía — sello Bastos", cat:"editorial", catLabel:"Diseño editorial", cliente:"Sello Bastos", anio:"2024", disc:"Diseño editorial", desc:"[Descripción pendiente]" },
+  { id:12, titulo:"Identidad visual para centro cultural", cat:"identidad", catLabel:"Identidad de marca", cliente:"Centro cultural", anio:"2024", disc:"Identidad de marca", desc:"[Descripción pendiente]" }
+];
+ 
+const grilla = document.getElementById('grilla-portafolio');
+const modal = document.getElementById('modal-proyecto');
+const cerrarBtn = document.getElementById('modal-cerrar');
+ 
+proyectos.forEach((p, i) => {
+  const carpeta = `assets/portfolio/proyecto-${String(i+1).padStart(2,'0')}`;
+  const card = document.createElement('div');
+  card.className = 'proyecto-card';
+  card.dataset.cat = p.cat;
+  card.innerHTML = `
+    <div class="proyecto-img-bg">
+      <img src="${carpeta}/cover.jpg" alt="${p.titulo}" onerror="this.style.display='none'">
+      <span style="position:relative;z-index:1;text-align:center;">${carpeta}/cover.jpg</span>
+    </div>
+    <div class="proyecto-overlay">
+      <p class="proyecto-tit">${p.titulo}</p>
+      <p class="proyecto-cat">${p.catLabel}</p>
+    </div>
+    <div class="proyecto-base">
+      <h3>${p.titulo}</h3>
+      <span>${p.catLabel}</span>
+    </div>
+  `;
+  card.addEventListener('click', () => abrirModal(p, carpeta));
+  grilla.appendChild(card);
+});
+ 
+// Filtros
+document.querySelectorAll('.filtro').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filtro').forEach(b => b.classList.remove('activo'));
+    btn.classList.add('activo');
+    const f = btn.dataset.filtro;
+    document.querySelectorAll('.proyecto-card').forEach(card => {
+      card.classList.toggle('oculto', f !== 'todos' && card.dataset.cat !== f);
+    });
+  });
+});
+ 
+function abrirModal(p, carpeta) {
+  document.getElementById('modal-cat').textContent = p.catLabel;
+  document.getElementById('modal-tit').textContent = p.titulo;
+  document.getElementById('modal-desc').textContent = p.desc;
+  document.getElementById('modal-cliente').textContent = p.cliente;
+  document.getElementById('modal-anio').textContent = p.anio;
+  document.getElementById('modal-disc').textContent = p.disc;
+  ['modal-foto-1','modal-foto-2','modal-foto-3'].forEach((id, j) => {
+    const el = document.getElementById(id);
+    el.innerHTML = `foto-${j+1}.jpg`;
+    const img = document.createElement('img');
+    img.src = `${carpeta}/foto-${j+1}.jpg`;
+    img.alt = `Foto ${j+1}`;
+    img.onerror = function() { this.style.display='none'; };
+    el.appendChild(img);
+  });
+  modal.classList.add('activo');
+  document.body.style.overflow = 'hidden';
+}
+ 
+cerrarBtn.addEventListener('click', cerrarModal);
+modal.addEventListener('click', e => { if (e.target === modal) cerrarModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal(); });
+function cerrarModal() { modal.classList.remove('activo'); document.body.style.overflow = ''; }
+</script>
 </body>
 </html>
