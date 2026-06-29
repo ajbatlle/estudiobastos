@@ -1,4 +1,3 @@
-import { jsxDEV as _jsxDEV, Fragment as _Fragment } from "react/jsx-dev-runtime";
 const {
   useState,
   useMemo
@@ -28,100 +27,92 @@ function BrandElement({
     lineHeight: 0
   };
   if (element === 'diamonds') {
-    return /*#__PURE__*/_jsxDEV("span", {
-      style: wrap,
-      children: /*#__PURE__*/_jsxDEV("svg", {
-        viewBox: "0 0 256.25 256.25",
-        style: svgBase,
-        children: [/*#__PURE__*/_jsxDEV("rect", {
-          x: "18.76",
-          y: "146.89",
-          width: "90.6",
-          height: "90.6",
-          transform: "translate(-117.13 101.59) rotate(-45)"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("rect", {
-          x: "18.76",
-          y: "18.76",
-          width: "90.6",
-          height: "90.6",
-          transform: "translate(-26.54 64.06) rotate(-45)"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("rect", {
-          x: "146.89",
-          y: "146.89",
-          width: "90.6",
-          height: "90.6",
-          transform: "translate(-79.61 192.19) rotate(-45)"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("rect", {
-          x: "146.89",
-          y: "18.76",
-          width: "90.6",
-          height: "90.6",
-          transform: "translate(10.99 154.66) rotate(-45)"
-        }, void 0, false)]
-      }, void 0, true)
-    }, void 0, false);
+    return /*#__PURE__*/React.createElement("span", {
+      style: wrap
+    }, /*#__PURE__*/React.createElement("svg", {
+      viewBox: "0 0 256.25 256.25",
+      style: svgBase
+    }, /*#__PURE__*/React.createElement("rect", {
+      x: "18.76",
+      y: "146.89",
+      width: "90.6",
+      height: "90.6",
+      transform: "translate(-117.13 101.59) rotate(-45)"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "18.76",
+      y: "18.76",
+      width: "90.6",
+      height: "90.6",
+      transform: "translate(-26.54 64.06) rotate(-45)"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "146.89",
+      y: "146.89",
+      width: "90.6",
+      height: "90.6",
+      transform: "translate(-79.61 192.19) rotate(-45)"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "146.89",
+      y: "18.76",
+      width: "90.6",
+      height: "90.6",
+      transform: "translate(10.99 154.66) rotate(-45)"
+    })));
   }
   if (element === 'asterisk') {
-    return /*#__PURE__*/_jsxDEV("span", {
-      style: wrap,
-      children: /*#__PURE__*/_jsxDEV("svg", {
-        viewBox: "0 0 256.21 256.25",
-        style: svgBase,
-        children: /*#__PURE__*/_jsxDEV("path", {
-          d: "M0,153.74h66.26l-46.85,46.85,36.23,36.23,46.83-46.83v66.26h51.23v-66.27l46.87,46.87,36.23-36.23-46.88-46.88h66.29v-51.23h-66.26l46.85-46.85-36.23-36.23-46.87,46.87V0h-51.23v66.29L55.61,19.43,19.38,55.65l46.85,46.85H0v51.23ZM102.47,138.74v-21.21l15.03-15.03h21.19l15.01,15.01v21.23l-14.99,14.99h-21.25l-15-15Z"
-        }, void 0, false)
-      }, void 0, false)
-    }, void 0, false);
+    return /*#__PURE__*/React.createElement("span", {
+      style: wrap
+    }, /*#__PURE__*/React.createElement("svg", {
+      viewBox: "0 0 256.21 256.25",
+      style: svgBase
+    }, /*#__PURE__*/React.createElement("path", {
+      d: "M0,153.74h66.26l-46.85,46.85,36.23,36.23,46.83-46.83v66.26h51.23v-66.27l46.87,46.87,36.23-36.23-46.88-46.88h66.29v-51.23h-66.26l46.85-46.85-36.23-36.23-46.87,46.87V0h-51.23v66.29L55.61,19.43,19.38,55.65l46.85,46.85H0v51.23ZM102.47,138.74v-21.21l15.03-15.03h21.19l15.01,15.01v21.23l-14.99,14.99h-21.25l-15-15Z"
+    })));
   }
   if (element === 'circles') {
-    return /*#__PURE__*/_jsxDEV("span", {
-      style: wrap,
-      children: /*#__PURE__*/_jsxDEV("svg", {
-        viewBox: "0 0 256.25 256.25",
-        style: svgBase,
-        children: [/*#__PURE__*/_jsxDEV("rect", {
-          x: "128.12",
-          y: "128.12",
-          width: "128.12",
-          height: "128.12",
-          rx: "64.06",
-          ry: "64.06"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("rect", {
-          x: "0",
-          y: "0",
-          width: "128.12",
-          height: "128.12",
-          rx: "64.06",
-          ry: "64.06"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("rect", {
-          x: "128.12",
-          y: "0",
-          width: "128.12",
-          height: "128.12",
-          rx: "64.06",
-          ry: "64.06"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("rect", {
-          x: "0",
-          y: "128.12",
-          width: "128.12",
-          height: "128.12",
-          rx: "64.06",
-          ry: "64.06"
-        }, void 0, false)]
-      }, void 0, true)
-    }, void 0, false);
+    return /*#__PURE__*/React.createElement("span", {
+      style: wrap
+    }, /*#__PURE__*/React.createElement("svg", {
+      viewBox: "0 0 256.25 256.25",
+      style: svgBase
+    }, /*#__PURE__*/React.createElement("rect", {
+      x: "128.12",
+      y: "128.12",
+      width: "128.12",
+      height: "128.12",
+      rx: "64.06",
+      ry: "64.06"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "0",
+      y: "0",
+      width: "128.12",
+      height: "128.12",
+      rx: "64.06",
+      ry: "64.06"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "128.12",
+      y: "0",
+      width: "128.12",
+      height: "128.12",
+      rx: "64.06",
+      ry: "64.06"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "0",
+      y: "128.12",
+      width: "128.12",
+      height: "128.12",
+      rx: "64.06",
+      ry: "64.06"
+    })));
   }
   if (element === 'flower') {
-    return /*#__PURE__*/_jsxDEV("span", {
-      style: wrap,
-      children: /*#__PURE__*/_jsxDEV("svg", {
-        viewBox: "0 0 255.77 256.25",
-        style: svgBase,
-        children: /*#__PURE__*/_jsxDEV("path", {
-          d: "M15.54,144.7c21.49-10.18,52.86-16.58,96.73-16.58-43.8,0-75.13-6.38-96.62-16.53-31.08-14.68-11.2-62.72,21.16-51.12,22.36,8.02,49.02,25.66,79.99,56.62-31.14-31.14-48.81-57.95-56.76-80.4C48.57,4.3,96.38-15.48,111.17,15.54c10.25,21.5,16.7,52.94,16.7,96.98,0-43.84,6.39-75.19,16.55-96.68,14.69-31.07,62.68-11.23,51.13,21.14-7.99,22.39-25.64,49.1-56.65,80.11,31-31,57.7-48.65,80.07-56.66,32.36-11.57,52.23,36.41,21.16,51.12-21.48,10.17-52.82,16.56-96.66,16.56,43.91,0,75.29,6.42,96.77,16.61,31.04,14.73,11.18,62.65-21.18,51.11-22.4-7.99-49.12-25.64-80.16-56.71,31.06,31.06,48.72,57.81,56.7,80.23,11.53,32.38-36.41,52.21-51.13,21.15-10.19-21.5-16.6-52.89-16.6-96.81,0,44.05-6.46,75.5-16.71,97-14.79,31.01-62.6,11.22-51.13-21.17,7.95-22.45,25.62-49.26,56.76-80.4-30.99,31.02-57.68,48.67-80.07,56.67-32.36,11.57-52.24-36.41-21.18-51.11Z"
-        }, void 0, false)
-      }, void 0, false)
-    }, void 0, false);
+    return /*#__PURE__*/React.createElement("span", {
+      style: wrap
+    }, /*#__PURE__*/React.createElement("svg", {
+      viewBox: "0 0 255.77 256.25",
+      style: svgBase
+    }, /*#__PURE__*/React.createElement("path", {
+      d: "M15.54,144.7c21.49-10.18,52.86-16.58,96.73-16.58-43.8,0-75.13-6.38-96.62-16.53-31.08-14.68-11.2-62.72,21.16-51.12,22.36,8.02,49.02,25.66,79.99,56.62-31.14-31.14-48.81-57.95-56.76-80.4C48.57,4.3,96.38-15.48,111.17,15.54c10.25,21.5,16.7,52.94,16.7,96.98,0-43.84,6.39-75.19,16.55-96.68,14.69-31.07,62.68-11.23,51.13,21.14-7.99,22.39-25.64,49.1-56.65,80.11,31-31,57.7-48.65,80.07-56.66,32.36-11.57,52.23,36.41,21.16,51.12-21.48,10.17-52.82,16.56-96.66,16.56,43.91,0,75.29,6.42,96.77,16.61,31.04,14.73,11.18,62.65-21.18,51.11-22.4-7.99-49.12-25.64-80.16-56.71,31.06,31.06,48.72,57.81,56.7,80.23,11.53,32.38-36.41,52.21-51.13,21.15-10.19-21.5-16.6-52.89-16.6-96.81,0,44.05-6.46,75.5-16.71,97-14.79,31.01-62.6,11.22-51.13-21.17,7.95-22.45,25.62-49.26,56.76-80.4-30.99,31.02-57.68,48.67-80.07,56.67-32.36,11.57-52.24-36.41-21.18-51.11Z"
+    })));
   }
   return null;
 }
@@ -798,349 +789,258 @@ function Cotizador() {
   };
   const waHref = CONTACTO.whatsapp ? `https://wa.me/${CONTACTO.whatsapp}?text=${encodeURIComponent(resumenTxt())}` : null;
   const mailHref = `mailto:${CONTACTO.email}?subject=${encodeURIComponent("Solicitud — " + (flujo?.label || ""))}&body=${encodeURIComponent(resumenTxt())}`;
-  return /*#__PURE__*/_jsxDEV("div", {
-    className: "bx-page",
-    children: /*#__PURE__*/_jsxDEV("div", {
-      className: "bx-frame",
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        className: "bx-ornament",
-        children: [/*#__PURE__*/_jsxDEV(BrandElement, {
-          element: "diamonds",
-          size: 22,
-          color: "var(--color-brand)"
-        }, void 0, false), /*#__PURE__*/_jsxDEV(BrandElement, {
-          element: "asterisk",
-          size: 22,
-          color: "var(--color-brand)"
-        }, void 0, false), /*#__PURE__*/_jsxDEV(BrandElement, {
-          element: "circles",
-          size: 22,
-          color: "var(--color-brand)"
-        }, void 0, false), /*#__PURE__*/_jsxDEV(BrandElement, {
-          element: "flower",
-          size: 22,
-          color: "var(--color-brand)"
-        }, void 0, false)]
-      }, void 0, true), !cat && /*#__PURE__*/_jsxDEV("div", {
-        className: "bx-home",
-        children: [/*#__PURE__*/_jsxDEV("h1", {
-          className: "bx-h1",
-          children: "¿Qué quieres crear?"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("p", {
-          className: "bx-lead",
-          children: "Respondes unas alternativas y obtienes un estimado y el alcance del trabajo."
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "bx-cards",
-          children: Object.entries(FLUJOS).map(([id, f]) => /*#__PURE__*/_jsxDEV("button", {
-            className: "bx-card",
-            onClick: () => elegirCat(id),
-            children: [/*#__PURE__*/_jsxDEV("span", {
-              className: "bx-card-n",
-              children: f.n
-            }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-              className: "bx-card-t",
-              children: f.label
-            }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-              className: "bx-card-d",
-              children: f.intro
-            }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-              className: "bx-card-go",
-              children: "Empezar →"
-            }, void 0, false)]
-          }, id, true))
-        }, void 0, false)]
-      }, void 0, true), cat && !fin && (() => {
-        const p = flujo.pasos[paso];
-        return /*#__PURE__*/_jsxDEV("div", {
-          className: "bx-flow",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "bx-bar",
-            children: /*#__PURE__*/_jsxDEV("span", {
-              style: {
-                width: `${(paso + 1) / total * 100}%`
-              }
-            }, void 0, false)
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            className: "bx-meta",
-            children: [flujo.label, " · ", paso + 1, " de ", total]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("h2", {
-            className: "bx-q",
-            children: p.q
-          }, void 0, false), p.sub && /*#__PURE__*/_jsxDEV("p", {
-            className: "bx-sub",
-            children: p.sub
-          }, void 0, false), p.tipo === "single" && /*#__PURE__*/_jsxDEV("div", {
-            className: "bx-opts",
-            children: p.op.map(o => /*#__PURE__*/_jsxDEV("button", {
-              className: "bx-opt",
-              "aria-pressed": ans[p.id] === o.id,
-              onClick: () => setSingle(p.id, o.id),
-              children: [/*#__PURE__*/_jsxDEV("span", {
-                className: "bx-opt-t",
-                children: o.t
-              }, void 0, false), o.d && /*#__PURE__*/_jsxDEV("span", {
-                className: "bx-opt-d",
-                children: o.d
-              }, void 0, false)]
-            }, o.id, true))
-          }, void 0, false), p.tipo === "multi" && /*#__PURE__*/_jsxDEV("div", {
-            className: "bx-opts",
-            children: p.op.map(o => /*#__PURE__*/_jsxDEV("button", {
-              className: "bx-opt bx-multi",
-              "aria-pressed": (ans[p.id] || []).includes(o.id),
-              onClick: () => toggleMulti(p.id, o.id),
-              children: [/*#__PURE__*/_jsxDEV("span", {
-                className: "bx-chk"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                className: "bx-opt-t",
-                children: o.t
-              }, void 0, false)]
-            }, o.id, true))
-          }, void 0, false), p.tipo === "slider" && /*#__PURE__*/_jsxDEV("div", {
-            className: "bx-sliderbox",
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "bx-sliderval",
-              children: [ans[p.id], " ", /*#__PURE__*/_jsxDEV("em", {
-                children: p.unidad
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("input", {
-              className: "bx-slider",
-              type: "range",
-              min: p.min,
-              max: p.max,
-              step: p.step,
-              value: ans[p.id],
-              onChange: e => setSlider(p.id, +e.target.value)
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            className: "bx-note",
-            children: !notaOpen[p.id] && !notas[p.id] ? /*#__PURE__*/_jsxDEV("button", {
-              className: "bx-noteadd",
-              onClick: () => setNotaOpen(o => ({
-                ...o,
-                [p.id]: true
-              })),
-              children: "+ Agregar nota para la reunión"
-            }, void 0, false) : /*#__PURE__*/_jsxDEV("textarea", {
-              className: "bx-noteta",
-              rows: 2,
-              value: notas[p.id] || "",
-              onChange: e => setNotas(n => ({
-                ...n,
-                [p.id]: e.target.value
-              })),
-              placeholder: "Algo puntual sobre esta pregunta que quieras conversar."
-            }, void 0, false)
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            className: "bx-running",
-            children: [/*#__PURE__*/_jsxDEV("span", {
-              children: r.exacto ? "Precio del programa" : "Estimado provisorio"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("strong", {
-              children: headline(r)
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            className: "bx-nav",
-            children: [/*#__PURE__*/_jsxDEV("button", {
-              className: "bx-back",
-              onClick: volver,
-              children: ["← ", paso === 0 ? "Categorías" : "Atrás"]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-              className: "bx-next",
-              onClick: avanzar,
-              children: paso < total - 1 ? "Siguiente" : "Ver cotización"
-            }, void 0, false)]
-          }, void 0, true)]
-        }, void 0, true);
-      })(), cat && fin && /*#__PURE__*/_jsxDEV("div", {
-        className: "bx-final",
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          className: "bx-meta",
-          children: flujo.label
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "bx-price",
-          children: [/*#__PURE__*/_jsxDEV("span", {
-            className: "bx-price-l",
-            children: r.exacto ? "Precio" : "Estimado"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-            className: "bx-price-n",
-            children: headline(r)
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "bx-dep",
-          children: [/*#__PURE__*/_jsxDEV("span", {
-            children: "Anticipo para iniciar · 50%"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-            children: anticipoStr(r)
-          }, void 0, false)]
-        }, void 0, true), !r.exacto && /*#__PURE__*/_jsxDEV("p", {
-          className: "bx-rangenote",
-          children: "El valor final dentro del rango se define en la primera reunión, según el estado del material, quién decide y qué tan definido esté el encargo."
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "bx-incl-h",
-          children: [/*#__PURE__*/_jsxDEV("span", {
-            children: "Qué incluye"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-            className: "bx-vista",
-            onClick: () => setEstudio(!estudio),
-            children: estudio ? "Vista cliente" : "Vista estudio"
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("ul", {
-          className: "bx-tareas",
-          children: r.tareas.map((t, i) => /*#__PURE__*/_jsxDEV("li", {
-            children: [/*#__PURE__*/_jsxDEV("span", {
-              children: t[0]
-            }, void 0, false), estudio && t[1] != null && /*#__PURE__*/_jsxDEV("em", {
-              children: [t[1], " h"]
-            }, void 0, true)]
-          }, i, true))
-        }, void 0, false), estudio && /*#__PURE__*/_jsxDEV("div", {
-          className: "bx-studio",
-          children: [r.esPrograma ? /*#__PURE__*/_jsxDEV("div", {
-            className: "bx-studio-line",
-            children: [r.horas, " h × ", clp(VALOR_HORA), r.empresaImpresion ? ` + impresión ${clp(r.empresaImpresion)}` : "", " = ", clp(r.precio)]
-          }, void 0, true) : /*#__PURE__*/_jsxDEV("div", {
-            className: "bx-studio-line",
-            children: ["Punto: ", r.horas, " h × ", clp(VALOR_HORA), r.mult !== 1 ? ` · urgencia ×${r.mult}` : "", " = ", clp(r.precio)]
-          }, void 0, true), !r.esSesion && r.defs.length > 0 && /*#__PURE__*/_jsxDEV(_Fragment, {
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "bx-check-h",
-              children: "Condiciones de la primera reunión — marca las que apliquen"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              className: "bx-checks",
-              children: r.defs.map(f => /*#__PURE__*/_jsxDEV("button", {
-                className: `bx-check ${f.dir === "sube" ? "up" : "down"}`,
-                "aria-pressed": !!marcados[f.id],
-                onClick: () => setMarcados(m => ({
-                  ...m,
-                  [f.id]: !m[f.id]
-                })),
-                children: [/*#__PURE__*/_jsxDEV("span", {
-                  className: "bx-check-box"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                  className: "bx-check-body",
-                  children: [/*#__PURE__*/_jsxDEV("span", {
-                    className: "bx-check-l",
-                    children: f.label
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                    className: "bx-check-p",
-                    children: f.porque
-                  }, void 0, false)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("span", {
-                  className: "bx-check-w",
-                  children: [f.dir === "sube" ? "+" : "−", Math.round(f.peso * 100), "%"]
-                }, void 0, true)]
-              }, f.id, true))
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              className: "bx-final-price",
-              children: [/*#__PURE__*/_jsxDEV("span", {
-                children: "Precio final"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                className: "bx-final-num",
-                children: clp(precioFinal)
-              }, void 0, false)]
-            }, void 0, true)]
-          }, void 0, true)]
-        }, void 0, true), agenda.length > 0 && /*#__PURE__*/_jsxDEV("div", {
-          className: "bx-agenda",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "bx-agenda-h",
-            children: "Temas para la reunión"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("ul", {
-            children: agenda.map((a, i) => /*#__PURE__*/_jsxDEV("li", {
-              children: [/*#__PURE__*/_jsxDEV("span", {
-                className: "bx-agenda-q",
-                children: a.q
-              }, void 0, false), a.nota]
-            }, i, true))
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("label", {
-          className: "bx-tlabel",
-          children: ["¿Algo más que debamos saber? ", /*#__PURE__*/_jsxDEV("em", {
-            children: "(opcional)"
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("textarea", {
-          className: "bx-textarea",
-          rows: 3,
-          value: detalle,
-          onChange: e => setDetalle(e.target.value),
-          placeholder: "Contexto, referencias, plazos, lo que quieras agregar."
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "bx-inputs",
-          children: [/*#__PURE__*/_jsxDEV("input", {
-            className: "bx-input",
-            placeholder: "Tu nombre",
-            value: datos.nombre,
-            onChange: e => setDatos({
-              ...datos,
-              nombre: e.target.value
-            })
-          }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-            className: "bx-input",
-            placeholder: "Nombre del proyecto",
-            value: datos.proyecto,
-            onChange: e => setDatos({
-              ...datos,
-              proyecto: e.target.value
-            })
-          }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-            className: "bx-input",
-            placeholder: "Correo",
-            value: datos.correo,
-            onChange: e => setDatos({
-              ...datos,
-              correo: e.target.value
-            })
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-          className: "bx-cta",
-          onClick: () => setEnviado(true),
-          children: "Solicitar cotización y agendar"
-        }, void 0, false), enviado && /*#__PURE__*/_jsxDEV("div", {
-          className: "bx-after",
-          children: [/*#__PURE__*/_jsxDEV("p", {
-            className: "bx-ok",
-            children: "Envíame el resumen y coordinamos la reunión para cerrar el precio. Ahí afinamos los temas que anotaste."
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            className: "bx-contact",
-            children: [waHref && /*#__PURE__*/_jsxDEV("a", {
-              className: "bx-ghost",
-              href: waHref,
-              target: "_blank",
-              rel: "noreferrer",
-              children: "Enviar por WhatsApp"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("a", {
-              className: "bx-ghost",
-              href: mailHref,
-              children: "Enviar por correo"
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            className: "bx-reserva",
-            children: CONTACTO.linkPago === "#" ? /*#__PURE__*/_jsxDEV("span", {
-              className: "bx-warn-inline",
-              children: "Para habilitar el anticipo, pega tu Link de Pago en CONTACTO.linkPago."
-            }, void 0, false) : /*#__PURE__*/_jsxDEV("button", {
-              className: "bx-reserva-b",
-              onClick: () => window.open(CONTACTO.linkPago, "_blank"),
-              children: ["¿Reservar agenda ahora? Pagar anticipo 50% (", anticipoStr(r), ") →"]
-            }, void 0, true)
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "bx-nav",
-          children: [/*#__PURE__*/_jsxDEV("button", {
-            className: "bx-back",
-            onClick: () => setFin(false),
-            children: "← Ajustar respuestas"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-            className: "bx-back",
-            onClick: () => setCat(null),
-            children: "Otra categoría"
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("p", {
-          className: "bx-fine",
-          children: r.exacto ? "Precio cerrado del programa. Al confirmar coordinamos las fechas." : "Estimación referencial. El valor final se confirma con el estudio antes de iniciar."
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("style", {
-        children: `
+  return /*#__PURE__*/React.createElement("div", {
+    className: "bx-page"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bx-frame"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bx-ornament"
+  }, /*#__PURE__*/React.createElement(BrandElement, {
+    element: "diamonds",
+    size: 22,
+    color: "var(--color-brand)"
+  }), /*#__PURE__*/React.createElement(BrandElement, {
+    element: "asterisk",
+    size: 22,
+    color: "var(--color-brand)"
+  }), /*#__PURE__*/React.createElement(BrandElement, {
+    element: "circles",
+    size: 22,
+    color: "var(--color-brand)"
+  }), /*#__PURE__*/React.createElement(BrandElement, {
+    element: "flower",
+    size: 22,
+    color: "var(--color-brand)"
+  })), !cat && /*#__PURE__*/React.createElement("div", {
+    className: "bx-home"
+  }, /*#__PURE__*/React.createElement("h1", {
+    className: "bx-h1"
+  }, "¿Qué quieres crear?"), /*#__PURE__*/React.createElement("p", {
+    className: "bx-lead"
+  }, "Respondes unas alternativas y obtienes un estimado y el alcance del trabajo."), /*#__PURE__*/React.createElement("div", {
+    className: "bx-cards"
+  }, Object.entries(FLUJOS).map(([id, f]) => /*#__PURE__*/React.createElement("button", {
+    key: id,
+    className: "bx-card",
+    onClick: () => elegirCat(id)
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "bx-card-n"
+  }, f.n), /*#__PURE__*/React.createElement("span", {
+    className: "bx-card-t"
+  }, f.label), /*#__PURE__*/React.createElement("span", {
+    className: "bx-card-d"
+  }, f.intro), /*#__PURE__*/React.createElement("span", {
+    className: "bx-card-go"
+  }, "Empezar →"))))), cat && !fin && (() => {
+    const p = flujo.pasos[paso];
+    return /*#__PURE__*/React.createElement("div", {
+      className: "bx-flow"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "bx-bar"
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: `${(paso + 1) / total * 100}%`
+      }
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "bx-meta"
+    }, flujo.label, " · ", paso + 1, " de ", total), /*#__PURE__*/React.createElement("h2", {
+      className: "bx-q"
+    }, p.q), p.sub && /*#__PURE__*/React.createElement("p", {
+      className: "bx-sub"
+    }, p.sub), p.tipo === "single" && /*#__PURE__*/React.createElement("div", {
+      className: "bx-opts"
+    }, p.op.map(o => /*#__PURE__*/React.createElement("button", {
+      key: o.id,
+      className: "bx-opt",
+      "aria-pressed": ans[p.id] === o.id,
+      onClick: () => setSingle(p.id, o.id)
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "bx-opt-t"
+    }, o.t), o.d && /*#__PURE__*/React.createElement("span", {
+      className: "bx-opt-d"
+    }, o.d)))), p.tipo === "multi" && /*#__PURE__*/React.createElement("div", {
+      className: "bx-opts"
+    }, p.op.map(o => /*#__PURE__*/React.createElement("button", {
+      key: o.id,
+      className: "bx-opt bx-multi",
+      "aria-pressed": (ans[p.id] || []).includes(o.id),
+      onClick: () => toggleMulti(p.id, o.id)
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "bx-chk"
+    }), /*#__PURE__*/React.createElement("span", {
+      className: "bx-opt-t"
+    }, o.t)))), p.tipo === "slider" && /*#__PURE__*/React.createElement("div", {
+      className: "bx-sliderbox"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "bx-sliderval"
+    }, ans[p.id], " ", /*#__PURE__*/React.createElement("em", null, p.unidad)), /*#__PURE__*/React.createElement("input", {
+      className: "bx-slider",
+      type: "range",
+      min: p.min,
+      max: p.max,
+      step: p.step,
+      value: ans[p.id],
+      onChange: e => setSlider(p.id, +e.target.value)
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "bx-note"
+    }, !notaOpen[p.id] && !notas[p.id] ? /*#__PURE__*/React.createElement("button", {
+      className: "bx-noteadd",
+      onClick: () => setNotaOpen(o => ({
+        ...o,
+        [p.id]: true
+      }))
+    }, "+ Agregar nota para la reunión") : /*#__PURE__*/React.createElement("textarea", {
+      className: "bx-noteta",
+      rows: 2,
+      value: notas[p.id] || "",
+      onChange: e => setNotas(n => ({
+        ...n,
+        [p.id]: e.target.value
+      })),
+      placeholder: "Algo puntual sobre esta pregunta que quieras conversar."
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "bx-running"
+    }, /*#__PURE__*/React.createElement("span", null, r.exacto ? "Precio del programa" : "Estimado provisorio"), /*#__PURE__*/React.createElement("strong", null, headline(r))), /*#__PURE__*/React.createElement("div", {
+      className: "bx-nav"
+    }, /*#__PURE__*/React.createElement("button", {
+      className: "bx-back",
+      onClick: volver
+    }, "← ", paso === 0 ? "Categorías" : "Atrás"), /*#__PURE__*/React.createElement("button", {
+      className: "bx-next",
+      onClick: avanzar
+    }, paso < total - 1 ? "Siguiente" : "Ver cotización")));
+  })(), cat && fin && /*#__PURE__*/React.createElement("div", {
+    className: "bx-final"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bx-meta"
+  }, flujo.label), /*#__PURE__*/React.createElement("div", {
+    className: "bx-price"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "bx-price-l"
+  }, r.exacto ? "Precio" : "Estimado"), /*#__PURE__*/React.createElement("span", {
+    className: "bx-price-n"
+  }, headline(r))), /*#__PURE__*/React.createElement("div", {
+    className: "bx-dep"
+  }, /*#__PURE__*/React.createElement("span", null, "Anticipo para iniciar · 50%"), /*#__PURE__*/React.createElement("span", null, anticipoStr(r))), !r.exacto && /*#__PURE__*/React.createElement("p", {
+    className: "bx-rangenote"
+  }, "El valor final dentro del rango se define en la primera reunión, según el estado del material, quién decide y qué tan definido esté el encargo."), /*#__PURE__*/React.createElement("div", {
+    className: "bx-incl-h"
+  }, /*#__PURE__*/React.createElement("span", null, "Qué incluye"), /*#__PURE__*/React.createElement("button", {
+    className: "bx-vista",
+    onClick: () => setEstudio(!estudio)
+  }, estudio ? "Vista cliente" : "Vista estudio")), /*#__PURE__*/React.createElement("ul", {
+    className: "bx-tareas"
+  }, r.tareas.map((t, i) => /*#__PURE__*/React.createElement("li", {
+    key: i
+  }, /*#__PURE__*/React.createElement("span", null, t[0]), estudio && t[1] != null && /*#__PURE__*/React.createElement("em", null, t[1], " h")))), estudio && /*#__PURE__*/React.createElement("div", {
+    className: "bx-studio"
+  }, r.esPrograma ? /*#__PURE__*/React.createElement("div", {
+    className: "bx-studio-line"
+  }, r.horas, " h × ", clp(VALOR_HORA), r.empresaImpresion ? ` + impresión ${clp(r.empresaImpresion)}` : "", " = ", clp(r.precio)) : /*#__PURE__*/React.createElement("div", {
+    className: "bx-studio-line"
+  }, "Punto: ", r.horas, " h × ", clp(VALOR_HORA), r.mult !== 1 ? ` · urgencia ×${r.mult}` : "", " = ", clp(r.precio)), !r.esSesion && r.defs.length > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "bx-check-h"
+  }, "Condiciones de la primera reunión — marca las que apliquen"), /*#__PURE__*/React.createElement("div", {
+    className: "bx-checks"
+  }, r.defs.map(f => /*#__PURE__*/React.createElement("button", {
+    key: f.id,
+    className: `bx-check ${f.dir === "sube" ? "up" : "down"}`,
+    "aria-pressed": !!marcados[f.id],
+    onClick: () => setMarcados(m => ({
+      ...m,
+      [f.id]: !m[f.id]
+    }))
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "bx-check-box"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "bx-check-body"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "bx-check-l"
+  }, f.label), /*#__PURE__*/React.createElement("span", {
+    className: "bx-check-p"
+  }, f.porque)), /*#__PURE__*/React.createElement("span", {
+    className: "bx-check-w"
+  }, f.dir === "sube" ? "+" : "−", Math.round(f.peso * 100), "%")))), /*#__PURE__*/React.createElement("div", {
+    className: "bx-final-price"
+  }, /*#__PURE__*/React.createElement("span", null, "Precio final"), /*#__PURE__*/React.createElement("span", {
+    className: "bx-final-num"
+  }, clp(precioFinal))))), agenda.length > 0 && /*#__PURE__*/React.createElement("div", {
+    className: "bx-agenda"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bx-agenda-h"
+  }, "Temas para la reunión"), /*#__PURE__*/React.createElement("ul", null, agenda.map((a, i) => /*#__PURE__*/React.createElement("li", {
+    key: i
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "bx-agenda-q"
+  }, a.q), a.nota)))), /*#__PURE__*/React.createElement("label", {
+    className: "bx-tlabel"
+  }, "¿Algo más que debamos saber? ", /*#__PURE__*/React.createElement("em", null, "(opcional)")), /*#__PURE__*/React.createElement("textarea", {
+    className: "bx-textarea",
+    rows: 3,
+    value: detalle,
+    onChange: e => setDetalle(e.target.value),
+    placeholder: "Contexto, referencias, plazos, lo que quieras agregar."
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "bx-inputs"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "bx-input",
+    placeholder: "Tu nombre",
+    value: datos.nombre,
+    onChange: e => setDatos({
+      ...datos,
+      nombre: e.target.value
+    })
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "bx-input",
+    placeholder: "Nombre del proyecto",
+    value: datos.proyecto,
+    onChange: e => setDatos({
+      ...datos,
+      proyecto: e.target.value
+    })
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "bx-input",
+    placeholder: "Correo",
+    value: datos.correo,
+    onChange: e => setDatos({
+      ...datos,
+      correo: e.target.value
+    })
+  })), /*#__PURE__*/React.createElement("button", {
+    className: "bx-cta",
+    onClick: () => setEnviado(true)
+  }, "Solicitar cotización y agendar"), enviado && /*#__PURE__*/React.createElement("div", {
+    className: "bx-after"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "bx-ok"
+  }, "Envíame el resumen y coordinamos la reunión para cerrar el precio. Ahí afinamos los temas que anotaste."), /*#__PURE__*/React.createElement("div", {
+    className: "bx-contact"
+  }, waHref && /*#__PURE__*/React.createElement("a", {
+    className: "bx-ghost",
+    href: waHref,
+    target: "_blank",
+    rel: "noreferrer"
+  }, "Enviar por WhatsApp"), /*#__PURE__*/React.createElement("a", {
+    className: "bx-ghost",
+    href: mailHref
+  }, "Enviar por correo")), /*#__PURE__*/React.createElement("div", {
+    className: "bx-reserva"
+  }, CONTACTO.linkPago === "#" ? /*#__PURE__*/React.createElement("span", {
+    className: "bx-warn-inline"
+  }, "Para habilitar el anticipo, pega tu Link de Pago en CONTACTO.linkPago.") : /*#__PURE__*/React.createElement("button", {
+    className: "bx-reserva-b",
+    onClick: () => window.open(CONTACTO.linkPago, "_blank")
+  }, "¿Reservar agenda ahora? Pagar anticipo 50% (", anticipoStr(r), ") →"))), /*#__PURE__*/React.createElement("div", {
+    className: "bx-nav"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "bx-back",
+    onClick: () => setFin(false)
+  }, "← Ajustar respuestas"), /*#__PURE__*/React.createElement("button", {
+    className: "bx-back",
+    onClick: () => setCat(null)
+  }, "Otra categoría")), /*#__PURE__*/React.createElement("p", {
+    className: "bx-fine"
+  }, r.exacto ? "Precio cerrado del programa. Al confirmar coordinamos las fechas." : "Estimación referencial. El valor final se confirma con el estudio antes de iniciar.")), /*#__PURE__*/React.createElement("style", null, `
 /* Bastos — Font Face Declarations
  *
  * ⚠ PENDING FONT FILES — Replace each 'src: local(…)' with real woff2/ttf paths
@@ -2029,9 +1929,6 @@ function Cotizador() {
         @media (prefers-reduced-motion: reduce) {
           * { transition: none !important; }
         }
-      `
-      }, void 0, false)]
-    }, void 0, true)
-  }, void 0, false);
+      `)));
 }
-ReactDOM.createRoot(document.getElementById('cotizador-root')).render(/*#__PURE__*/_jsxDEV(Cotizador, {}, void 0, false));
+ReactDOM.createRoot(document.getElementById('cotizador-root')).render(/*#__PURE__*/React.createElement(Cotizador, null));
