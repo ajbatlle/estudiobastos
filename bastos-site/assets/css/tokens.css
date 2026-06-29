@@ -1,0 +1,197 @@
+/* Bastos — Color Tokens
+ * Structural reference: IBM Carbon Design System token naming
+ * Brand palette is intentionally minimal: electric blue + white only.
+ * ⚠ Exact hex for brand blue estimated from visual materials; confirm with brand.
+ */
+
+:root {
+  /* ——— Base palette ——— */
+
+  /* Brand Blue — Azul Real (Opción B)
+   * oklch(43% 0.21 262°) — medio-oscuro, chroma moderado.
+   * Hue 262° aleja del violeta puro; chroma 0.21 elimina
+   * la vibración óptica contra blanco sin perder vivacidad. */
+  --blue-100: oklch(43% 0.21 262deg);   /* Brand primary */
+  --blue-90:  oklch(37% 0.19 262deg);   /* Hover / pressed */
+  --blue-80:  oklch(32% 0.17 262deg);
+  --blue-70:  oklch(27% 0.15 262deg);
+  --blue-20:  oklch(84% 0.08 262deg);   /* Subtle */
+  --blue-10:  oklch(91% 0.04 262deg);   /* Tint */
+  --blue-5:   oklch(96% 0.02 262deg);   /* Background */
+
+  /* Neutral */
+  --white:    #ffffff;
+  --black:    #0a0a0a;
+  --gray-90:  #1a1a1a;
+  --gray-80:  #333333;
+  --gray-60:  #666666;
+  --gray-40:  #999999;
+  --gray-20:  #cccccc;
+  --gray-10:  #e8e8e8;
+  --gray-5:   #f2f2f2;   /* Off-white — light background surfaces (slides, etc.) */
+
+  /* ——— Semantic aliases (Carbon-style) ——— */
+
+  /* Brand */
+  --color-brand:         var(--blue-100);
+  --color-brand-hover:   var(--blue-90);
+  --color-brand-subtle:  var(--blue-5);
+
+  /* Text */
+  --text-primary:        var(--black);
+  --text-secondary:      var(--gray-60);
+  --text-placeholder:    var(--gray-40);
+  --text-disabled:       var(--gray-40);
+  --text-on-brand:       var(--white);
+  --text-inverse:        var(--white);
+
+  /* Surface */
+  --surface-page:        var(--white);
+  --surface-subtle:      var(--gray-5);
+  --surface-brand:       var(--blue-100);
+  --surface-inverse:     var(--black);
+  --surface-overlay:     oklch(43% 0.21 262deg / 0.08);
+
+  /* Border */
+  --border-subtle:       var(--gray-10);
+  --border-strong:       var(--gray-20);
+  --border-inverse:      rgba(255, 255, 255, 0.25);
+  --border-brand:        var(--blue-100);
+
+  /* Interactive */
+  --interactive:         var(--blue-100);
+  --interactive-hover:   var(--blue-90);
+  --focus:               var(--blue-100);
+}
+/* Bastos — Typography Tokens
+ *
+ * Única tipografía: Plus Jakarta Sans (Google Fonts)
+ *   Pesos disponibles: 300 · 400 · 500 · 600 · 700 · 800
+ *   Load via: https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap
+ *
+ * Nota: el logotipo "~bastos~" usa una tipografía propietaria (trazados en SVG).
+ *   Plus Jakarta Sans Bold 700 / ExtraBold 800 se usa para todos los titulares de display.
+ */
+
+:root {
+  /* ——— Font families ——— */
+  --font-sans:    'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono:    'Courier New', monospace;
+
+  /* ——— Type scale (Carbon-aligned, 16px base) ——— */
+  --type-scale-01: 0.75rem;     /* 12px — caption, label, small */
+  --type-scale-02: 0.875rem;    /* 14px — body-compact */
+  --type-scale-03: 1rem;        /* 16px — body */
+  --type-scale-04: 1.125rem;    /* 18px — body-large */
+  --type-scale-05: 1.25rem;     /* 20px — heading-01 */
+  --type-scale-06: 1.5rem;      /* 24px — heading-02 */
+  --type-scale-07: 1.75rem;     /* 28px — heading-03 */
+  --type-scale-08: 2rem;        /* 32px — heading-04 */
+  --type-scale-09: 2.625rem;    /* 42px — heading-05 */
+  --type-scale-10: 3rem;        /* 48px — heading-06 */
+  --type-scale-11: 3.75rem;     /* 60px — display-01 */
+  --type-scale-12: 4.5rem;      /* 72px — display-02 */
+  --type-scale-13: 6rem;        /* 96px — display-03 */
+
+  /* ——— Semantic type roles ——— */
+  --text-display:      var(--type-scale-12);
+  --text-heading-xl:   var(--type-scale-11);
+  --text-heading-lg:   var(--type-scale-09);
+  --text-heading:      var(--type-scale-07);
+  --text-heading-sm:   var(--type-scale-05);
+  --text-body-lg:      var(--type-scale-04);
+  --text-body:         var(--type-scale-03);
+  --text-body-sm:      var(--type-scale-02);
+  --text-label:        var(--type-scale-01);
+  --text-caption:      var(--type-scale-01);
+
+  /* ——— Font weights ——— */
+  --weight-light:      300;
+  --weight-regular:    400;
+  --weight-medium:     500;
+  --weight-semibold:   600;
+  --weight-bold:       700;
+  --weight-extrabold:  800;
+
+  /* ——— Letter spacing ——— */
+  --tracking-tight:   -0.02em;
+  --tracking-normal:   0em;
+  --tracking-wide:     0.05em;
+  --tracking-wider:    0.1em;
+  --tracking-caps:     0.15em;   /* "DISEÑO Y COMUNICACIONES" style */
+  --tracking-ultra:    0.25em;
+
+  /* ——— Line heights ——— */
+  --leading-tight:    1.1;
+  --leading-snug:     1.25;
+  --leading-normal:   1.5;
+  --leading-relaxed:  1.7;
+}
+/* Bastos — Spacing Tokens
+ * Based on IBM Carbon Design System 4px base scale.
+ * Brand uses generous whitespace; never crowd elements.
+ */
+
+:root {
+  /* ——— Base spacing scale ——— */
+  --spacing-01:  0.125rem;   /*   2px */
+  --spacing-02:  0.25rem;    /*   4px */
+  --spacing-03:  0.5rem;     /*   8px */
+  --spacing-04:  0.75rem;    /*  12px */
+  --spacing-05:  1rem;       /*  16px */
+  --spacing-06:  1.5rem;     /*  24px */
+  --spacing-07:  2rem;       /*  32px */
+  --spacing-08:  2.5rem;     /*  40px */
+  --spacing-09:  3rem;       /*  48px */
+  --spacing-10:  4rem;       /*  64px */
+  --spacing-11:  5rem;       /*  80px */
+  --spacing-12:  6rem;       /*  96px */
+  --spacing-13: 10rem;       /* 160px */
+
+  /* ——— Semantic layout spacing ——— */
+  --layout-xs:    var(--spacing-05);    /* 16px  — tight component spacing */
+  --layout-sm:    var(--spacing-07);    /* 32px  — between elements */
+  --layout-md:    var(--spacing-09);    /* 48px  — section spacing */
+  --layout-lg:    var(--spacing-10);    /* 64px  — generous section / page gutter */
+  --layout-xl:    var(--spacing-11);    /* 80px  — hero sections */
+  --layout-2xl:   var(--spacing-13);    /* 160px — major section breaks */
+
+  /* ——— Container ——— */
+  --container-max:    80rem;            /* 1280px */
+  --container-sm:     40rem;            /* 640px  */
+  --page-gutter:      var(--spacing-10); /* 64px page-edge margin */
+}
+/* Bastos — Elevation, Border Radius & Motion Tokens
+ * Brand aesthetic is intentionally flat.
+ * Prefer zero shadow in brand contexts.
+ * The footer wave uses organic bezier curves — not CSS radius.
+ */
+
+:root {
+  /* ——— Shadow (use sparingly; prefer flat layouts) ——— */
+  --shadow-none: none;
+  --shadow-xs:   0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm:   0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-md:   0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg:   0 8px 24px rgba(0, 0, 0, 0.10);
+
+  /* ——— Border radius ——— */
+  /* Brand preference: sharp / no radius on all major UI elements */
+  --radius-none: 0;
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-pill: 9999px;  /* Badge only */
+  --radius-full: 50%;
+
+  /* ——— Transitions ——— */
+  --transition-fast:    0.1s ease;  /* @kind other */
+  --transition-normal:  0.2s ease;  /* @kind other */
+  --transition-slow:    0.3s ease;  /* @kind other */
+
+  /* ——— Opacity states ——— */
+  --opacity-hover:    0.75;  /* @kind other */
+  --opacity-active:   0.85;  /* @kind other */
+  --opacity-disabled: 0.40;  /* @kind other */
+}
