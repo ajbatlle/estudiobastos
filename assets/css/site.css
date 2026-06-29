@@ -17,7 +17,7 @@ body {
 
 /* ——— Header / nav ——— */
 header { display: flex; align-items: center; justify-content: space-between; padding: 44px 80px 32px; gap: 24px; flex-wrap: wrap; }
-header .logo { height: 42px; width: auto; }
+header .logo { height: 30px; width: auto; }
 nav { display: flex; gap: 26px; flex-wrap: wrap; }
 nav a { color: rgba(255,255,255,0.78); text-decoration: none; font-size: 15px; font-weight: 400; transition: color 0.15s; }
 nav a:hover { color: #fff; }
@@ -102,7 +102,7 @@ footer { padding: 56px 80px 48px; border-top: 1px solid rgba(255,255,255,0.18); 
 .foot-col a.v { text-decoration: none; color: #fff; }
 .foot-col a.v:hover { opacity: 0.75; }
 .foot-bot { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-.foot-bot .logo { height: 36px; width: auto; }
+.foot-bot .logo { height: 26px; width: auto; }
 .marks { display: flex; gap: 14px; }
 .marks svg { width: 32px; height: 32px; }
 
