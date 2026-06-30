@@ -85,7 +85,7 @@ const TOPE_BAJA     = 0.15;
 const CONTACTO = {
   linkPago:  "#",
   whatsapp:  "",
-  email:     "hola@bastos.cl",
+  email:     "info@estudiobastos.com",
 };
 
 const clp = (n) =>
@@ -191,8 +191,8 @@ const FLUJOS = {
   },
 
   primera: {
-    n: "03", label: "Taller Primera Edición",
-    intro: "Taller de escritura y creación de libros: de la página en blanco a un libro impreso.",
+    n: "03", label: "Taller editorial",
+    intro: "Taller editorial orientado al desarrollo de publicaciones literarias, artísticas e independientes.",
     pasos: [
       { id: "audiencia", tipo: "single", q: "¿Para quién es el taller?",
         op: [
@@ -203,11 +203,11 @@ const FLUJOS = {
         min: 1, max: 12, step: 1, def: 6, unidad: "personas" },
       { id: "sesiones", tipo: "slider", q: "¿Cuántas sesiones de 2 horas?",
         min: 4, max: 10, step: 1, def: 6, unidad: "sesiones" },
-      { id: "enfoque", tipo: "single", q: "¿Qué quieren trabajar?",
+      { id: "enfoque", tipo: "single", q: "¿Qué etapa del proceso editorial quieren trabajar?",
         op: [
-          { id: "escritura", t: "Escritura creativa" },
-          { id: "libro",     t: "Confección de un libro" },
-          { id: "ambos",     t: "Ambos", d: "Escritura y libro en un mismo programa." },
+          { id: "contenido", t: "Contenido, estructura y edición" },
+          { id: "diseno",    t: "Diseño y producción editorial" },
+          { id: "completo",  t: "Proceso completo", d: "Del contenido al libro impreso." },
         ] },
       { id: "modalidad", tipo: "single", q: "¿En qué modalidad?",
         op: [
@@ -217,8 +217,8 @@ const FLUJOS = {
         ] },
       { id: "entregable", tipo: "single", q: "¿Entregable final?", sub: "El libro impreso lo diseña e imprime Bastos.",
         op: [
-          { id: "experiencia", t: "Solo la experiencia del taller" },
-          { id: "libro",       t: "+ Libro impreso", d: "Curaduría, maquetación e impresión." },
+          { id: "proceso", t: "Solo el proceso del taller" },
+          { id: "libro",   t: "+ Libro impreso", d: "Curaduría, maquetación e impresión." },
         ] },
     ],
   },
@@ -323,7 +323,7 @@ function motor(cat, ans) {
 
     let h = base;
     h += nSesiones * 3;               // 2 h facilitación + 1 h preparación por sesión
-    if (ans.enfoque === "ambos") h += 4;
+    if (ans.enfoque === "completo") h += 4;
     h += nSesiones * hLog;            // logística presencial
     if (imprime) h += 20;             // curaduría + maquetación editorial (Bastos)
 
@@ -334,8 +334,8 @@ function motor(cat, ans) {
 
     tareas.push(["Diseño y coordinación del programa", base]);
     tareas.push([`${nSesiones} sesiones de 2 h${hLog ? ` · ${modalidad?.t.toLowerCase()}` : ""} — facilitación y preparación`, nSesiones * 3]);
-    tareas.push(["Incluye escritura, edición y una clase de diseño y composición", null]);
-    if (ans.enfoque === "ambos") tareas.push(["Escritura creativa + confección de libro", 4]);
+    tareas.push(["Incluye contenido, edición, diseño editorial y preparación de archivos", null]);
+    if (ans.enfoque === "completo") tareas.push(["Proceso editorial completo", 4]);
     if (imprime) {
       tareas.push(["Curaduría y maquetación del libro — Bastos", 20]);
       tareas.push([`Impresión de ${copias} ejemplares`, null]);
@@ -899,7 +899,7 @@ function Cotizador() {
           align-items: flex-start;
         }
         .bx-frame {
-          background: #fff;
+          background: #E6E6E6;
           width: 100%;
           max-width: 620px;
           padding: var(--spacing-09) var(--spacing-10);
@@ -1438,7 +1438,7 @@ function Cotizador() {
           gap: var(--spacing-04);
           align-items: start;
           text-align: left;
-          background: #fff;
+          background: #E6E6E6;
           border: 1px solid var(--border-subtle);
           padding: var(--spacing-04) var(--spacing-05);
           cursor: pointer;

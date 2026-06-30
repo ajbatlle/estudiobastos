@@ -51,7 +51,7 @@ nav a.active { color: #fff; font-weight: 600; }
 
 /* ——— Grilla de proyectos ——— */
 .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px 32px; }
-.card-img { position: relative; aspect-ratio: 4/3; background: #fff; width: 100%; overflow: hidden; }
+.card-img { position: relative; aspect-ratio: 4/3; background: #E6E6E6; width: 100%; overflow: hidden; }
 .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 /* hint mientras no hay imagen cargada */
 .card-img .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #bbb; }
@@ -80,10 +80,10 @@ nav a.active { color: #fff; font-weight: 600; }
 
 /* ——— Botones ——— */
 .btn { display: inline-block; text-decoration: none; font-family: var(--font-sans); font-size: 14px; font-weight: 700; letter-spacing: 0.02em; padding: 15px 30px; border: 2px solid #fff; border-radius: 0; cursor: pointer; transition: opacity 0.15s, background 0.15s, color 0.15s; }
-.btn-inverse { background: #fff; color: var(--color-brand); }
+.btn-inverse { background: #E6E6E6; color: var(--color-brand); }
 .btn-inverse:hover { opacity: 0.85; }
 .btn-outline { background: transparent; color: #fff; }
-.btn-outline:hover { background: #fff; color: var(--color-brand); }
+.btn-outline:hover { background: #E6E6E6; color: var(--color-brand); }
 .cta-row { margin-top: 16px; display: flex; gap: 16px; flex-wrap: wrap; }
 
 /* ——— Nosotros ——— */
@@ -130,4 +130,72 @@ footer { padding: 56px 80px 48px; border-top: 1px solid rgba(255,255,255,0.18); 
 @media (max-width: 520px) {
   .grid3 { grid-template-columns: 1fr; }
   .team { grid-template-columns: 1fr; }
+}
+
+
+/* =====================================================================
+   Cambios v2 — banda gris, ficha de proyecto, servicios, taller,
+   equipo con hover, archivo
+   ===================================================================== */
+
+/* Banda gris de la grilla de proyectos */
+.grid-band { background: #E6E6E6; }
+
+/* Tarjetas como botones */
+.card { display: block; width: 100%; text-align: left; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; font: inherit; color: inherit; }
+.card:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* Ficha de proyecto (ventana dentro de la web) */
+.pmodal { position: fixed; inset: 0; z-index: 100; display: none; }
+.pmodal.open { display: block; }
+.pmodal-bg { position: absolute; inset: 0; background: rgba(10,10,10,0.55); }
+.pmodal-panel { position: absolute; inset: 0; overflow-y: auto; }
+.pmodal-inner { position: relative; background: #E6E6E6; color: #1F1F23; max-width: 920px; margin: 48px auto; min-height: calc(100vh - 96px); padding: 24px 56px 72px; }
+.pmodal-close { position: sticky; top: 8px; margin-left: auto; display: block; background: none; border: 0; font-size: 30px; line-height: 1; color: #1F1F23; cursor: pointer; padding: 0 4px; }
+.pmodal-close:hover { opacity: 0.55; }
+.pmodal h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin: 4px 0 26px; max-width: 26ch; }
+.pmodal-meta { display: flex; gap: 56px; flex-wrap: wrap; margin-bottom: 30px; }
+.pmodal-meta .k { font-size: 12px; color: #777; margin-bottom: 5px; }
+.pmodal-meta .v { font-size: 16px; font-weight: 600; }
+.pmodal-desc { font-size: 17px; line-height: 1.6; color: #333; max-width: 64ch; margin-bottom: 36px; white-space: pre-line; }
+.pmodal-imgs { display: grid; gap: 16px; }
+.pmodal-imgs img { width: 100%; display: block; }
+body.noscroll { overflow: hidden; }
+
+/* Servicios */
+.svc-list { border-top: 1px solid rgba(255,255,255,0.18); margin-bottom: 36px; }
+.svc-item { padding: 32px 0; border-bottom: 1px solid rgba(255,255,255,0.18); }
+.svc-item h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
+.svc-item p { font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.82); max-width: 66ch; }
+
+/* Ficha de texto (taller) */
+.ficha p { font-size: 18px; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 20px; max-width: 70ch; }
+.ficha p.big { font-size: 24px; font-weight: 500; line-height: 1.4; color: #fff; margin-bottom: 30px; }
+.ficha .etapas { font-size: 16px; line-height: 1.95; color: rgba(255,255,255,0.72); margin: 4px 0 28px; max-width: 70ch; }
+.ficha h2 { font-size: 14px; font-weight: 700; letter-spacing: 0.01em; margin: 36px 0 8px; }
+.ficha a { color: #fff; }
+
+/* Equipo con hover */
+.team { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.member { position: relative; aspect-ratio: 3/4; overflow: hidden; background: #E6E6E6; }
+.member > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.member .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #bbb; }
+.member-over { position: absolute; inset: 0; background: #1F1F23; color: #fff; display: flex; flex-direction: column; justify-content: flex-end; padding: 18px; opacity: 0; transition: opacity 0.18s ease; }
+.member:hover .member-over, .member:focus-within .member-over { opacity: 1; }
+.member-over .name { font-size: 18px; font-weight: 600; }
+.member-over .role { font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 3px; }
+
+/* Archivo */
+.arch-list { border-top: 1px solid rgba(255,255,255,0.18); }
+.arch-item { padding: 26px 0; border-bottom: 1px solid rgba(255,255,255,0.18); }
+.arch-item h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+.arch-item p { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.72); max-width: 62ch; }
+.arch-item .tipo { font-size: 13px; color: rgba(255,255,255,0.5); white-space: nowrap; }
+
+@media (max-width: 860px) {
+  .pmodal-inner { padding: 20px 24px 56px; margin: 0; min-height: 100vh; }
+  .svc-item p { max-width: none; }
+}
+@media (max-width: 520px) {
+  .arch-item { grid-template-columns: 1fr; gap: 6px; }
 }
