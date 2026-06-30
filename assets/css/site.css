@@ -46,20 +46,18 @@ nav a.active { color: #fff; font-weight: 600; }
   .hero-mark img:first-child { opacity: 0; }
 }
 
-.page-head { padding: 52px 80px 40px; border-top: 1px solid rgba(255,255,255,0.18); }
-.page-head h2 { font-size: 32px; font-weight: 600; letter-spacing: -0.02em; }
-
 .wrap { padding: 40px 80px 96px; flex: 1; }
 .wrap.tight { max-width: 880px; }
 
-/* ——— Grilla de portafolio ——— */
-.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 44px; }
-.card-img { aspect-ratio: 3/4; background: #fff; width: 100%; display: flex; align-items: flex-end; }
-.card-img span { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #bbb; padding: 12px 14px; }
-.card-body { padding: 14px 0 12px; }
-.card-cat { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
-.card-title { font-size: 19px; font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; }
-.card-rule { border: none; border-top: 1px solid rgba(255,255,255,0.18); }
+/* ——— Grilla de proyectos ——— */
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px 32px; }
+.card-img { position: relative; aspect-ratio: 4/3; background: #fff; width: 100%; overflow: hidden; }
+.card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* hint mientras no hay imagen cargada */
+.card-img .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #bbb; }
+/* degradado para legibilidad del título sobre cualquier imagen */
+.card-img::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 42%; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgba(10,10,10,0.5), rgba(10,10,10,0)); }
+.card-title { position: absolute; z-index: 2; left: 14px; right: 14px; bottom: 12px; color: #fff; font-size: 16px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
 
 /* ——— Servicios ——— */
 .svc { display: grid; grid-template-columns: 64px 1fr 1.1fr; gap: 32px; align-items: start; padding: 36px 0; border-top: 1px solid rgba(255,255,255,0.18); }
