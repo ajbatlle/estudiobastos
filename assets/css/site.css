@@ -203,8 +203,8 @@ body.noscroll { overflow: hidden; }
 
 /* Grilla del archivo (logos sobre #E6E6E6) */
 .arch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px 32px; }
-.arch-tile { aspect-ratio: 4/3; background: #E6E6E6; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 24px; box-sizing: border-box; text-decoration: none; }
-.arch-tile img { max-width: 80%; max-height: 66%; width: auto; height: auto; object-fit: contain; display: block; }
+.arch-tile { aspect-ratio: 4/3; background: #E6E6E6; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 20px; box-sizing: border-box; text-decoration: none; }
+.arch-tile img { max-width: 70%; max-height: 58%; width: auto; height: auto; object-fit: contain; display: block; }
 .arch-tile.text { flex-direction: column; text-align: center; color: #1F1F23; }
 .arch-tile .t-name { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
 .arch-tile .t-cat { font-size: 14px; color: #666; margin-top: 8px; }
