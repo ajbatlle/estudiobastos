@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosas que pasan</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #003ec0;
+    --blue-tint: rgba(0, 62, 192, 0.06);
+    --light: #F2F2F2;
+    --dark: #0a0a0a;
+    --mid: #666666;
+    --border: #e8e8e8;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1.5px solid var(--blue);
+    padding: 3.5rem 4rem 2.5rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .title-block h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--blue);
+  }
+
+  .header-meta {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--mid);
+    white-space: nowrap;
+    font-weight: 400;
+  }
+
+  /* MAIN CONTENT */
+  main {
+    padding: 3rem 4rem 5rem;
+  }
+
+  /* GRID VIEW */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  @media (max-width: 1100px) {
+    .grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  @media (max-width: 860px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 620px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 400px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: var(--light);
+    padding: 2rem 1.75rem;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 160px;
+    transition: background 0.18s;
+    overflow: hidden;
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.22s ease;
+  }
+
+  .card:hover {
+    background: var(--blue-tint);
+  }
+
+  .card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .card-number {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--blue);
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-title {
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.35;
+    color: var(--dark);
+    flex: 1;
+  }
+
+  .card-arrow {
+    margin-top: 1.5rem;
+    font-size: 0.7rem;
+    color: var(--mid);
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transition: opacity 0.18s;
+  }
+
+  .card:hover .card-arrow {
+    opacity: 1;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 17, 17, 0.55);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    backdrop-filter: blur(3px);
+  }
+
+  .modal-overlay.open {
+    display: flex;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal {
+    background: var(--light);
+    max-width: 520px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-top: 3px solid var(--blue);
+    animation: slideUp 0.25s ease;
+    position: relative;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(16px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .modal-header {
+    padding: 2rem 2.25rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--light);
+    z-index: 1;
+  }
+
+  .modal-num {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--blue);
+    margin-bottom: 0.4rem;
+  }
+
+  .modal-title {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--dark);
+    line-height: 1.3;
+  }
+
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    color: var(--mid);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.1rem 0.2rem;
+    transition: color 0.15s;
+    flex-shrink: 0;
+    margin-top: -0.1rem;
+  }
+
+  .modal-close:hover {
+    color: var(--dark);
+  }
+
+  .modal-body {
+    padding: 2.25rem 2.25rem 2.5rem;
+  }
+
+  .poem-text {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--dark);
+    white-space: pre-wrap;
+  }
+
+  .modal-footer {
+    padding: 1.25rem 2.25rem 1.75rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .download-btn {
+    background: none;
+    border: 2px solid var(--border);
+    font-family: inherit;
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+    color: var(--mid);
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .download-btn:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+  }
+
+  .audio-btn {
+    background: none;
+    border: 2px solid var(--border);
+    font-family: inherit;
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+    color: var(--mid);
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .audio-btn:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+  }
+
+  .audio-btn.playing {
+    border-color: var(--blue);
+    background: var(--blue);
+    color: #fff;
+  }
+
+  .audio-btn svg {
+    flex-shrink: 0;
+  }
+
+  .nav-btn {
+    background: none;
+    border: 2px solid var(--border);
+    font-family: inherit;
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+    color: var(--mid);
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: all 0.15s;
+  }
+
+  .nav-btn:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+  }
+
+  .nav-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="title-block">
+    <h1>cosas que pasan</h1>
+  </div>
+  <div class="header-meta">antonio batlle lathrop</div>
+</header>
+
+<main>
+  <div class="grid" id="poem-grid"></div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-num" id="modal-num"></div>
+        <div class="modal-title" id="modal-title"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="poem-text" id="modal-poem"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="nav-btn" id="btn-prev" onclick="navigate(-1)">&#8592; Anterior</button>
+      <div class="footer-actions">
+        <button class="audio-btn" id="btn-audio" onclick="toggleAudio(currentPoem)"></button>
+        <button class="download-btn" onclick="downloadPoem(currentPoem)">Descargar png</button>
+      </div>
+      <button class="nav-btn" id="btn-next" onclick="navigate(1)">Siguiente &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const poems = [
+  {
+    title: "extraños interrumpen el trabajo",
+    text: `se quiebra
+en la cocina un vaso
+antes del desayuno
+
+insiste el ritmo
+del golpeteo
+sobre el techo
+
+un vaivén
+permanente
+de lado a lado
+
+perforan el silencio
+la irrupción
+de martillazos
+
+todavía vive
+el manto de eva
+pese a las condiciones del invierno`
+  },
+  {
+    title: "alguien invisible para mí",
+    text: `una tarde de invierno
+cuando aún no oscurece
+desliza las cortinas
+
+escapa de su casa
+no pueden detenerlo
+cae la medianoche
+
+atraviesa las rejas
+se cuida de pisar
+las puntas afiladas
+
+no traen nada nuevo
+los fantasmas que vemos
+tantas veces en sueños
+
+tampoco traerá
+ninguna noticia esa sombra
+
+salvo el ruido
+que atraviesa las calles
+
+en medio de una larga pesadilla`
+  },
+  {
+    title: "a mitad de camino",
+    text: `se desconcentra
+y termina perdido
+diluido en su sombra
+
+pocos minutos antes
+de llegar a la esquina
+donde acordamos
+
+juntarnos a almorzar
+un menú de viernes
+
+en lugar de comer una empanada
+
+en la plaza y tomar cervezas
+en vasos plásticos
+
+el viento entre las ramas
+desprovistas de brotes
+una tarde cualquiera
+
+continúa su ruta
+en dirección
+a un centro comercial`
+  },
+  {
+    title: "camina la luz por la sombra",
+    text: `crujen en la memoria
+al mediodía
+palabras que no dije
+
+en el momento adecuado
+restos de conversaciones
+que dejó la noche anterior
+
+buscarse con la lengua
+un diente en la boca
+que se va torciendo
+
+con los años descansan
+las preguntas que acechan
+al interior del sueño
+
+se va curvando
+la espalda con el tiempo
+los días espesos de bruma
+
+cada vez más borrosa
+la palabra que intento
+pronunciar como antes`
+  },
+  {
+    title: "dejas que el silencio avance",
+    text: `tachas nombres
+escritos al margen
+de cuadernos escolares
+
+en la espera de un semáforo
+por tu mente pasan
+antiguas melodías
+
+despiertas
+en un tramo del camino
+sin marcas en el suelo
+
+caminas sin planes
+mirando al frente
+hacia un futuro
+
+todavía incierto
+mientras pasan adultos
+buscando nuevos atajos
+
+quizás es un espejo la ventana
+de la que fue tu casa`
+  },
+  {
+    title: "siluetas que nadie invitó",
+    text: `la botella
+lleva días abierta
+con un concho de vino
+
+la respiración
+entrecortada del viento
+se demora en llegar
+
+a mis ojos distraídos
+y abiertos sobre la pantalla
+del teléfono
+
+una silla arrastrada
+en el piso de arriba
+me devuelve la atención
+
+al presente irregular
+señales de otro mundo
+invisibles al oído
+
+ese concho de vino
+servirá para la carne
+del fin de semana`
+  },
+  {
+    title: "por la ventana se cuelan voces",
+    text: `todavía no doblo
+la ropa seca
+colgada en el balcón
+mientras espera
+un canasto lleno
+de ropa mojada
+
+las palabras
+suenan en mi cabeza
+aunque podría decirse
+que abren espacios
+desprovistos de razón
+a través del sonido
+
+que retumba
+por eternos segundos
+cuando llega el momento
+de ordenar la casa
+antes de ir
+a buscar a mi hija`
+  },
+  {
+    title: "antes de decir algo que no sé",
+    text: `pueden almacenarse
+las imágenes
+fuera del campo visual
+moscas que vuelan
+organizadas en el aire
+una mañana soleada
+atraviesa la ventana
+un trozo de cielo
+se oculta del calendario
+
+sobre un edificio
+envejecido
+sin lugar para los pájaros
+rebota
+en la reja del patio
+la tos del vecino
+encuentran espacio
+algunos datos
+excepto en la mirada`
+  },
+  {
+    title: "rompe de golpe la armonía",
+    text: `en el centro de la calle
+barre las hojas
+un hombre invisible
+empuja el polvo
+que respiro más tarde
+mientras paso las horas
+pegado a la tele
+viendo un partido de tenis
+en cancha de pasto
+para escapar un momento
+de mis obligaciones
+que deseo suspender
+se apaga
+con la luz de la tarde
+el canto del chincol
+opaca de pronto
+una melodía
+la secuencia de las horas`
+  },
+  {
+    title: "quiebra el adverbio el flujo del lenguaje",
+    text: `avanza lentamente
+sobre la superficie
+la sombra
+el agua que entra
+en el cuerpo
+alivia el dolor
+de cabeza y la fiebre
+que minutos antes
+crecía en mi frente
+
+duerme mi hija
+cuando está enferma
+interrumpida por la tos
+un hilo invisible
+une todavía los recuerdos
+de un futuro reciente
+el pasado conserva
+vivos los juegos
+en el patio de la casa`
+  },
+  {
+    title: "al fondo del pasillo suenan pasos",
+    text: `encuentro una pausa
+al desayuno bajo un sol
+desteñido por las nubes
+por una pila de platos
+que crece sin lavar
+se escurre el tiempo
+
+acepto que las horas
+pasan veloces
+antes que llegue la tarde
+parece inusual
+pedirle consejos
+a la sombra
+
+en caso de fallar
+el silencio
+captura el sonido
+lo suspende
+una horas antes
+que lleguen los gritos`
+  },
+  {
+    title: "me hablan señales que nadie percibe",
+    text: `tras la ventana
+desborda la lluvia
+en baldes de plástico
+
+tensiones suaves
+crujen en la mandíbula
+en cada bostezo
+
+tiemblan los párpados
+alterados por pequeñas
+señales eléctricas
+
+se abre una puerta
+al contemplar recuerdos
+cubiertos de enredaderas
+
+miro las grietas
+abiertas por la humedad
+en las baldosas del baño
+
+asoma
+entre las piedras rotas
+un brote de musgo`
+  },
+  {
+    title: "no se trata de renunciar al deseo",
+    text: `era mejor quedarse callado
+y desaparecer
+
+perderse del camino
+entre piedras y árboles
+
+obedecer al impulso era mejor
+olvidar la idea de ser visto
+
+caminando por las calles del centro
+recorrer unas cuadras
+
+entrar a las tiendas
+buscando anteojos para ver
+
+la realidad desempañada
+era mejor comprar lentes de sol
+
+y un espejo de cuerpo completo`
+  },
+  {
+    title: "al centro de la mesa en un canasto",
+    text: `restos de pan
+y jugo de tomate
+en el mesón de la cocina
+
+olor a pan tostado
+al llegar a casa
+una tarde de invierno
+
+ordenar las imágenes
+dispersas en mi cabeza
+frente a una taza de café
+
+todo parece
+estar en calma
+se escucha
+
+el sonido de un sorbo
+persianas cerradas
+ha vuelto la noche
+
+basta con mirar
+las piedras reunidas
+al centro de la mesa`
+  },
+  {
+    title: "cosas que pasan",
+    text: `me dijo un vecino
+entrometido
+después de escuchar
+atentamente mis quejas
+agradecí el gesto
+seguí caminando
+
+la mirada se inclina
+fijos los ojos
+en la tierra mojada
+después de una lluvia
+imaginaria decides
+saltar en las posas
+
+miras tu rostro
+deformado en el agua
+durante años estancada
+obsesionado con encontrar
+la forma perfecta para expresar
+el orden del mundo`
+  },
+  {
+    title: "algo se calma en el punto del medio",
+    text: `cada día repito
+el mismo camino
+atento al suelo
+y al cielo
+acompañado
+de mi respiración
+canciones antiguas
+guían al cuerpo
+intentan decir
+
+algo acerca de mí
+que por supuesto
+no entiendo del todo
+sostengo el ritmo
+buscando las pistas
+al final del día
+acabo siempre
+más liviano
+que el día anterior`
+  },
+  {
+    title: "incluso después de morir seguir rezando",
+    text: `crece la realidad
+esperando en la fila
+de la farmacia
+rezan los pájaros
+entre conversaciones
+con árboles muertos
+laten pensamientos
+en la punta de la lengua
+con la aguja del lápiz
+escribo en la cama
+distraído por el olor
+a café molido
+una línea invisible
+entre respirar
+y dejar de hacerlo
+el cuerpo precario
+se arrodilla ante el orden
+de la ropa tendida`
+  },
+  {
+    title: "cosas que pasan ante mis ojos",
+    text: `desde la altura
+de un cuarto piso
+miro a la gente
+subo la vista
+miro las nubes
+no se detienen
+de un lado a otro
+haciendo caso
+omiso al viento
+
+entra a mi casa
+sin mi permiso
+cuando la puerta
+y el ventanal
+están abiertos
+en simultáneo
+me quedo un rato
+esperando en silencio
+la hora de dormir`
+  },
+  {
+    title: "se encuentra con una imagen que lo desborda",
+    text: `la espalda
+tiene fecha
+de vencimiento
+los pies tienen
+un máximo de pasos
+la basura cae
+
+en un pozo negro
+escucho el eco
+cuando toca fondo
+ya quisiera yo
+ser una bolsa
+de basura llena
+
+que alguien deja caer
+sin ninguna culpa
+en un pozo negro
+y tocar el fondo
+así de rápido
+sin reventar`
+  },
+  {
+    title: "para no mentirse a sí mismo",
+    text: `cómo se mide
+el espacio
+entre palabras
+
+no sabe que duele
+rasgar una tela
+cortar la chasquilla
+
+recoger un pañuelo
+tirado en la calle
+de algún resfriado
+
+todavía hay loza
+acumulada por lavar
+del día de ayer
+
+entrar a la cocina
+tomar una esponja
+prender la radio
+
+más tarde saludar
+a todo el mundo
+caminando por el barrio`
+  },
+  {
+    title: "desaparezco entre los cojines del sillón",
+    text: `la curvatura
+que dejó en la espalda
+
+la rutina paternal
+es igual a la tensión
+
+que generó en la hoja
+el peso del silencio
+
+sin embargo
+no es lo mismo
+
+que decir por ejemplo
+la insistencia
+
+de un pensamiento
+cualquiera
+
+ha deformado
+lentamente la manera
+
+de mirar la realidad
+un pájaro acompaña
+
+varios días mi camino
+vigilante sobre un árbol`
+  },
+  {
+    title: "me acumulo en los rincones",
+    text: `como el polvo
+dejar salir el fracaso
+y compartirlo
+las huellas de ayer
+aparecen hoy día
+con mayor nitidez
+dormirse cada noche
+arrullado por el canto
+de una rana
+las manos soltaron
+un gesto de despedida
+una risa contagiosa
+los recuerdos se escapan
+como las buenas noticias
+que se van de las manos
+la canción que bailo
+cuando estoy solo
+a todo volumen`
+  },
+  {
+    title: "dejarse observar por los ojos del mundo",
+    text: `es necesario
+que se caigan
+
+tantas cosas
+tapar las raíces
+
+pegadas en el aire
+volver a recortarlas
+
+los pasos se repiten
+en un cuarto vacío
+
+quién se encarga
+me pregunto
+
+del derrumbe necesario
+cuando la dirección
+
+comienza a ser
+demasiado desviada
+
+no es lo mismo
+conocer el camino
+
+que recorrerlo y seguir
+el vuelo del pájaro`
+  },
+  {
+    title: "entra en mi casa sin permiso",
+    text: `escuchar y hablar
+al mismo tiempo
+es escribir
+
+las horas detenidas
+todavía queda algo
+del apuro que gobierna
+
+el cuerpo
+que se queda
+sin saber qué hacer
+
+segundo
+tras
+segundo
+
+se escapa la escritura
+salvaje
+como el tiempo
+
+ir del presente
+al pasado donde nace
+el dios de la demora`
+  },
+  {
+    title: "después de un día de fiesta",
+    text: `cae la tarde
+luego también
+baja la noche
+por el contrario
+sube la mañana
+y el día siguiente
+
+la sombra desciende
+como los pájaros
+carroñeros en busca
+de sus presas
+la luz por su parte
+sube eternamente
+
+como un globo de helio
+cuyo rostro sonríe
+hasta perderlo de vista
+y quedar desinflado
+en algún basural que pocos
+quisieran como destino`
+  }
+];
+
+let currentPoem = 0;
+
+const ICON_PLAY = '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" style="margin-right:6px"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg>';
+const ICON_PAUSE = '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" style="margin-right:6px"><rect x="1" y="0.5" width="3" height="9"/><rect x="6" y="0.5" width="3" height="9"/></svg>';
+
+let audioEl = null;
+const audioBtn = document.getElementById('btn-audio');
+
+function audioSrc(index) {
+  return 'assets/audio/' + String(index + 1).padStart(2, '0') + '.mp3';
+}
+
+function setAudioIdle() {
+  audioBtn.classList.remove('playing');
+  audioBtn.innerHTML = ICON_PLAY + 'Escuchar';
+}
+
+function setAudioPlaying() {
+  audioBtn.classList.add('playing');
+  audioBtn.innerHTML = ICON_PAUSE + 'Pausar';
+}
+
+function stopAudio() {
+  if (audioEl) { audioEl.pause(); }
+  setAudioIdle();
+}
+
+function toggleAudio(index) {
+  if (!audioEl) {
+    audioEl = new Audio();
+    audioEl.addEventListener('ended', setAudioIdle);
+    audioEl.addEventListener('error', () => {
+      setAudioIdle();
+      alert('El audio de este poema todavía no está disponible.');
+    });
+  }
+  if (audioEl.dataset.index !== String(index)) {
+    audioEl.src = audioSrc(index);
+    audioEl.dataset.index = String(index);
+  }
+  if (audioEl.paused) {
+    audioEl.play().then(setAudioPlaying).catch(() => {
+      setAudioIdle();
+      alert('El audio de este poema todavía no está disponible.');
+    });
+  } else {
+    audioEl.pause();
+    setAudioIdle();
+  }
+}
+
+setAudioIdle();
+
+// Build grid
+const grid = document.getElementById('poem-grid');
+
+poems.forEach((poem, i) => {
+  // Grid card
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <div>
+      <div class="card-number">${String(i + 1).padStart(2, '0')}</div>
+      <div class="card-title">${poem.title}</div>
+    </div>
+    <div class="card-arrow">Leer &rarr;</div>
+  `;
+  card.addEventListener('click', () => openPoem(i));
+  grid.appendChild(card);
+});
+
+function openPoem(index) {
+  currentPoem = index;
+  stopAudio();
+  const poem = poems[index];
+  document.getElementById('modal-num').textContent = String(index + 1).padStart(2, '0') + ' / ' + poems.length;
+  document.getElementById('modal-title').textContent = poem.title;
+  document.getElementById('modal-poem').textContent = poem.text;
+  document.getElementById('btn-prev').disabled = index === 0;
+  document.getElementById('btn-next').disabled = index === poems.length - 1;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  stopAudio();
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+
+function navigate(dir) {
+  const next = currentPoem + dir;
+  if (next >= 0 && next < poems.length) openPoem(next);
+}
+
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('modal').classList.contains('open')) return;
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'ArrowRight') navigate(1);
+  if (e.key === 'ArrowLeft') navigate(-1);
+});
+
+function wrapText(ctx, text, maxWidth) {
+  const words = text.split(' ');
+  const lines = [];
+  let current = words[0];
+  for (let i = 1; i < words.length; i++) {
+    const test = current + ' ' + words[i];
+    if (ctx.measureText(test).width < maxWidth) {
+      current = test;
+    } else {
+      lines.push(current);
+      current = words[i];
+    }
+  }
+  lines.push(current);
+  return lines;
+}
+
+function downloadPoem(index) {
+  const poem = poems[index];
+  const num = String(index + 1).padStart(2, '0');
+
+  const scale = 2;
+  const width = 600;
+  const padX = 64;
+  const padTop = 64;
+  const padBottom = 72;
+
+  // Measure
+  const tmp = document.createElement('canvas');
+  const ctx = tmp.getContext('2d');
+
+  ctx.font = '500 20px "Plus Jakarta Sans", system-ui, sans-serif';
+  const titleLines = wrapText(ctx, poem.title, width - padX * 2);
+
+  const poemLines = poem.text.split('\n');
+  const titleLH = 30;
+  const poemLH = 31;
+  const gap = 36;
+
+  const totalH = padTop + titleLines.length * titleLH + gap + poemLines.length * poemLH + padBottom;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = width * scale;
+  canvas.height = totalH * scale;
+  const c = canvas.getContext('2d');
+  c.scale(scale, scale);
+
+  // Background
+  c.fillStyle = '#F2F2F2';
+  c.fillRect(0, 0, width, totalH);
+
+  // Blue bar
+  c.fillStyle = '#003ec0';
+  c.fillRect(0, 0, width, 3);
+
+  // Title
+  c.fillStyle = '#003ec0';
+  c.font = '500 20px "Plus Jakarta Sans", system-ui, sans-serif';
+  let y = padTop;
+  titleLines.forEach(line => {
+    c.fillText(line, padX, y);
+    y += titleLH;
+  });
+
+  // Poem text
+  c.fillStyle = '#0a0a0a';
+  c.font = '300 17px "Plus Jakarta Sans", system-ui, sans-serif';
+  y += gap - titleLH;
+  poemLines.forEach(line => {
+    c.fillText(line, padX, y);
+    y += poemLH;
+  });
+
+  // Download
+  const slug = poem.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9áéíóúüñ\-]/g, '');
+  canvas.toBlob(blob => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = num + '-' + slug + '.png';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+}
+</script>
+</body>
+</html>
