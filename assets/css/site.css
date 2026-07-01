@@ -110,6 +110,8 @@ footer { padding: 56px 80px 48px; border-top: 1px solid rgba(255,255,255,0.18); 
 .foot-col .v { font-size: 17px; font-weight: 600; }
 .foot-col a.v { text-decoration: none; color: #fff; }
 .foot-col a.v:hover { opacity: 0.75; }
+.foot-col a.v.ig { display: inline-flex; align-items: center; gap: 8px; }
+.foot-col a.v.ig svg { width: 17px; height: 17px; flex-shrink: 0; }
 .foot-bot { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .foot-bot .logo { height: 26px; width: auto; }
 .marks { display: flex; gap: 14px; }
@@ -171,6 +173,7 @@ body.noscroll { overflow: hidden; }
 /* Ficha de texto (taller) */
 .ficha p { font-size: 18px; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 20px; max-width: 70ch; }
 .ficha p.big { font-size: 24px; font-weight: 500; line-height: 1.4; color: #fff; margin-bottom: 30px; }
+.ficha p.big.archivo-lead { max-width: 36ch; }
 .ficha .etapas { font-size: 16px; line-height: 1.95; color: rgba(255,255,255,0.72); margin: 4px 0 28px; max-width: 70ch; }
 .ficha h2 { font-size: 14px; font-weight: 700; letter-spacing: 0.01em; margin: 36px 0 8px; }
 .ficha a { color: #fff; }
@@ -205,3 +208,6 @@ body.noscroll { overflow: hidden; }
    solo se centra el logo dentro de la baldosa gris */
 .arch .card-img { display: flex; align-items: center; justify-content: center; padding: 18px 18px 56px; }
 .arch .arch-logo { max-width: 60%; max-height: 60%; width: auto; height: auto; object-fit: contain; display: block; }
+.card-meta { position: absolute; z-index: 2; left: 14px; right: 14px; bottom: 12px; }
+.card-meta .card-title { position: static; }
+.card-sub { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.62); margin-top: 3px; }
