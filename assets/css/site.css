@@ -207,13 +207,15 @@ body.noscroll { overflow: hidden; }
 
 /* Equipo con hover */
 .team { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.member { position: relative; aspect-ratio: 3/4; overflow: hidden; background: #E6E6E6; }
+.member { position: relative; aspect-ratio: 3/4; overflow: hidden; background: #E6E6E6; display: block; text-decoration: none; color: inherit; }
 .member > img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .member .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #bbb; }
-.member-over { position: absolute; inset: 0; background: #1F1F23; color: #fff; display: flex; flex-direction: column; justify-content: flex-end; padding: 18px; opacity: 0; transition: opacity 0.18s ease; }
+.member-over { position: absolute; inset: 0; background: rgba(31,31,35,0.68); color: #fff; display: flex; flex-direction: column; justify-content: flex-end; padding: 18px; opacity: 0; transition: opacity 0.18s ease; }
 .member:hover .member-over, .member:focus-within .member-over { opacity: 1; }
 .member-over .name { font-size: 18px; font-weight: 600; }
 .member-over .role { font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 3px; }
+.member-over .linkedin { position: absolute; top: 14px; right: 16px; font-size: 11px; letter-spacing: 0.02em; color: rgba(255,255,255,0.75); }
+.member:hover .member-over .linkedin, .member:focus-within .member-over .linkedin { color: #fff; }
 
 /* Archivo */
 .arch-list { border-top: 1px solid rgba(255,255,255,0.18); }
