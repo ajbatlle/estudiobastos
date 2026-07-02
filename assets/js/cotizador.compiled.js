@@ -133,6 +133,18 @@ const CONTACTO = {
   email: "antoniobatllel@gmail.com",
   agenda: "https://calendar.app.google/zSrf4k99THEb7JNW8"
 };
+
+// Envío interno silencioso (reporte con horas/fórmula/condiciones → Antonio).
+// Completar con los datos de tu cuenta EmailJS (emailjs.com) para activarlo.
+// Mientras publicKey esté vacío, el botón sigue funcionando pero no manda el interno.
+const EMAILJS = {
+  publicKey: "",
+  serviceId: "",
+  templateId: ""
+};
+if (typeof window !== "undefined" && window.emailjs && EMAILJS.publicKey) {
+  window.emailjs.init(EMAILJS.publicKey);
+}
 const clp = n => new Intl.NumberFormat("es-CL", {
   style: "currency",
   currency: "CLP",
@@ -722,9 +734,7 @@ function Cotizador() {
   const [detalle, setDetalle] = useState("");
   const [notas, setNotas] = useState({});
   const [notaOpen, setNotaOpen] = useState({});
-  const [marcados, setMarcados] = useState({});
   const [fin, setFin] = useState(false);
-  const [estudio, setEstudio] = useState(false);
   const [datos, setDatos] = useState({
     nombre: "",
     proyecto: "",
@@ -737,15 +747,6 @@ function Cotizador() {
     q: p.q,
     nota: notas[p.id].trim()
   })) : [];
-  const precioFinal = useMemo(() => {
-    if (!r || r.exacto) return r ? r.precio : 0;
-    let s = 0;
-    (r.defs || []).forEach(f => {
-      if (marcados[f.id]) s += f.dir === "sube" ? f.peso : -f.peso;
-    });
-    s = Math.max(-r.maxBaja, Math.min(r.maxSube, s));
-    return r.precio * (1 + s);
-  }, [r, marcados]);
   const elegirCat = id => {
     setCat(id);
     setPaso(0);
@@ -754,7 +755,6 @@ function Cotizador() {
     setNotas({});
     setNotaOpen({});
     setDetalle("");
-    setMarcados({});
     const def = {};
     FLUJOS[id].pasos.forEach(p => {
       if (p.tipo === "single") def[p.id] = p.op[0].id;
@@ -787,8 +787,28 @@ function Cotizador() {
     const items = r.tareas.map(t => `· ${t[0]}`).join("\n");
     return `Cotización Bastos — ${flujo.label}\n` + `${datos.nombre || "—"}${datos.proyecto ? " / " + datos.proyecto : ""}\n\n` + `Incluye:\n${items}\n\n` + `${r.exacto ? "Precio" : "Estimado"}: ${precio}\nAnticipo 50%: ${anticipoStr(r)}` + (agenda.length ? `\n\nTemas para la reunión:\n${agenda.map(a => `· ${a.q} — ${a.nota}`).join("\n")}` : "") + (detalle ? `\n\nNota del cliente:\n${detalle}` : "");
   };
+
+  // Reporte interno — solo para Bastos. Nunca se muestra en el cotizador ni se
+  // le entrega al cliente; se envía en silencio por EmailJS al confirmar.
+  const resumenInternoTxt = () => {
+    if (!r) return "";
+    const formula = r.esPrograma ? `${r.horas} h × ${clp(VALOR_HORA)}${r.empresaImpresion ? ` + impresión ${clp(r.empresaImpresion)}` : ""} = ${clp(r.precio)}` : `${r.horas} h × ${clp(VALOR_HORA)}${r.mult !== 1 ? ` · urgencia ×${r.mult}` : ""} = ${clp(r.precio)}`;
+    const condiciones = (r.defs || []).length ? r.defs.map(f => `· ${f.label} (${f.porque}) — ${f.dir === "sube" ? "+" : "−"}${Math.round(f.peso * 100)}%`).join("\n") : "—";
+    const respuestas = flujo.pasos.map(p => {
+      const v = ans[p.id];
+      const txt = p.tipo === "multi" ? (v || []).join(", ") : Array.isArray(v) ? v.join(", ") : v;
+      return `· ${p.q} → ${txt}`;
+    }).join("\n");
+    return `[INTERNO — no compartir]\n` + `${flujo.label} — ${datos.nombre || "—"}${datos.proyecto ? " / " + datos.proyecto : ""} (${datos.correo || "sin correo"})\n\n` + `Fórmula: ${formula}\n` + `Rango mostrado al cliente: ${headline(r)}\n` + (!r.exacto ? `Tope ajuste: −${Math.round(r.maxBaja * 100)}% / +${Math.round(r.maxSube * 100)}%\n` : "") + `\nCondiciones a evaluar en la reunión (marcar en vivo, no automático):\n${condiciones}\n\n` + `Respuestas del formulario:\n${respuestas}` + (agenda.length ? `\n\nTemas marcados por el cliente:\n${agenda.map(a => `· ${a.q} — ${a.nota}`).join("\n")}` : "") + (detalle ? `\n\nNota del cliente:\n${detalle}` : "");
+  };
+  const enviarInterno = () => {
+    if (!window.emailjs || !EMAILJS.publicKey) return; // no configurado aún
+    window.emailjs.send(EMAILJS.serviceId, EMAILJS.templateId, {
+      asunto: `Cotización interna — ${flujo?.label || ""} — ${datos.nombre || "sin nombre"}`,
+      mensaje: resumenInternoTxt()
+    }).catch(() => {});
+  };
   const waHref = CONTACTO.whatsapp ? `https://wa.me/${CONTACTO.whatsapp}?text=${encodeURIComponent(resumenTxt())}` : null;
-  const mailHref = `mailto:${CONTACTO.email}?subject=${encodeURIComponent("Solicitud — " + (flujo?.label || ""))}&body=${encodeURIComponent(resumenTxt())}`;
   return /*#__PURE__*/React.createElement("div", {
     className: "bx-page"
   }, /*#__PURE__*/React.createElement("div", {
@@ -925,46 +945,11 @@ function Cotizador() {
     className: "bx-rangenote"
   }, "El valor final dentro del rango se define en la primera reunión, según el estado del material, quién decide y qué tan definido esté el encargo."), /*#__PURE__*/React.createElement("div", {
     className: "bx-incl-h"
-  }, /*#__PURE__*/React.createElement("span", null, "Qué incluye"), /*#__PURE__*/React.createElement("button", {
-    className: "bx-vista",
-    onClick: () => setEstudio(!estudio)
-  }, estudio ? "Vista cliente" : "Vista estudio")), /*#__PURE__*/React.createElement("ul", {
+  }, /*#__PURE__*/React.createElement("span", null, "Qué incluye")), /*#__PURE__*/React.createElement("ul", {
     className: "bx-tareas"
   }, r.tareas.map((t, i) => /*#__PURE__*/React.createElement("li", {
     key: i
-  }, /*#__PURE__*/React.createElement("span", null, t[0]), estudio && t[1] != null && /*#__PURE__*/React.createElement("em", null, t[1], " h")))), estudio && /*#__PURE__*/React.createElement("div", {
-    className: "bx-studio"
-  }, r.esPrograma ? /*#__PURE__*/React.createElement("div", {
-    className: "bx-studio-line"
-  }, r.horas, " h × ", clp(VALOR_HORA), r.empresaImpresion ? ` + impresión ${clp(r.empresaImpresion)}` : "", " = ", clp(r.precio)) : /*#__PURE__*/React.createElement("div", {
-    className: "bx-studio-line"
-  }, "Punto: ", r.horas, " h × ", clp(VALOR_HORA), r.mult !== 1 ? ` · urgencia ×${r.mult}` : "", " = ", clp(r.precio)), !r.esSesion && r.defs.length > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-    className: "bx-check-h"
-  }, "Condiciones de la primera reunión — marca las que apliquen"), /*#__PURE__*/React.createElement("div", {
-    className: "bx-checks"
-  }, r.defs.map(f => /*#__PURE__*/React.createElement("button", {
-    key: f.id,
-    className: `bx-check ${f.dir === "sube" ? "up" : "down"}`,
-    "aria-pressed": !!marcados[f.id],
-    onClick: () => setMarcados(m => ({
-      ...m,
-      [f.id]: !m[f.id]
-    }))
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "bx-check-box"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "bx-check-body"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "bx-check-l"
-  }, f.label), /*#__PURE__*/React.createElement("span", {
-    className: "bx-check-p"
-  }, f.porque)), /*#__PURE__*/React.createElement("span", {
-    className: "bx-check-w"
-  }, f.dir === "sube" ? "+" : "−", Math.round(f.peso * 100), "%")))), /*#__PURE__*/React.createElement("div", {
-    className: "bx-final-price"
-  }, /*#__PURE__*/React.createElement("span", null, "Precio final"), /*#__PURE__*/React.createElement("span", {
-    className: "bx-final-num"
-  }, clp(precioFinal))))), agenda.length > 0 && /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", null, t[0])))), agenda.length > 0 && /*#__PURE__*/React.createElement("div", {
     className: "bx-agenda"
   }, /*#__PURE__*/React.createElement("div", {
     className: "bx-agenda-h"
@@ -1008,27 +993,28 @@ function Cotizador() {
     })
   })), /*#__PURE__*/React.createElement("button", {
     className: "bx-cta",
-    onClick: () => setEnviado(true)
+    onClick: () => {
+      enviarInterno();
+      setEnviado(true);
+      if (CONTACTO.agenda) window.open(CONTACTO.agenda, "_blank");
+    }
   }, "Solicitar cotización y agendar"), enviado && /*#__PURE__*/React.createElement("div", {
     className: "bx-after"
   }, /*#__PURE__*/React.createElement("p", {
     className: "bx-ok"
-  }, "Envíame el resumen y coordinamos la reunión para cerrar el precio. Ahí afinamos los temas que anotaste."), /*#__PURE__*/React.createElement("div", {
+  }, "Tu solicitud ya fue enviada. ", CONTACTO.agenda ? "Se abrió una pestaña para agendar la reunión — si no se abrió, usa el botón de abajo." : "Coordinamos la reunión para cerrar el precio."), /*#__PURE__*/React.createElement("div", {
     className: "bx-contact"
-  }, waHref && /*#__PURE__*/React.createElement("a", {
-    className: "bx-ghost",
-    href: waHref,
-    target: "_blank",
-    rel: "noreferrer"
-  }, "Enviar por WhatsApp"), /*#__PURE__*/React.createElement("a", {
-    className: "bx-ghost",
-    href: mailHref
-  }, "Enviar por correo"), CONTACTO.agenda && /*#__PURE__*/React.createElement("a", {
+  }, CONTACTO.agenda && /*#__PURE__*/React.createElement("a", {
     className: "bx-ghost",
     href: CONTACTO.agenda,
     target: "_blank",
     rel: "noreferrer"
-  }, "Agendar reunión →"))), /*#__PURE__*/React.createElement("div", {
+  }, "Agendar reunión →"), waHref && /*#__PURE__*/React.createElement("a", {
+    className: "bx-ghost",
+    href: waHref,
+    target: "_blank",
+    rel: "noreferrer"
+  }, "Enviar por WhatsApp"))), /*#__PURE__*/React.createElement("div", {
     className: "bx-nav"
   }, /*#__PURE__*/React.createElement("button", {
     className: "bx-back",

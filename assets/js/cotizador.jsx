@@ -88,6 +88,18 @@ const CONTACTO = {
   agenda:    "https://calendar.app.google/zSrf4k99THEb7JNW8",
 };
 
+// Envío interno silencioso (reporte con horas/fórmula/condiciones → Antonio).
+// Completar con los datos de tu cuenta EmailJS (emailjs.com) para activarlo.
+// Mientras publicKey esté vacío, el botón sigue funcionando pero no manda el interno.
+const EMAILJS = {
+  publicKey:  "",
+  serviceId:  "",
+  templateId: "",
+};
+if (typeof window !== "undefined" && window.emailjs && EMAILJS.publicKey) {
+  window.emailjs.init(EMAILJS.publicKey);
+}
+
 const clp = (n) =>
   new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 })
     .format(Math.round(n / 1000) * 1000);
@@ -362,9 +374,7 @@ function Cotizador() {
   const [detalle,   setDetalle]   = useState("");
   const [notas,     setNotas]     = useState({});
   const [notaOpen,  setNotaOpen]  = useState({});
-  const [marcados,  setMarcados]  = useState({});
   const [fin,       setFin]       = useState(false);
-  const [estudio,   setEstudio]   = useState(false);
   const [datos,     setDatos]     = useState({ nombre: "", proyecto: "", correo: "" });
   const [enviado,   setEnviado]   = useState(false);
 
@@ -374,17 +384,9 @@ function Cotizador() {
     ? flujo.pasos.filter((p) => (notas[p.id] || "").trim()).map((p) => ({ q: p.q, nota: notas[p.id].trim() }))
     : [];
 
-  const precioFinal = useMemo(() => {
-    if (!r || r.exacto) return r ? r.precio : 0;
-    let s = 0;
-    (r.defs || []).forEach((f) => { if (marcados[f.id]) s += (f.dir === "sube" ? f.peso : -f.peso); });
-    s = Math.max(-r.maxBaja, Math.min(r.maxSube, s));
-    return r.precio * (1 + s);
-  }, [r, marcados]);
-
   const elegirCat = (id) => {
     setCat(id); setPaso(0); setFin(false); setEnviado(false);
-    setNotas({}); setNotaOpen({}); setDetalle(""); setMarcados({});
+    setNotas({}); setNotaOpen({}); setDetalle("");
     const def = {};
     FLUJOS[id].pasos.forEach((p) => {
       if (p.tipo === "single") def[p.id] = p.op[0].id;
@@ -417,8 +419,41 @@ function Cotizador() {
       (detalle ? `\n\nNota del cliente:\n${detalle}` : "");
   };
 
+  // Reporte interno — solo para Bastos. Nunca se muestra en el cotizador ni se
+  // le entrega al cliente; se envía en silencio por EmailJS al confirmar.
+  const resumenInternoTxt = () => {
+    if (!r) return "";
+    const formula = r.esPrograma
+      ? `${r.horas} h × ${clp(VALOR_HORA)}${r.empresaImpresion ? ` + impresión ${clp(r.empresaImpresion)}` : ""} = ${clp(r.precio)}`
+      : `${r.horas} h × ${clp(VALOR_HORA)}${r.mult !== 1 ? ` · urgencia ×${r.mult}` : ""} = ${clp(r.precio)}`;
+    const condiciones = (r.defs || []).length
+      ? r.defs.map((f) => `· ${f.label} (${f.porque}) — ${f.dir === "sube" ? "+" : "−"}${Math.round(f.peso * 100)}%`).join("\n")
+      : "—";
+    const respuestas = flujo.pasos.map((p) => {
+      const v = ans[p.id];
+      const txt = p.tipo === "multi" ? (v || []).join(", ") : Array.isArray(v) ? v.join(", ") : v;
+      return `· ${p.q} → ${txt}`;
+    }).join("\n");
+    return `[INTERNO — no compartir]\n` +
+      `${flujo.label} — ${datos.nombre || "—"}${datos.proyecto ? " / " + datos.proyecto : ""} (${datos.correo || "sin correo"})\n\n` +
+      `Fórmula: ${formula}\n` +
+      `Rango mostrado al cliente: ${headline(r)}\n` +
+      (!r.exacto ? `Tope ajuste: −${Math.round(r.maxBaja * 100)}% / +${Math.round(r.maxSube * 100)}%\n` : "") +
+      `\nCondiciones a evaluar en la reunión (marcar en vivo, no automático):\n${condiciones}\n\n` +
+      `Respuestas del formulario:\n${respuestas}` +
+      (agenda.length ? `\n\nTemas marcados por el cliente:\n${agenda.map((a) => `· ${a.q} — ${a.nota}`).join("\n")}` : "") +
+      (detalle ? `\n\nNota del cliente:\n${detalle}` : "");
+  };
+
+  const enviarInterno = () => {
+    if (!window.emailjs || !EMAILJS.publicKey) return; // no configurado aún
+    window.emailjs.send(EMAILJS.serviceId, EMAILJS.templateId, {
+      asunto: `Cotización interna — ${flujo?.label || ""} — ${datos.nombre || "sin nombre"}`,
+      mensaje: resumenInternoTxt(),
+    }).catch(() => {});
+  };
+
   const waHref   = CONTACTO.whatsapp ? `https://wa.me/${CONTACTO.whatsapp}?text=${encodeURIComponent(resumenTxt())}` : null;
-  const mailHref = `mailto:${CONTACTO.email}?subject=${encodeURIComponent("Solicitud — " + (flujo?.label || ""))}&body=${encodeURIComponent(resumenTxt())}`;
 
   return (
     <div className="bx-page">
@@ -534,50 +569,14 @@ function Cotizador() {
 
           <div className="bx-incl-h">
             <span>Qué incluye</span>
-            <button className="bx-vista" onClick={() => setEstudio(!estudio)}>
-              {estudio ? "Vista cliente" : "Vista estudio"}
-            </button>
           </div>
           <ul className="bx-tareas">
             {r.tareas.map((t, i) => (
               <li key={i}>
                 <span>{t[0]}</span>
-                {estudio && t[1] != null && <em>{t[1]} h</em>}
               </li>
             ))}
           </ul>
-
-          {estudio && (
-            <div className="bx-studio">
-              {r.esPrograma
-                ? <div className="bx-studio-line">{r.horas} h × {clp(VALOR_HORA)}{r.empresaImpresion ? ` + impresión ${clp(r.empresaImpresion)}` : ""} = {clp(r.precio)}</div>
-                : <div className="bx-studio-line">Punto: {r.horas} h × {clp(VALOR_HORA)}{r.mult !== 1 ? ` · urgencia ×${r.mult}` : ""} = {clp(r.precio)}</div>
-              }
-              {!r.esSesion && r.defs.length > 0 && (
-                <>
-                  <div className="bx-check-h">Condiciones de la primera reunión — marca las que apliquen</div>
-                  <div className="bx-checks">
-                    {r.defs.map((f) => (
-                      <button key={f.id} className={`bx-check ${f.dir === "sube" ? "up" : "down"}`}
-                        aria-pressed={!!marcados[f.id]}
-                        onClick={() => setMarcados((m) => ({ ...m, [f.id]: !m[f.id] }))}>
-                        <span className="bx-check-box"></span>
-                        <span className="bx-check-body">
-                          <span className="bx-check-l">{f.label}</span>
-                          <span className="bx-check-p">{f.porque}</span>
-                        </span>
-                        <span className="bx-check-w">{f.dir === "sube" ? "+" : "−"}{Math.round(f.peso * 100)}%</span>
-                      </button>
-                    ))}
-                  </div>
-                  <div className="bx-final-price">
-                    <span>Precio final</span>
-                    <span className="bx-final-num">{clp(precioFinal)}</span>
-                  </div>
-                </>
-              )}
-            </div>
-          )}
 
           {agenda.length > 0 && (
             <div className="bx-agenda">
@@ -604,15 +603,18 @@ function Cotizador() {
             <input className="bx-input" placeholder="Correo"             value={datos.correo}   onChange={(e) => setDatos({ ...datos, correo:   e.target.value })} />
           </div>
 
-          <button className="bx-cta" onClick={() => setEnviado(true)}>Solicitar cotización y agendar</button>
+          <button className="bx-cta" onClick={() => {
+            enviarInterno();
+            setEnviado(true);
+            if (CONTACTO.agenda) window.open(CONTACTO.agenda, "_blank");
+          }}>Solicitar cotización y agendar</button>
 
           {enviado && (
             <div className="bx-after">
-              <p className="bx-ok">Envíame el resumen y coordinamos la reunión para cerrar el precio. Ahí afinamos los temas que anotaste.</p>
+              <p className="bx-ok">Tu solicitud ya fue enviada. {CONTACTO.agenda ? "Se abrió una pestaña para agendar la reunión — si no se abrió, usa el botón de abajo." : "Coordinamos la reunión para cerrar el precio."}</p>
               <div className="bx-contact">
-                {waHref && <a className="bx-ghost" href={waHref} target="_blank" rel="noreferrer">Enviar por WhatsApp</a>}
-                <a className="bx-ghost" href={mailHref}>Enviar por correo</a>
                 {CONTACTO.agenda && <a className="bx-ghost" href={CONTACTO.agenda} target="_blank" rel="noreferrer">Agendar reunión →</a>}
+                {waHref && <a className="bx-ghost" href={waHref} target="_blank" rel="noreferrer">Enviar por WhatsApp</a>}
               </div>
             </div>
           )}
