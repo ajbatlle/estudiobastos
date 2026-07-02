@@ -83,9 +83,9 @@ const TOPE_SUBE     = 0.25;
 const TOPE_BAJA     = 0.15;
 
 const CONTACTO = {
-  linkPago:  "#",
-  whatsapp:  "",
-  email:     "info@estudiobastos.com",
+  whatsapp:  "56985003737",
+  email:     "antoniobatllel@gmail.com",
+  agenda:    "https://calendar.app.google/zSrf4k99THEb7JNW8",
 };
 
 const clp = (n) =>
@@ -612,12 +612,7 @@ function Cotizador() {
               <div className="bx-contact">
                 {waHref && <a className="bx-ghost" href={waHref} target="_blank" rel="noreferrer">Enviar por WhatsApp</a>}
                 <a className="bx-ghost" href={mailHref}>Enviar por correo</a>
-              </div>
-              <div className="bx-reserva">
-                {CONTACTO.linkPago === "#"
-                  ? <span className="bx-warn-inline">Para habilitar el anticipo, pega tu Link de Pago en CONTACTO.linkPago.</span>
-                  : <button className="bx-reserva-b" onClick={() => window.open(CONTACTO.linkPago, "_blank")}>¿Reservar agenda ahora? Pagar anticipo 50% ({anticipoStr(r)}) →</button>
-                }
+                {CONTACTO.agenda && <a className="bx-ghost" href={CONTACTO.agenda} target="_blank" rel="noreferrer">Agendar reunión →</a>}
               </div>
             </div>
           )}
@@ -1390,27 +1385,6 @@ function Cotizador() {
           color: var(--text-secondary);
           text-transform: uppercase;
           letter-spacing: var(--tracking-wide);
-        }
-        .bx-reserva {
-          margin-top: var(--spacing-05);
-          padding-top: var(--spacing-04);
-          border-top: 1px solid var(--border-subtle);
-        }
-        .bx-reserva-b {
-          background: transparent;
-          border: 0;
-          color: var(--color-brand);
-          font-family: var(--font-sans);
-          font-size: var(--type-scale-02);
-          cursor: pointer;
-          padding: 0;
-          text-align: left;
-          letter-spacing: var(--tracking-wide);
-        }
-        .bx-reserva-b:hover { opacity: var(--opacity-hover); }
-        .bx-warn-inline {
-          font-size: var(--type-scale-01);
-          color: var(--text-secondary);
         }
         .bx-rangenote {
           font-size: var(--type-scale-01);

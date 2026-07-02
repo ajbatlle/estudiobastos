@@ -129,9 +129,9 @@ const ANTICIPO = 0.5;
 const TOPE_SUBE = 0.25;
 const TOPE_BAJA = 0.15;
 const CONTACTO = {
-  linkPago: "#",
-  whatsapp: "",
-  email: "info@estudiobastos.com"
+  whatsapp: "56985003737",
+  email: "antoniobatllel@gmail.com",
+  agenda: "https://calendar.app.google/zSrf4k99THEb7JNW8"
 };
 const clp = n => new Intl.NumberFormat("es-CL", {
   style: "currency",
@@ -1023,14 +1023,12 @@ function Cotizador() {
   }, "Enviar por WhatsApp"), /*#__PURE__*/React.createElement("a", {
     className: "bx-ghost",
     href: mailHref
-  }, "Enviar por correo")), /*#__PURE__*/React.createElement("div", {
-    className: "bx-reserva"
-  }, CONTACTO.linkPago === "#" ? /*#__PURE__*/React.createElement("span", {
-    className: "bx-warn-inline"
-  }, "Para habilitar el anticipo, pega tu Link de Pago en CONTACTO.linkPago.") : /*#__PURE__*/React.createElement("button", {
-    className: "bx-reserva-b",
-    onClick: () => window.open(CONTACTO.linkPago, "_blank")
-  }, "¿Reservar agenda ahora? Pagar anticipo 50% (", anticipoStr(r), ") →"))), /*#__PURE__*/React.createElement("div", {
+  }, "Enviar por correo"), CONTACTO.agenda && /*#__PURE__*/React.createElement("a", {
+    className: "bx-ghost",
+    href: CONTACTO.agenda,
+    target: "_blank",
+    rel: "noreferrer"
+  }, "Agendar reunión →"))), /*#__PURE__*/React.createElement("div", {
     className: "bx-nav"
   }, /*#__PURE__*/React.createElement("button", {
     className: "bx-back",
@@ -1800,27 +1798,6 @@ function Cotizador() {
           color: var(--text-secondary);
           text-transform: uppercase;
           letter-spacing: var(--tracking-wide);
-        }
-        .bx-reserva {
-          margin-top: var(--spacing-05);
-          padding-top: var(--spacing-04);
-          border-top: 1px solid var(--border-subtle);
-        }
-        .bx-reserva-b {
-          background: transparent;
-          border: 0;
-          color: var(--color-brand);
-          font-family: var(--font-sans);
-          font-size: var(--type-scale-02);
-          cursor: pointer;
-          padding: 0;
-          text-align: left;
-          letter-spacing: var(--tracking-wide);
-        }
-        .bx-reserva-b:hover { opacity: var(--opacity-hover); }
-        .bx-warn-inline {
-          font-size: var(--type-scale-01);
-          color: var(--text-secondary);
         }
         .bx-rangenote {
           font-size: var(--type-scale-01);
