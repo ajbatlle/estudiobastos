@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bastos — Afiches</title>
+<link rel="icon" type="image/svg+xml" href="assets/img/Isotipo-b.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-brand: #111111;
+    --text-primary: #0a0a0a;
+    --text-secondary: #666666;
+    --text-placeholder: #999999;
+    --border-subtle: #e8e8e8;
+    --border-strong: #cccccc;
+    --white: #ffffff;
+  }
+* { box-sizing: border-box; }
+
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--white, #ffffff);
+    color: var(--text-primary, #0a0a0a);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  body { display: flex; flex-direction: column; min-height: 100vh; }
+
+  .stage {
+    width: 100%;
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 56px 64px 72px;
+    flex: 1;
+  }
+
+  header.top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    padding-bottom: 28px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border-subtle, #e8e8e8);
+    flex-wrap: wrap;
+  }
+
+  .title-block h1 {
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0 0 10px 0;
+    color: var(--text-primary, #0a0a0a);
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--text-secondary, #666666);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s;
+    margin-bottom: 14px;
+  }
+  .back-link:hover { color: var(--color-brand, #003ec0); }
+  .title-block h1 em {
+    font-style: normal;
+    color: var(--color-brand, #003ec0);
+  }
+  .title-block p {
+    margin: 0;
+    color: var(--text-secondary, #666666);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 58ch;
+  }
+
+  .model-label {
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary, #666666);
+    white-space: nowrap;
+    padding-bottom: 4px;
+  }
+
+  .console {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* ——— Lienzo ——— */
+  .canvas-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--white, #ffffff);
+    border: 1px solid var(--border-subtle, #e8e8e8);
+    overflow: hidden;
+  }
+  .canvas-wrap.blue {
+    background: var(--color-brand, #003ec0);
+    border-color: var(--color-brand, #003ec0);
+  }
+  canvas { display: block; width: 100%; height: 100%; cursor: crosshair; }
+
+  .edge-note {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-brand, #003ec0);
+    background: var(--white, #ffffff);
+    border: 2px solid var(--color-brand, #003ec0);
+    padding: 8px 16px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .edge-note.show { opacity: 1; }
+
+  .canvas-hint {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text-placeholder, #999999);
+    line-height: 1.5;
+  }
+  .canvas-hint kbd {
+    font-family: inherit;
+    font-weight: 600;
+    color: var(--text-secondary, #666666);
+    border: 1px solid var(--border-strong, #cccccc);
+    padding: 1px 6px;
+    margin: 0 2px;
+  }
+
+  /* ——— Panel ——— */
+  .panel { display: flex; flex-direction: column; gap: 32px; }
+
+  .panel h2 {
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary, #666666);
+    margin: 0 0 14px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-subtle, #e8e8e8);
+  }
+
+  .stage-col { position: sticky; top: 24px; align-self: start; }
+
+  .statsbar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-subtle, #e8e8e8);
+  }
+  .stat .label {
+    display: block;
+    font-size: 11px;
+    color: var(--text-secondary, #666666);
+    margin-bottom: 2px;
+  }
+  .stat .value {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-primary, #0a0a0a);
+  }
+
+  .ritmo-row { margin-top: 12px; }
+
+  details.fine { border: 1px solid var(--border-subtle, #e8e8e8); padding: 0 16px; }
+  details.fine summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary, #666666);
+    padding: 14px 0;
+  }
+  details.fine summary::-webkit-details-marker { display: none; }
+  details.fine summary::after { content: '+'; float: right; font-weight: 400; }
+  details.fine[open] summary::after { content: '−'; }
+  details.fine .controls { padding: 4px 0 20px; }
+
+  .controls { display: flex; flex-direction: column; gap: 20px; }
+
+  .control label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-secondary, #666666);
+    margin-bottom: 8px;
+  }
+  .control label .val {
+    color: var(--text-primary, #0a0a0a);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 2px;
+    background: var(--border-strong, #cccccc);
+    outline: none;
+    margin: 6px 0;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 0;
+    background: var(--color-brand, #003ec0);
+    cursor: pointer;
+    margin-top: -6px;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 14px; height: 14px;
+    border: none;
+    border-radius: 0;
+    background: var(--color-brand, #003ec0);
+    cursor: pointer;
+  }
+  input[type="range"]:focus-visible { outline: 2px solid var(--color-brand, #003ec0); outline-offset: 4px; }
+
+  /* Segmentado: fondo */
+  .segment {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 2px solid var(--color-brand, #003ec0);
+  }
+  .segment button {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 9px 8px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-brand, #003ec0);
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+  .segment button:hover { opacity: 0.85; }
+  .segment button.active {
+    background: var(--color-brand, #003ec0);
+    color: var(--white, #ffffff);
+  }
+
+  /* Botones */
+  .buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+  .btn {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 12px 10px;
+    border-radius: 0;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary {
+    background: var(--color-brand, #003ec0);
+    color: var(--white, #ffffff);
+    border: 2px solid var(--color-brand, #003ec0);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-brand, #003ec0);
+    border: 2px solid var(--color-brand, #003ec0);
+  }
+  .btn-ghost {
+    grid-column: 1 / -1;
+    background: transparent;
+    color: var(--text-secondary, #666666);
+    border: 2px solid var(--border-strong, #cccccc);
+  }
+  .btn-ghost:hover { border-color: var(--color-brand, #003ec0); color: var(--color-brand, #003ec0); opacity: 1; }
+
+  .note {
+    font-size: 12px;
+    color: var(--text-secondary, #666666);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .note b { color: var(--text-primary, #0a0a0a); font-weight: 600; }
+
+  footer.brand {
+    margin-top: 48px;
+    line-height: 0;
+  }
+  footer.brand img { width: 100%; display: block; }
+
+  @media (max-width: 900px) {
+    .stage { padding: 40px 24px 56px; }
+    .console { grid-template-columns: 1fr; gap: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<style>
+  :root { --color-brand: #111111; }
+  .segment.seg3 { grid-template-columns: repeat(3, 1fr); }
+  .segment.seg4 { grid-template-columns: repeat(4, 1fr); }
+  .segment.seg5 { grid-template-columns: repeat(5, 1fr); }
+  .segment.seg3 button, .segment.seg4 button, .segment.seg5 button { font-size: 11px; padding: 8px 3px; letter-spacing: 0; }
+  .control.tight label { margin-bottom: 6px; }
+  .loupe-wrap { width: 100%; aspect-ratio: 1 / 1; border: 1px solid var(--border-subtle, #e8e8e8); overflow: hidden; }
+  #loupe { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+  .loupe-cap { margin-top: 8px; font-size: 11px; color: var(--text-placeholder, #999999); line-height: 1.5; }
+  .swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+  .sw { width: 32px; height: 32px; border: 1px solid rgba(0,0,0,0.18); background: var(--c, #fff); cursor: pointer; padding: 0; border-radius: 0; }
+  .sw.active { outline: 2px solid #111111; outline-offset: 2px; }
+  .sw-auto { background: #ffffff; font-size: 12px; font-weight: 700; color: #111111; }
+  .text-field { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid #cfcfcf; background: #ffffff; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; letter-spacing: 0.01em; color: #111111; outline: none; }
+  .text-field:focus { border-color: #111111; }
+  .text-field::placeholder { color: #a8a8a8; }
+  .edge-note { color: #111111 !important; border-color: #111111 !important; }
+  @media (max-width: 900px) { .stage-col { position: static; } }
+  footer.brand { display: none; }
+</style>
+
+<div class="stage">
+
+  <header class="top">
+    <div class="title-block">
+      <a class="back-link" href="index.html">&#8592; volver a estudio bastos</a>
+      <h1>Afiches <em>bastos</em></h1>
+      <p>Cada corrida produce una figura distinta. Genera tu propio original 3:4, numerado y descargable.</p>
+    </div>
+  </header>
+
+  <div class="console">
+
+    <div class="stage-col" id="stageCol">
+      <div class="canvas-wrap" id="canvasWrap">
+        <canvas id="canvas"></canvas>
+        <div class="edge-note" id="edgeNote">La figura alcanzó el borde</div>
+      </div>
+
+      <div class="statsbar">
+        <div class="stat"><span class="label">partículas</span><span class="value" id="statParticles">1</span></div>
+        <div class="stat"><span class="label">radio</span><span class="value" id="statRadius">0</span></div>
+        <div class="stat"><span class="label">tiempo</span><span class="value" id="statTime">00:00</span></div>
+        <div class="stat"><span class="label">ritmo</span><span class="value" id="statRate">0/s</span></div>
+      </div>
+
+      <div class="buttons">
+        <button class="btn btn-primary" id="playBtn">Iniciar</button>
+        <button class="btn btn-secondary" id="resetBtn">Reiniciar</button>
+        <button class="btn btn-secondary" id="randBtn">Aleatorizar</button>
+        <button class="btn btn-ghost" id="saveBtn">Descargar afiche</button>
+      </div>
+
+      <div class="control tight ritmo-row">
+        <div class="segment seg4" id="rateSegment">
+          <button type="button" data-rate="lento">lento</button>
+          <button type="button" data-rate="medio">medio</button>
+          <button type="button" data-rate="rapido">rápido</button>
+          <button type="button" data-rate="libre" class="active">libre</button>
+        </div>
+      </div>
+
+      <p class="canvas-hint">Clic en el lienzo planta semillas · <kbd>espacio</kbd> inicia/pausa · <kbd>R</kbd> reinicia</p>
+    </div>
+
+    <div class="panel">
+      <div>
+        <h2>obra</h2>
+        <div class="control tight">
+          <label>Título</label>
+          <input type="text" id="obraTitle" class="text-field" placeholder="título de la obra" maxlength="60" autocomplete="off">
+        </div>
+      </div>
+
+      <div>
+        <h2>azar</h2>
+        <div class="control tight">
+          <label>Semilla</label>
+          <input type="number" id="seedInput" class="text-field" value="1" min="0" step="1" autocomplete="off">
+        </div>
+      </div>
+
+      <div>
+        <h2>color</h2>
+        <div class="controls">
+          <div class="control tight">
+            <label>Papel</label>
+            <div class="swatches" id="bgSwatches">
+              <button type="button" class="sw" data-c="#F2EDE0" style="--c:#F2EDE0"></button>
+              <button type="button" class="sw" data-c="#FAFAF8" style="--c:#FAFAF8"></button>
+              <button type="button" class="sw" data-c="#003EC0" style="--c:#003EC0"></button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Tinta</label>
+            <div class="swatches" id="inkSwatches">
+              <button type="button" class="sw sw-auto active" data-c="auto">A</button>
+              <button type="button" class="sw" data-c="#003EC0" style="--c:#003EC0"></button>
+              <button type="button" class="sw" data-c="#D0452B" style="--c:#D0452B"></button>
+              <button type="button" class="sw" data-c="#1B1B1B" style="--c:#1B1B1B"></button>
+              <button type="button" class="sw" data-c="#F2EDE0" style="--c:#F2EDE0"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2>forma</h2>
+        <div class="controls">
+          <div class="control tight">
+            <label>Semilla</label>
+            <div class="segment seg4" id="seedSegment">
+              <button type="button" data-seed="punto" class="active">punto</button>
+              <button type="button" data-seed="eje">eje</button>
+              <button type="button" data-seed="anillo">anillo</button>
+              <button type="button" data-seed="disperso">disperso</button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Retícula</label>
+            <div class="segment seg3" id="latticeSegment">
+              <button type="button" data-lat="libre" class="active">libre</button>
+              <button type="button" data-lat="cuadrada">cuadrada</button>
+              <button type="button" data-lat="triangular">triangular</button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Confinamiento</label>
+            <div class="segment seg4" id="confSegment">
+              <button type="button" data-conf="libre" class="active">libre</button>
+              <button type="button" data-conf="circulo">círculo</button>
+              <button type="button" data-conf="cuadrado">cuadrado</button>
+              <button type="button" data-conf="rombo">rombo</button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Partícula</label>
+            <div class="segment seg3" id="shapeSegment">
+              <button type="button" data-shape="cuadrado" class="active">cuadrado</button>
+              <button type="button" data-shape="punto">punto</button>
+              <button type="button" data-shape="cruz">cruz</button>
+              <button type="button" data-shape="rombo">rombo</button>
+              <button type="button" data-shape="anillo">anillo</button>
+              <button type="button" data-shape="linea">línea</button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Tamaño</label>
+            <div class="segment seg3" id="sizeSegment">
+              <button type="button" data-size="0.8">fino</button>
+              <button type="button" data-size="1" class="active">medio</button>
+              <button type="button" data-size="1.35">grueso</button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Simetría</label>
+            <div class="segment seg5" id="symSegment">
+              <button type="button" data-sym="1" class="active">libre</button>
+              <button type="button" data-sym="2">2</button>
+              <button type="button" data-sym="3">3</button>
+              <button type="button" data-sym="4">4</button>
+              <button type="button" data-sym="6">6</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="fine">
+        <summary>ajustes finos</summary>
+        <div class="controls">
+          <div class="control">
+            <label>Ramificación <span class="val" id="valEta">1.0</span></label>
+            <input type="range" id="ramif" min="100" max="300" value="100">
+          </div>
+          <div class="control">
+            <label>Definición <span class="val" id="valDef">1</span></label>
+            <input type="range" id="definicion" min="1" max="5" value="1">
+          </div>
+          <div class="control">
+            <label>Deriva <span class="val" id="valDrift">0%</span></label>
+            <input type="range" id="deriva" min="0" max="100" value="0">
+          </div>
+          <div class="control">
+            <label>Dirección <span class="val" id="valDir">90°</span></label>
+            <input type="range" id="direccion" min="0" max="315" step="45" value="90">
+          </div>
+          <div class="control">
+            <label>Giro <span class="val" id="valGiro">0</span></label>
+            <input type="range" id="giro" min="-100" max="100" value="0">
+          </div>
+          <div class="control">
+            <label>Núcleos <span class="val" id="valNuc">5</span></label>
+            <input type="range" id="nucleos" min="2" max="12" value="5">
+          </div>
+          <div class="control">
+            <label>Concurrencia <span class="val" id="valConcurrency">70</span></label>
+            <input type="range" id="concurrency" min="1" max="220" value="70">
+          </div>
+          <div class="control">
+            <label>Velocidad <span class="val" id="valSpeed">3</span></label>
+            <input type="range" id="speed" min="1" max="10" value="3">
+          </div>
+          <div class="control">
+            <label>Adherencia <span class="val" id="valStick">100%</span></label>
+            <input type="range" id="stickiness" min="5" max="100" value="100">
+          </div>
+        </div>
+      </details>
+
+      <div>
+        <h2>detalle</h2>
+        <div class="loupe-wrap" id="loupeWrap"><canvas id="loupe"></canvas></div>
+        <p class="loupe-cap">vista ampliada del centro</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(() => {
+  const GRID = 241, CENTER = (GRID - 1) / 2, CELL = 3, RES = GRID * CELL;
+  const MAX_ALLOWED_RADIUS = CENTER - 6;
+
+  const canvas = document.getElementById('canvas');
+  canvas.width = RES; canvas.height = RES;
+  const ctx = canvas.getContext('2d');
+  const structure = document.createElement('canvas');
+  structure.width = RES; structure.height = RES;
+  const sctx = structure.getContext('2d');
+
+  const LWIN = 30, LMAG = 9, LSIZE = LWIN * LMAG;
+  const loupe = document.getElementById('loupe');
+  loupe.width = LSIZE; loupe.height = LSIZE;
+  const lctx = loupe.getContext('2d');
+  const loupeWrap = document.getElementById('loupeWrap');
+
+  const DIRS8 = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+  const DIRS4 = [[-1,0],[1,0],[0,-1],[0,1]];
+  const DIRS6 = [[1,0],[-1,0],[0,1],[0,-1],[1,-1],[-1,1]];
+  const RATES = { lento: 45, medio: 180, rapido: 650, libre: 0 };
+  const AUTO_INK = { '#F2EDE0':'#003EC0', '#FAFAF8':'#1B1B1B', '#003EC0':'#F2EDE0' };
+
+  // Confinamiento: radios que caben dentro del disco de simulación
+  const CONF_R_CIRCLE = MAX_ALLOWED_RADIUS - 4;
+  const CONF_R_SQUARE = Math.floor((MAX_ALLOWED_RADIUS - 4) / Math.SQRT2);
+  const CONF_R_RHOMB  = MAX_ALLOWED_RADIUS - 4;
+
+  // PRNG reproducible
+  function mulberry32(a) { return function() { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  let seedNum = 1, rng = mulberry32(seedNum);
+
+  // Estado
+  let occupied = new Uint8Array(GRID * GRID);
+  let hits = new Uint16Array(GRID * GRID);
+  let seeds = [];
+  let particleCount = 0, maxRadius = 0;
+  let walkers = [];
+  let running = false, rafId = null;
+  let elapsedAccum = 0, resumeTime = 0, edgeReached = false;
+  let budget = 0, lastLoop = 0;
+  const idx = (x, y) => y * GRID + x;
+
+  // Parámetros
+  let concurrency = 70, subSteps = 3, stickiness = 1;
+  let definicion = 1, deriva = 0, driftProb = 0, derivaAngle = 90, driftVec = [0, 1];
+  let symmetry = 1, seedMode = 'punto', shapeMode = 'cuadrado', ritmoRate = 0, markScale = 1;
+  let bgColor = '#F2EDE0', inkMode = 'auto';
+  let latticeMode = 'libre', NB = DIRS8;
+  let confMode = 'libre';
+  let eta = 1, giro = 0, giroProb = 0, giroSign = 1, nucleos = 5;
+
+  function inkColor() { return inkMode === 'auto' ? (AUTO_INK[bgColor] || '#1B1B1B') : inkMode; }
+  function setDriftVec() { const a = derivaAngle * Math.PI / 180; let vx = Math.round(Math.cos(a)), vy = Math.round(Math.sin(a)); if (vx === 0 && vy === 0) vy = 1; driftVec = [vx, vy]; }
+  function setLattice() { NB = latticeMode === 'cuadrada' ? DIRS4 : latticeMode === 'triangular' ? DIRS6 : DIRS8; }
+  function inShape(x, y) {
+    if (confMode === 'libre') return true;
+    const dx = Math.abs(x - CENTER), dy = Math.abs(y - CENTER);
+    if (confMode === 'circulo') return Math.hypot(dx, dy) <= CONF_R_CIRCLE;
+    if (confMode === 'cuadrado') return Math.max(dx, dy) <= CONF_R_SQUARE;
+    if (confMode === 'rombo') return (dx + dy) <= CONF_R_RHOMB;
+    return true;
+  }
+  function boundRadius() {
+    if (confMode === 'circulo') return CONF_R_CIRCLE;
+    if (confMode === 'cuadrado') return CONF_R_SQUARE * Math.SQRT2;
+    if (confMode === 'rombo') return CONF_R_RHOMB;
+    return MAX_ALLOWED_RADIUS;
+  }
+
+  // Marca
+  function drawMark(g, px, py, cell, color, shape) {
+    const m = cell * markScale, cx = px + cell / 2, cy = py + cell / 2, x = cx - m / 2, y = cy - m / 2;
+    g.fillStyle = color; g.strokeStyle = color;
+    if (shape === 'cuadrado') { g.fillRect(x, y, m, m); return; }
+    if (shape === 'punto') { g.beginPath(); g.arc(cx, cy, m * 0.5, 0, Math.PI * 2); g.fill(); return; }
+    if (shape === 'anillo') { g.lineWidth = Math.max(1, m * 0.24); g.beginPath(); g.arc(cx, cy, m * 0.42, 0, Math.PI * 2); g.stroke(); return; }
+    if (shape === 'cruz') { const t = m / 3; g.fillRect(cx - m/2, cy - t/2, m, t); g.fillRect(cx - t/2, cy - m/2, t, m); return; }
+    if (shape === 'linea') { const t = m / 3; g.fillRect(cx - m/2, cy - t/2, m, t); return; }
+    if (shape === 'rombo') { const h = m / 2; g.beginPath(); g.moveTo(cx, cy - h); g.lineTo(cx + h, cy); g.lineTo(cx, cy + h); g.lineTo(cx - h, cy); g.closePath(); g.fill(); return; }
+    g.fillRect(x, y, m, m);
+  }
+
+  const els = {
+    concurrency: document.getElementById('concurrency'), speed: document.getElementById('speed'),
+    stickiness: document.getElementById('stickiness'), definicion: document.getElementById('definicion'),
+    deriva: document.getElementById('deriva'), direccion: document.getElementById('direccion'),
+    ramif: document.getElementById('ramif'), giro: document.getElementById('giro'), nucleos: document.getElementById('nucleos'),
+    valConcurrency: document.getElementById('valConcurrency'), valSpeed: document.getElementById('valSpeed'),
+    valStick: document.getElementById('valStick'), valDef: document.getElementById('valDef'),
+    valDrift: document.getElementById('valDrift'), valDir: document.getElementById('valDir'),
+    valEta: document.getElementById('valEta'), valGiro: document.getElementById('valGiro'), valNuc: document.getElementById('valNuc'),
+    statParticles: document.getElementById('statParticles'), statRadius: document.getElementById('statRadius'),
+    statTime: document.getElementById('statTime'), statRate: document.getElementById('statRate'),
+    playBtn: document.getElementById('playBtn'), resetBtn: document.getElementById('resetBtn'),
+    saveBtn: document.getElementById('saveBtn'), edgeNote: document.getElementById('edgeNote'),
+    canvasWrap: document.getElementById('canvasWrap'),
+    seedSegment: document.getElementById('seedSegment'), symSegment: document.getElementById('symSegment'),
+    shapeSegment: document.getElementById('shapeSegment'), rateSegment: document.getElementById('rateSegment'),
+    sizeSegment: document.getElementById('sizeSegment'), latticeSegment: document.getElementById('latticeSegment'),
+    confSegment: document.getElementById('confSegment'),
+    bgSwatches: document.getElementById('bgSwatches'), inkSwatches: document.getElementById('inkSwatches'),
+    obraTitle: document.getElementById('obraTitle'), seedInput: document.getElementById('seedInput'),
+    randBtn: document.getElementById('randBtn')
+  };
+
+  els.concurrency.addEventListener('input', () => { concurrency = +els.concurrency.value; els.valConcurrency.textContent = concurrency; syncWalkerPool(); });
+  els.speed.addEventListener('input', () => { subSteps = +els.speed.value; els.valSpeed.textContent = subSteps; });
+  els.stickiness.addEventListener('input', () => { stickiness = +els.stickiness.value / 100; els.valStick.textContent = Math.round(stickiness*100) + '%'; });
+  els.definicion.addEventListener('input', () => { definicion = +els.definicion.value; els.valDef.textContent = definicion; });
+  els.deriva.addEventListener('input', () => { deriva = +els.deriva.value; driftProb = deriva/100*0.5; els.valDrift.textContent = deriva + '%'; });
+  els.direccion.addEventListener('input', () => { derivaAngle = +els.direccion.value; els.valDir.textContent = derivaAngle + '°'; setDriftVec(); });
+  els.ramif.addEventListener('input', () => { eta = +els.ramif.value / 100; els.valEta.textContent = eta.toFixed(1); });
+  els.giro.addEventListener('input', () => { giro = +els.giro.value; giroProb = Math.abs(giro)/100*0.5; giroSign = giro < 0 ? -1 : 1; els.valGiro.textContent = giro; });
+  els.nucleos.addEventListener('input', () => { nucleos = +els.nucleos.value; els.valNuc.textContent = nucleos; if (seedMode === 'disperso') reset(); });
+  els.seedInput.addEventListener('change', () => { seedNum = Math.max(0, Math.floor(+els.seedInput.value || 0)); reset(); });
+
+  function segPick(seg, attr, fn) {
+    seg.addEventListener('click', (e) => {
+      const b = e.target.closest('button[' + attr + ']'); if (!b) return;
+      seg.querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b));
+      fn(b.getAttribute(attr));
+    });
+  }
+  segPick(els.seedSegment, 'data-seed', v => { seedMode = v; reset(); });
+  segPick(els.symSegment, 'data-sym', v => { symmetry = +v; reset(); });
+  segPick(els.shapeSegment, 'data-shape', v => { shapeMode = v; redrawStructure(); drawFrame(); });
+  segPick(els.sizeSegment, 'data-size', v => { markScale = +v; redrawStructure(); drawFrame(); });
+  segPick(els.rateSegment, 'data-rate', v => { ritmoRate = RATES[v]; budget = 0; lastLoop = performance.now(); });
+  segPick(els.latticeSegment, 'data-lat', v => { latticeMode = v; setLattice(); reset(); });
+  segPick(els.confSegment, 'data-conf', v => { confMode = v; reset(); });
+  segPick(els.bgSwatches, 'data-c', v => { bgColor = v; applyColors(); redrawStructure(); drawFrame(); });
+  segPick(els.inkSwatches, 'data-c', v => { inkMode = v; redrawStructure(); drawFrame(); });
+
+  function applyColors() { els.canvasWrap.style.background = bgColor; loupeWrap.style.background = bgColor; }
+
+  // Núcleo
+  function spawnRadius() { return Math.min(Math.max(maxRadius + 15, 15), MAX_ALLOWED_RADIUS - 2); }
+  function killRadius() { return Math.min(spawnRadius() + 30, MAX_ALLOWED_RADIUS); }
+  function spawnWalker() { const r = spawnRadius(), a = rng() * Math.PI * 2; return { x: Math.round(CENTER + Math.cos(a)*r), y: Math.round(CENTER + Math.sin(a)*r) }; }
+  function isAdjacentToStructure(x, y) { for (let i = 0; i < NB.length; i++) if (occupied[idx(x+NB[i][0], y+NB[i][1])]) return true; return false; }
+  function emptyNeighbors(x, y) { let occ = 0; for (let i = 0; i < NB.length; i++) if (occupied[idx(x+NB[i][0], y+NB[i][1])]) occ++; return NB.length - occ; }
+  function solidify(x, y) {
+    occupied[idx(x, y)] = 1;
+    drawMark(sctx, x*CELL, y*CELL, CELL, inkColor(), shapeMode);
+    const dc = Math.hypot(x - CENTER, y - CENTER); if (dc > maxRadius) maxRadius = dc;
+  }
+  function commitStick(x, y) {
+    const id = idx(x, y); hits[id]++;
+    if (hits[id] < definicion) return;
+    if (symmetry <= 1) { if (inShape(x, y)) solidify(x, y); }
+    else {
+      const dx = x - CENTER, dy = y - CENTER;
+      for (let k = 0; k < symmetry; k++) {
+        const ang = k * 2 * Math.PI / symmetry, ca = Math.cos(ang), sa = Math.sin(ang);
+        const rx = Math.round(CENTER + dx*ca - dy*sa), ry = Math.round(CENTER + dx*sa + dy*ca);
+        if (rx > 1 && ry > 1 && rx < GRID-2 && ry < GRID-2 && inShape(rx, ry) && !occupied[idx(rx, ry)]) solidify(rx, ry);
+      }
+    }
+    particleCount++;
+    if (maxRadius >= boundRadius() - 3 && !edgeReached) { edgeReached = true; pause(); els.edgeNote.classList.add('show'); }
+  }
+  function pickDir(w) {
+    if (giroProb > 0 && rng() < giroProb) {
+      const sx = Math.sign(w.x - CENTER), sy = Math.sign(w.y - CENTER);
+      const tvx = giroSign * (-sy), tvy = giroSign * sx;
+      if (tvx !== 0 || tvy !== 0) return [tvx, tvy];
+    }
+    if (driftProb > 0 && rng() < driftProb) return driftVec;
+    return NB[(rng() * NB.length) | 0];
+  }
+  function stepWalker(w) {
+    for (let s = 0; s < subSteps; s++) {
+      const d = pickDir(w);
+      const nx = w.x + d[0], ny = w.y + d[1];
+      if (nx < 1 || ny < 1 || nx > GRID-2 || ny > GRID-2 || Math.hypot(nx-CENTER, ny-CENTER) > killRadius()) { const f = spawnWalker(); w.x = f.x; w.y = f.y; continue; }
+      if (occupied[idx(nx, ny)]) continue;
+      if (isAdjacentToStructure(nx, ny)) {
+        let stick = stickiness;
+        if (eta !== 1) { const e = emptyNeighbors(nx, ny); stick = stickiness * Math.pow(Math.max(e, 0.001) / NB.length, eta - 1); }
+        if (rng() < stick) { commitStick(nx, ny); const f = spawnWalker(); w.x = f.x; w.y = f.y; return; }
+        continue;
+      }
+      w.x = nx; w.y = ny;
+    }
+  }
+  function syncWalkerPool() {
+    if (walkers.length < concurrency) while (walkers.length < concurrency) walkers.push(spawnWalker());
+    else if (walkers.length > concurrency) walkers.length = concurrency;
+  }
+  function redrawStructure() {
+    sctx.clearRect(0, 0, RES, RES);
+    const ink = inkColor();
+    for (let y = 1; y < GRID-1; y++) for (let x = 1; x < GRID-1; x++)
+      if (occupied[idx(x, y)]) drawMark(sctx, x*CELL, y*CELL, CELL, ink, shapeMode);
+  }
+
+  // Semillas
+  function plantSeed(x, y) {
+    if (x < 1 || y < 1 || x > GRID-2 || y > GRID-2 || occupied[idx(x, y)] || !inShape(x, y)) return;
+    seeds.push({ x, y }); occupied[idx(x, y)] = 1;
+    drawMark(sctx, x*CELL, y*CELL, CELL, inkColor(), shapeMode);
+    const dc = Math.hypot(x - CENTER, y - CENTER); if (dc > maxRadius) maxRadius = dc;
+  }
+  function initSeeds() {
+    if (seedMode === 'punto') { plantSeed(CENTER, CENTER); }
+    else if (seedMode === 'eje') { for (let dx = -30; dx <= 30; dx++) plantSeed(CENTER + dx, CENTER); }
+    else if (seedMode === 'anillo') { const R = 28; for (let a = 0; a < 360; a += 5) plantSeed(Math.round(CENTER + Math.cos(a*Math.PI/180)*R), Math.round(CENTER + Math.sin(a*Math.PI/180)*R)); }
+    else if (seedMode === 'disperso') { plantSeed(CENTER, CENTER); for (let i = 0; i < nucleos - 1; i++) { const a = rng()*2*Math.PI, r = 20 + rng()*30; plantSeed(Math.round(CENTER + Math.cos(a)*r), Math.round(CENTER + Math.sin(a)*r)); } }
+    particleCount = seeds.length;
+  }
+  canvas.addEventListener('click', (e) => {
+    if (edgeReached) return;
+    const rect = canvas.getBoundingClientRect();
+    const gx = Math.round((e.clientX - rect.left) / rect.width * (GRID - 1));
+    const gy = Math.round((e.clientY - rect.top) / rect.height * (GRID - 1));
+    if (gx < 2 || gy < 2 || gx > GRID-3 || gy > GRID-3 || occupied[idx(gx, gy)] || !inShape(gx, gy)) return;
+    plantSeed(gx, gy); particleCount++; drawFrame();
+  });
+
+  // Dibujo
+  function drawFrame() {
+    ctx.clearRect(0, 0, RES, RES);
+    ctx.drawImage(structure, 0, 0);
+    ctx.globalAlpha = 0.32; ctx.fillStyle = inkColor();
+    for (const w of walkers) ctx.fillRect(w.x*CELL, w.y*CELL, CELL, CELL);
+    ctx.globalAlpha = 1;
+    drawLoupe();
+  }
+  function drawLoupe() {
+    lctx.clearRect(0, 0, LSIZE, LSIZE);
+    const ink = inkColor(), x0 = Math.round(CENTER - LWIN / 2), y0 = Math.round(CENTER - LWIN / 2);
+    for (let j = 0; j < LWIN; j++) for (let i = 0; i < LWIN; i++) {
+      const x = x0 + i, y = y0 + j;
+      if (occupied[idx(x, y)]) drawMark(lctx, i*LMAG, j*LMAG, LMAG, ink, shapeMode);
+    }
+  }
+
+  // Estadísticas
+  let lastStatUpdate = 0, lastCountForRate = 1, lastRateTime = performance.now();
+  function updateStats(now) {
+    if (now - lastStatUpdate < 150) return;
+    lastStatUpdate = now;
+    els.statParticles.textContent = particleCount.toLocaleString('es-CL');
+    els.statRadius.textContent = maxRadius.toFixed(1);
+    const totalElapsed = elapsedAccum + (running ? (now - resumeTime) : 0);
+    const secs = Math.floor(totalElapsed / 1000);
+    els.statTime.textContent = `${String(Math.floor(secs/60)).padStart(2,'0')}:${String(secs%60).padStart(2,'0')}`;
+    const dt = (now - lastRateTime) / 1000;
+    if (dt > 0.4) { els.statRate.textContent = `${Math.max(0, Math.round((particleCount - lastCountForRate)/dt))}/s`; lastRateTime = now; lastCountForRate = particleCount; }
+  }
+
+  // Bucle
+  function loop(now) {
+    if (!running) return;
+    const dt = Math.min((now - lastLoop) / 1000, 0.1); lastLoop = now;
+    if (ritmoRate > 0) {
+      budget += ritmoRate * dt;
+      const allow = Math.floor(budget);
+      if (allow > 0) {
+        budget -= allow; const start = particleCount; let guard = allow * 500 + 3000;
+        while (particleCount - start < allow && guard-- > 0) { for (const w of walkers) { stepWalker(w); if (particleCount - start >= allow) break; } }
+      }
+    } else { for (const w of walkers) stepWalker(w); }
+    drawFrame(); updateStats(now); rafId = requestAnimationFrame(loop);
+  }
+  function play() { if (running || edgeReached) return; running = true; resumeTime = performance.now(); lastLoop = resumeTime; lastRateTime = resumeTime; lastCountForRate = particleCount; budget = 0; els.playBtn.textContent = 'Pausar'; els.canvasWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); rafId = requestAnimationFrame(loop); }
+  function pause() { if (!running) return; running = false; elapsedAccum += performance.now() - resumeTime; els.playBtn.textContent = 'Continuar'; if (rafId) cancelAnimationFrame(rafId); }
+  function reset() {
+    pause();
+    rng = mulberry32(seedNum >>> 0);
+    occupied = new Uint8Array(GRID * GRID); hits = new Uint16Array(GRID * GRID);
+    seeds = []; particleCount = 0; maxRadius = 0; elapsedAccum = 0; edgeReached = false;
+    els.edgeNote.classList.remove('show'); els.playBtn.textContent = 'Iniciar';
+    sctx.clearRect(0, 0, RES, RES);
+    setLattice(); initSeeds();
+    walkers = []; syncWalkerPool(); drawFrame();
+    lastStatUpdate = 0; updateStats(performance.now());
+  }
+
+  // Numeración — correlativo único compartido entre todos los visitantes,
+  // vía un Google Apps Script Web App (URL a completar por Bastos).
+  // Si no está configurado o falla, cae a un contador local del navegador.
+  const CONTADOR_URL = "";
+  function nextSerialLocal() {
+    try { const k = 'lamina_abl_serial'; const n = (parseInt(localStorage.getItem(k) || '0', 10) || 0) + 1; localStorage.setItem(k, String(n)); return n; }
+    catch (e) { return Math.floor(Math.random() * 900) + 100; }
+  }
+  async function nextSerial() {
+    if (!CONTADOR_URL) return nextSerialLocal();
+    try {
+      const res = await fetch(CONTADOR_URL, { method: 'GET' });
+      const data = await res.json();
+      if (data && Number.isFinite(data.n)) return data.n;
+      return nextSerialLocal();
+    } catch (e) { return nextSerialLocal(); }
+  }
+
+  // Exportar afiche 3:4
+  async function savePlate() {
+    const W = 1800, H = 2400, MK = 6, S = GRID * MK;
+    const bg = bgColor, ink = inkColor();
+    try { await document.fonts.load("400 26px 'Plus Jakarta Sans'"); } catch (e) {}
+    const serialN = await nextSerial();
+    // márgenes: superior y laterales iguales, inferior amplio (proporción lámina)
+    const ax = Math.round((W - S) / 2), ay = ax, cl = ax, cr = ax + S;
+
+    const c = document.createElement('canvas'); c.width = W; c.height = H;
+    const g = c.getContext('2d');
+    g.fillStyle = bg; g.fillRect(0, 0, W, H);
+    for (let y = 1; y < GRID - 1; y++) for (let x = 1; x < GRID - 1; x++)
+      if (occupied[idx(x, y)]) drawMark(g, ax + x*MK, ay + y*MK, MK, ink, shapeMode);
+
+    g.fillStyle = ink; g.textBaseline = 'alphabetic';
+    g.font = "700 16px 'Plus Jakarta Sans'";
+    g.textAlign = 'left';
+    g.fillText('bastos', cl, H - ax - 34);
+    g.font = "400 26px 'Plus Jakarta Sans'";
+    const title = (els.obraTitle.value || '').trim().toLowerCase();
+    if (title) { g.textAlign = 'left'; g.fillText(title, cl, H - ax); }
+    g.textAlign = 'right'; g.fillText('nº ' + String(serialN).padStart(3, '0'), cr, H - ax);
+
+    const slug = title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40);
+    const a = document.createElement('a');
+    a.download = 'bastos-afiche-' + (slug ? slug + '-' : '') + String(serialN).padStart(3, '0') + '.png';
+    a.href = c.toDataURL('image/png'); a.click();
+  }
+
+  // Aleatorizar (baraja parámetros de forma + nueva semilla)
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function setSeg(seg, attr, val) { seg.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.getAttribute(attr) === String(val))); }
+  function randomize() {
+    seedMode = pick(['punto', 'punto', 'eje', 'anillo', 'disperso']);
+    shapeMode = pick(['cuadrado', 'punto', 'cruz', 'rombo', 'anillo', 'linea']);
+    markScale = pick([0.8, 1, 1, 1.35]);
+    symmetry = pick([1, 1, 1, 2, 3, 4, 6]);
+    latticeMode = pick(['libre', 'libre', 'cuadrada', 'triangular']);
+    confMode = pick(['libre', 'libre', 'libre', 'circulo', 'cuadrado', 'rombo']);
+    definicion = 1 + Math.floor(Math.random() * 4);
+    eta = +(1.0 + Math.random() * 1.5).toFixed(2);
+    deriva = Math.random() < 0.5 ? 0 : Math.floor(Math.random() * 70);
+    derivaAngle = Math.floor(Math.random() * 8) * 45;
+    giro = Math.random() < 0.55 ? 0 : Math.floor((Math.random() * 2 - 1) * 80);
+    nucleos = 2 + Math.floor(Math.random() * 7);
+    seedNum = Math.floor(Math.random() * 1e9);
+    bgColor = pick(['#F2EDE0', '#F2EDE0', '#FAFAF8', '#003EC0']);
+    inkMode = 'auto';
+    els.bgSwatches.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.c === bgColor));
+    els.inkSwatches.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.c === 'auto'));
+    applyColors();
+
+    // reflejar en UI
+    setSeg(els.seedSegment, 'data-seed', seedMode);
+    setSeg(els.shapeSegment, 'data-shape', shapeMode);
+    setSeg(els.sizeSegment, 'data-size', markScale);
+    setSeg(els.symSegment, 'data-sym', symmetry);
+    setSeg(els.latticeSegment, 'data-lat', latticeMode);
+    setSeg(els.confSegment, 'data-conf', confMode);
+    els.definicion.value = definicion; els.valDef.textContent = definicion;
+    els.ramif.value = Math.round(eta * 100); els.valEta.textContent = eta.toFixed(1);
+    els.deriva.value = deriva; els.valDrift.textContent = deriva + '%'; driftProb = deriva/100*0.5;
+    els.direccion.value = derivaAngle; els.valDir.textContent = derivaAngle + '°'; setDriftVec();
+    els.giro.value = giro; els.valGiro.textContent = giro; giroProb = Math.abs(giro)/100*0.5; giroSign = giro < 0 ? -1 : 1;
+    els.nucleos.value = nucleos; els.valNuc.textContent = nucleos;
+    els.seedInput.value = seedNum;
+    setLattice(); reset(); play();
+  }
+
+  // Eventos
+  els.playBtn.addEventListener('click', () => { if (running) pause(); else play(); });
+  els.resetBtn.addEventListener('click', reset);
+  els.randBtn.addEventListener('click', randomize);
+  els.saveBtn.addEventListener('click', () => { els.saveBtn.disabled = true; savePlate().finally(() => { els.saveBtn.disabled = false; }); });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.matches('input, select, textarea')) return;
+    if (e.code === 'Space') { e.preventDefault(); if (running) pause(); else play(); }
+    else if (e.key === 'r' || e.key === 'R') { reset(); }
+  });
+
+  els.bgSwatches.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.c === bgColor));
+  setDriftVec(); setLattice(); applyColors(); reset();
+})();
+</script>
+
+</body>
+
+</html>
