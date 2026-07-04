@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --color-brand: #111111;
+    --gen-ink: #111111;
     --text-primary: #0a0a0a;
     --text-secondary: #666666;
     --text-placeholder: #999999;
@@ -26,7 +26,7 @@
 
   html, body {
     margin: 0; padding: 0;
-    background: var(--white, #ffffff);
+    background: var(--color-brand);
     color: var(--text-primary, #0a0a0a);
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     min-height: 100vh;
@@ -34,6 +34,7 @@
 
   body { display: flex; flex-direction: column; min-height: 100vh; }
 
+  .wrap-afiches { background: var(--white, #ffffff); }
   .stage {
     width: 100%;
     max-width: 1220px;
@@ -63,7 +64,7 @@
   }
   .title-block h1 em {
     font-style: normal;
-    color: var(--color-brand, #003ec0);
+    color: var(--gen-ink, #111111);
   }
   .title-block p {
     margin: 0;
@@ -99,8 +100,8 @@
     overflow: hidden;
   }
   .canvas-wrap.blue {
-    background: var(--color-brand, #003ec0);
-    border-color: var(--color-brand, #003ec0);
+    background: var(--gen-ink, #111111);
+    border-color: var(--gen-ink, #111111);
   }
   canvas { display: block; width: 100%; height: 100%; cursor: crosshair; }
 
@@ -111,9 +112,9 @@
     transform: translateX(-50%);
     font-size: 13px;
     font-weight: 600;
-    color: var(--color-brand, #003ec0);
+    color: var(--gen-ink, #111111);
     background: var(--white, #ffffff);
-    border: 2px solid var(--color-brand, #003ec0);
+    border: 2px solid var(--gen-ink, #111111);
     padding: 8px 16px;
     opacity: 0;
     transition: opacity 0.2s ease;
@@ -218,7 +219,7 @@
     -webkit-appearance: none;
     width: 14px; height: 14px;
     border-radius: 0;
-    background: var(--color-brand, #003ec0);
+    background: var(--gen-ink, #111111);
     cursor: pointer;
     margin-top: -6px;
   }
@@ -226,16 +227,16 @@
     width: 14px; height: 14px;
     border: none;
     border-radius: 0;
-    background: var(--color-brand, #003ec0);
+    background: var(--gen-ink, #111111);
     cursor: pointer;
   }
-  input[type="range"]:focus-visible { outline: 2px solid var(--color-brand, #003ec0); outline-offset: 4px; }
+  input[type="range"]:focus-visible { outline: 2px solid var(--gen-ink, #111111); outline-offset: 4px; }
 
   /* Segmentado: fondo */
   .segment {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border: 2px solid var(--color-brand, #003ec0);
+    border: 2px solid var(--gen-ink, #111111);
   }
   .segment button {
     font-family: inherit;
@@ -246,13 +247,13 @@
     border: none;
     border-radius: 0;
     background: transparent;
-    color: var(--color-brand, #003ec0);
+    color: var(--gen-ink, #111111);
     cursor: pointer;
     transition: opacity 0.15s ease;
   }
   .segment button:hover { opacity: 0.85; }
   .segment button.active {
-    background: var(--color-brand, #003ec0);
+    background: var(--gen-ink, #111111);
     color: var(--white, #ffffff);
   }
 
@@ -270,14 +271,14 @@
   }
   .btn:hover { opacity: 0.85; }
   .btn-primary {
-    background: var(--color-brand, #003ec0);
+    background: var(--gen-ink, #111111);
     color: var(--white, #ffffff);
-    border: 2px solid var(--color-brand, #003ec0);
+    border: 2px solid var(--gen-ink, #111111);
   }
   .btn-secondary {
     background: transparent;
-    color: var(--color-brand, #003ec0);
-    border: 2px solid var(--color-brand, #003ec0);
+    color: var(--gen-ink, #111111);
+    border: 2px solid var(--gen-ink, #111111);
   }
   .btn-ghost {
     grid-column: 1 / -1;
@@ -285,7 +286,7 @@
     color: var(--text-secondary, #666666);
     border: 2px solid var(--border-strong, #cccccc);
   }
-  .btn-ghost:hover { border-color: var(--color-brand, #003ec0); color: var(--color-brand, #003ec0); opacity: 1; }
+  .btn-ghost:hover { border-color: var(--gen-ink, #111111); color: var(--gen-ink, #111111); opacity: 1; }
 
   .note {
     font-size: 12px;
@@ -319,10 +320,9 @@
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
   </header>
-  <section class="wrap">
+  <section class="wrap wrap-afiches">
 
 <style>
-  :root { --color-brand: #111111; }
   .segment.seg3 { grid-template-columns: repeat(3, 1fr); }
   .segment.seg4 { grid-template-columns: repeat(4, 1fr); }
   .segment.seg5 { grid-template-columns: repeat(5, 1fr); }
