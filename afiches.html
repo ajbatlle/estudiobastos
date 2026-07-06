@@ -75,15 +75,6 @@
     max-width: 58ch;
   }
 
-  .model-label {
-    font-size: 12px;
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    color: var(--text-secondary, #666666);
-    white-space: nowrap;
-    padding-bottom: 4px;
-  }
-
   .console {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 300px;
@@ -95,49 +86,12 @@
   .canvas-wrap {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 3 / 4;
     background: var(--white, #ffffff);
     border: 1px solid var(--border-subtle, #e8e8e8);
     overflow: hidden;
   }
-  .canvas-wrap.blue {
-    background: var(--gen-ink, #111111);
-    border-color: var(--gen-ink, #111111);
-  }
-  canvas { display: block; width: 100%; height: 100%; cursor: crosshair; }
-
-  .edge-note {
-    position: absolute;
-    left: 50%;
-    bottom: 20px;
-    transform: translateX(-50%);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--gen-ink, #111111);
-    background: var(--white, #ffffff);
-    border: 2px solid var(--gen-ink, #111111);
-    padding: 8px 16px;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    pointer-events: none;
-    white-space: nowrap;
-  }
-  .edge-note.show { opacity: 1; }
-
-  .canvas-hint {
-    margin-top: 12px;
-    font-size: 12px;
-    color: var(--text-placeholder, #999999);
-    line-height: 1.5;
-  }
-  .canvas-hint kbd {
-    font-family: inherit;
-    font-weight: 600;
-    color: var(--text-secondary, #666666);
-    border: 1px solid var(--border-strong, #cccccc);
-    padding: 1px 6px;
-    margin: 0 2px;
-  }
+  canvas { display: block; width: 100%; height: 100%; }
 
   /* ——— Panel ——— */
   .panel { display: flex; flex-direction: column; gap: 32px; }
@@ -175,8 +129,6 @@
     font-variant-numeric: tabular-nums;
     color: var(--text-primary, #0a0a0a);
   }
-
-  .ritmo-row { margin-top: 12px; }
 
   details.fine { border: 1px solid var(--border-subtle, #e8e8e8); padding: 0 16px; }
   details.fine summary {
@@ -233,7 +185,7 @@
   }
   input[type="range"]:focus-visible { outline: 2px solid var(--gen-ink, #111111); outline-offset: 4px; }
 
-  /* Segmentado: fondo */
+  /* Segmentado */
   .segment {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -259,7 +211,7 @@
   }
 
   /* Botones */
-  .buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+  .buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
   .btn {
     font-family: inherit;
     font-size: 14px;
@@ -288,20 +240,7 @@
     border: 2px solid var(--border-strong, #cccccc);
   }
   .btn-ghost:hover { border-color: var(--gen-ink, #111111); color: var(--gen-ink, #111111); opacity: 1; }
-
-  .note {
-    font-size: 12px;
-    color: var(--text-secondary, #666666);
-    line-height: 1.6;
-    margin: 0;
-  }
-  .note b { color: var(--text-primary, #0a0a0a); font-weight: 600; }
-
-  footer.brand {
-    margin-top: 48px;
-    line-height: 0;
-  }
-  footer.brand img { width: 100%; display: block; }
+  .btn:disabled { opacity: 0.4; cursor: default; }
 
   @media (max-width: 900px) {
     .stage { padding: 40px 24px 56px; }
@@ -327,21 +266,18 @@
   .segment.seg3 { grid-template-columns: repeat(3, 1fr); }
   .segment.seg4 { grid-template-columns: repeat(4, 1fr); }
   .segment.seg5 { grid-template-columns: repeat(5, 1fr); }
-  .segment.seg3 button, .segment.seg4 button, .segment.seg5 button { font-size: 11px; padding: 8px 3px; letter-spacing: 0; }
+  .segment.seg6 { grid-template-columns: repeat(6, 1fr); }
+  .segment.seg3 button, .segment.seg4 button, .segment.seg5 button, .segment.seg6 button { font-size: 11px; padding: 8px 3px; letter-spacing: 0; }
   .control.tight label { margin-bottom: 6px; }
-  .loupe-wrap { width: 100%; aspect-ratio: 1 / 1; border: 1px solid var(--border-subtle, #e8e8e8); overflow: hidden; }
-  #loupe { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
-  .loupe-cap { margin-top: 8px; font-size: 11px; color: var(--text-placeholder, #999999); line-height: 1.5; }
   .swatches { display: flex; gap: 8px; flex-wrap: wrap; }
   .sw { width: 32px; height: 32px; border: 1px solid rgba(0,0,0,0.18); background: var(--c, #fff); cursor: pointer; padding: 0; border-radius: 0; }
   .sw.active { outline: 2px solid #111111; outline-offset: 2px; }
   .sw-auto { background: #ffffff; font-size: 12px; font-weight: 700; color: #111111; }
+  .sw-none { background: #ffffff; font-size: 14px; font-weight: 400; color: #999999; }
   .text-field { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid #cfcfcf; background: #ffffff; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; letter-spacing: 0.01em; color: #111111; outline: none; }
   .text-field:focus { border-color: #111111; }
   .text-field::placeholder { color: #a8a8a8; }
-  .edge-note { color: #111111 !important; border-color: #111111 !important; }
   @media (max-width: 900px) { .stage-col { position: static; } }
-  footer.brand { display: none; }
 </style>
 
 <div class="stage">
@@ -349,7 +285,7 @@
   <div class="top">
     <div class="title-block">
       <h1>Afiches <em>bastos</em></h1>
-      <p>Cada corrida produce una figura distinta. Genera tu propio original 3:4, numerado y descargable.</p>
+      <p>Composición sobre grilla con los elementos de la marca. Cada combinación produce un afiche distinto. Genera tu propio original 3:4, numerado y descargable.</p>
     </div>
   </div>
 
@@ -358,33 +294,20 @@
     <div class="stage-col" id="stageCol">
       <div class="canvas-wrap" id="canvasWrap">
         <canvas id="canvas"></canvas>
-        <div class="edge-note" id="edgeNote">La figura alcanzó el borde</div>
       </div>
 
       <div class="statsbar">
-        <div class="stat"><span class="label">partículas</span><span class="value" id="statParticles">1</span></div>
-        <div class="stat"><span class="label">radio</span><span class="value" id="statRadius">0</span></div>
-        <div class="stat"><span class="label">tiempo</span><span class="value" id="statTime">00:00</span></div>
-        <div class="stat"><span class="label">ritmo</span><span class="value" id="statRate">0/s</span></div>
+        <div class="stat"><span class="label">grilla</span><span class="value" id="statGrid">—</span></div>
+        <div class="stat"><span class="label">celdas llenas</span><span class="value" id="statFilled">—</span></div>
+        <div class="stat"><span class="label">elementos distintos</span><span class="value" id="statDistinct">—</span></div>
+        <div class="stat"><span class="label">nº siguiente</span><span class="value" id="statSerial">—</span></div>
       </div>
 
       <div class="buttons">
-        <button class="btn btn-primary" id="playBtn">Iniciar</button>
-        <button class="btn btn-secondary" id="resetBtn">Reiniciar</button>
+        <button class="btn btn-primary" id="versionBtn">Otra versión</button>
         <button class="btn btn-secondary" id="randBtn">Aleatorizar</button>
         <button class="btn btn-ghost" id="saveBtn">Descargar afiche</button>
       </div>
-
-      <div class="control tight ritmo-row">
-        <div class="segment seg4" id="rateSegment">
-          <button type="button" data-rate="lento">lento</button>
-          <button type="button" data-rate="medio">medio</button>
-          <button type="button" data-rate="rapido">rápido</button>
-          <button type="button" data-rate="libre" class="active">libre</button>
-        </div>
-      </div>
-
-      <p class="canvas-hint">Clic en el lienzo planta semillas · <kbd>espacio</kbd> inicia/pausa · <kbd>R</kbd> reinicia</p>
     </div>
 
     <div class="panel">
@@ -405,11 +328,60 @@
       </div>
 
       <div>
+        <h2>composición</h2>
+        <div class="controls">
+          <div class="control tight">
+            <label>Grilla</label>
+            <div class="segment seg6" id="gridSegment">
+              <button type="button" data-grid="3">3×3</button>
+              <button type="button" data-grid="4">4×4</button>
+              <button type="button" data-grid="5">5×5</button>
+              <button type="button" data-grid="6">6×6</button>
+              <button type="button" data-grid="8">8×8</button>
+              <button type="button" data-grid="10" class="active">10×10</button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Junta</label>
+            <div class="segment seg3" id="gapSegment">
+              <button type="button" data-gap="0">continua</button>
+              <button type="button" data-gap="0.08" class="active">fina</button>
+              <button type="button" data-gap="0.18">amplia</button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Giros</label>
+            <div class="segment" id="rotSegment">
+              <button type="button" data-rot="fija" class="active">fija</button>
+              <button type="button" data-rot="giros">giros 90°</button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Simetría</label>
+            <div class="segment seg3" id="symSegment">
+              <button type="button" data-sym="libre" class="active">libre</button>
+              <button type="button" data-sym="espejo">espejo</button>
+              <button type="button" data-sym="cuaterna">cuaterna</button>
+            </div>
+          </div>
+          <div class="control">
+            <label>Densidad <span class="val" id="valDensity">100%</span></label>
+            <input type="range" id="density" min="30" max="100" value="100">
+          </div>
+          <div class="control">
+            <label>Variedad <span class="val" id="valVariety">100</span></label>
+            <input type="range" id="variety" min="1" max="100" value="100">
+          </div>
+        </div>
+      </div>
+
+      <div>
         <h2>color</h2>
         <div class="controls">
           <div class="control tight">
             <label>Papel</label>
             <div class="swatches" id="bgSwatches">
+              <button type="button" class="sw active" data-c="#F2F3F9" style="--c:#F2F3F9"></button>
               <button type="button" class="sw" data-c="#F2EDE0" style="--c:#F2EDE0"></button>
               <button type="button" class="sw" data-c="#FAFAF8" style="--c:#FAFAF8"></button>
               <button type="button" class="sw" data-c="#003EC0" style="--c:#003EC0"></button>
@@ -425,65 +397,14 @@
               <button type="button" class="sw" data-c="#F2EDE0" style="--c:#F2EDE0"></button>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div>
-        <h2>forma</h2>
-        <div class="controls">
           <div class="control tight">
-            <label>Semilla</label>
-            <div class="segment seg4" id="seedSegment">
-              <button type="button" data-seed="punto" class="active">punto</button>
-              <button type="button" data-seed="eje">eje</button>
-              <button type="button" data-seed="anillo">anillo</button>
-              <button type="button" data-seed="disperso">disperso</button>
-            </div>
-          </div>
-          <div class="control tight">
-            <label>Retícula</label>
-            <div class="segment seg3" id="latticeSegment">
-              <button type="button" data-lat="libre" class="active">libre</button>
-              <button type="button" data-lat="cuadrada">cuadrada</button>
-              <button type="button" data-lat="triangular">triangular</button>
-            </div>
-          </div>
-          <div class="control tight">
-            <label>Confinamiento</label>
-            <div class="segment seg4" id="confSegment">
-              <button type="button" data-conf="libre" class="active">libre</button>
-              <button type="button" data-conf="circulo">círculo</button>
-              <button type="button" data-conf="cuadrado">cuadrado</button>
-              <button type="button" data-conf="rombo">rombo</button>
-            </div>
-          </div>
-          <div class="control tight">
-            <label>Partícula</label>
-            <div class="segment seg3" id="shapeSegment">
-              <button type="button" data-shape="cuadrado" class="active">cuadrado</button>
-              <button type="button" data-shape="punto">punto</button>
-              <button type="button" data-shape="cruz">cruz</button>
-              <button type="button" data-shape="rombo">rombo</button>
-              <button type="button" data-shape="anillo">anillo</button>
-              <button type="button" data-shape="linea">línea</button>
-            </div>
-          </div>
-          <div class="control tight">
-            <label>Tamaño</label>
-            <div class="segment seg3" id="sizeSegment">
-              <button type="button" data-size="0.8">fino</button>
-              <button type="button" data-size="1" class="active">medio</button>
-              <button type="button" data-size="1.35">grueso</button>
-            </div>
-          </div>
-          <div class="control tight">
-            <label>Simetría</label>
-            <div class="segment seg5" id="symSegment">
-              <button type="button" data-sym="1" class="active">libre</button>
-              <button type="button" data-sym="2">2</button>
-              <button type="button" data-sym="3">3</button>
-              <button type="button" data-sym="4">4</button>
-              <button type="button" data-sym="6">6</button>
+            <label>Segunda tinta</label>
+            <div class="swatches" id="ink2Swatches">
+              <button type="button" class="sw sw-none active" data-c="none">—</button>
+              <button type="button" class="sw" data-c="#003EC0" style="--c:#003EC0"></button>
+              <button type="button" class="sw" data-c="#D0452B" style="--c:#D0452B"></button>
+              <button type="button" class="sw" data-c="#1B1B1B" style="--c:#1B1B1B"></button>
+              <button type="button" class="sw" data-c="#F2EDE0" style="--c:#F2EDE0"></button>
             </div>
           </div>
         </div>
@@ -493,49 +414,16 @@
         <summary>ajustes finos</summary>
         <div class="controls">
           <div class="control">
-            <label>Ramificación <span class="val" id="valEta">1.0</span></label>
-            <input type="range" id="ramif" min="100" max="300" value="100">
+            <label>Mezcla <span class="val" id="valMix">30%</span></label>
+            <input type="range" id="mix" min="5" max="50" value="30">
           </div>
           <div class="control">
-            <label>Definición <span class="val" id="valDef">1</span></label>
-            <input type="range" id="definicion" min="1" max="5" value="1">
-          </div>
-          <div class="control">
-            <label>Deriva <span class="val" id="valDrift">0%</span></label>
-            <input type="range" id="deriva" min="0" max="100" value="0">
-          </div>
-          <div class="control">
-            <label>Dirección <span class="val" id="valDir">90°</span></label>
-            <input type="range" id="direccion" min="0" max="315" step="45" value="90">
-          </div>
-          <div class="control">
-            <label>Giro <span class="val" id="valGiro">0</span></label>
-            <input type="range" id="giro" min="-100" max="100" value="0">
-          </div>
-          <div class="control">
-            <label>Núcleos <span class="val" id="valNuc">5</span></label>
-            <input type="range" id="nucleos" min="2" max="12" value="5">
-          </div>
-          <div class="control">
-            <label>Concurrencia <span class="val" id="valConcurrency">70</span></label>
-            <input type="range" id="concurrency" min="1" max="220" value="70">
-          </div>
-          <div class="control">
-            <label>Velocidad <span class="val" id="valSpeed">3</span></label>
-            <input type="range" id="speed" min="1" max="10" value="3">
-          </div>
-          <div class="control">
-            <label>Adherencia <span class="val" id="valStick">100%</span></label>
-            <input type="range" id="stickiness" min="5" max="100" value="100">
+            <label>Inversión <span class="val" id="valInvert">0%</span></label>
+            <input type="range" id="invert" min="0" max="100" value="0">
           </div>
         </div>
       </details>
 
-      <div>
-        <h2>detalle</h2>
-        <div class="loupe-wrap" id="loupeWrap"><canvas id="loupe"></canvas></div>
-        <p class="loupe-cap">vista ampliada del centro</p>
-      </div>
     </div>
 
   </div>
@@ -563,291 +451,197 @@
 
 <script>
 (() => {
-  const GRID = 241, CENTER = (GRID - 1) / 2, CELL = 3, RES = GRID * CELL;
-  const MAX_ALLOWED_RADIUS = CENTER - 6;
+  'use strict';
 
-  const canvas = document.getElementById('canvas');
-  canvas.width = RES; canvas.height = RES;
-  const ctx = canvas.getContext('2d');
-  const structure = document.createElement('canvas');
-  structure.width = RES; structure.height = RES;
-  const sctx = structure.getContext('2d');
-
-  const LWIN = 30, LMAG = 9, LSIZE = LWIN * LMAG;
-  const loupe = document.getElementById('loupe');
-  loupe.width = LSIZE; loupe.height = LSIZE;
-  const lctx = loupe.getContext('2d');
-  const loupeWrap = document.getElementById('loupeWrap');
-
-  const DIRS8 = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
-  const DIRS4 = [[-1,0],[1,0],[0,-1],[0,1]];
-  const DIRS6 = [[1,0],[-1,0],[0,1],[0,-1],[1,-1],[-1,1]];
-  const RATES = { lento: 45, medio: 180, rapido: 650, libre: 0 };
-  const AUTO_INK = { '#F2EDE0':'#003EC0', '#FAFAF8':'#1B1B1B', '#003EC0':'#F2EDE0' };
-
-  // Confinamiento: radios que caben dentro del disco de simulación
-  const CONF_R_CIRCLE = MAX_ALLOWED_RADIUS - 4;
-  const CONF_R_SQUARE = Math.floor((MAX_ALLOWED_RADIUS - 4) / Math.SQRT2);
-  const CONF_R_RHOMB  = MAX_ALLOWED_RADIUS - 4;
+  // ——— Constantes de lámina (proporciones medidas del afiche de referencia) ———
+  // W:H = 3:4. Margen lateral/superior = 4.6% de W. Grilla cuadrada.
+  // Isótipo: diámetro 6.2% de W, centrado, base alineada a la línea del texto.
+  // Línea de texto: baseline a 4.2% de H desde el borde inferior.
+  const N_ELEMENTS = 100;
+  const AUTO_INK = { '#F2F3F9':'#003EC0', '#F2EDE0':'#003EC0', '#FAFAF8':'#1B1B1B', '#003EC0':'#F2F3F9' };
 
   // PRNG reproducible
   function mulberry32(a) { return function() { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
-  let seedNum = 1, rng = mulberry32(seedNum);
 
-  // Estado
-  let occupied = new Uint8Array(GRID * GRID);
-  let hits = new Uint16Array(GRID * GRID);
-  let seeds = [];
-  let particleCount = 0, maxRadius = 0;
-  let walkers = [];
-  let running = false, rafId = null;
-  let elapsedAccum = 0, resumeTime = 0, edgeReached = false;
-  let budget = 0, lastLoop = 0;
-  const idx = (x, y) => y * GRID + x;
+  // ——— Estado / parámetros ———
+  let seedNum = 1;
+  let gridN = 10;
+  let gapRatio = 0.08;         // proporción de la junta respecto al paso
+  let rotMode = 'fija';        // 'fija' | 'giros'
+  let symMode = 'libre';       // 'libre' | 'espejo' | 'cuaterna'
+  let density = 100;           // % de celdas llenas
+  let variety = 100;           // nº de elementos distintos en el sorteo
+  let bgColor = '#F2F3F9';
+  let inkMode = 'auto';
+  let ink2 = 'none';
+  let mix = 30;                // % de celdas con segunda tinta
+  let invertPct = 0;           // % de celdas invertidas
 
-  // Parámetros
-  let concurrency = 70, subSteps = 3, stickiness = 1;
-  let definicion = 1, deriva = 0, driftProb = 0, derivaAngle = 90, driftVec = [0, 1];
-  let symmetry = 1, seedMode = 'punto', shapeMode = 'cuadrado', ritmoRate = 0, markScale = 1;
-  let bgColor = '#F2EDE0', inkMode = 'auto';
-  let latticeMode = 'libre', NB = DIRS8;
-  let confMode = 'libre';
-  let eta = 1, giro = 0, giroProb = 0, giroSign = 1, nucleos = 5;
+  let lastComposition = null;  // celdas de la última corrida (para estadísticas)
 
-  function inkColor() { return inkMode === 'auto' ? (AUTO_INK[bgColor] || '#1B1B1B') : inkMode; }
-  function setDriftVec() { const a = derivaAngle * Math.PI / 180; let vx = Math.round(Math.cos(a)), vy = Math.round(Math.sin(a)); if (vx === 0 && vy === 0) vy = 1; driftVec = [vx, vy]; }
-  function setLattice() { NB = latticeMode === 'cuadrada' ? DIRS4 : latticeMode === 'triangular' ? DIRS6 : DIRS8; }
-  function inShape(x, y) {
-    if (confMode === 'libre') return true;
-    const dx = Math.abs(x - CENTER), dy = Math.abs(y - CENTER);
-    if (confMode === 'circulo') return Math.hypot(dx, dy) <= CONF_R_CIRCLE;
-    if (confMode === 'cuadrado') return Math.max(dx, dy) <= CONF_R_SQUARE;
-    if (confMode === 'rombo') return (dx + dy) <= CONF_R_RHOMB;
-    return true;
-  }
-  function boundRadius() {
-    if (confMode === 'circulo') return CONF_R_CIRCLE;
-    if (confMode === 'cuadrado') return CONF_R_SQUARE * Math.SQRT2;
-    if (confMode === 'rombo') return CONF_R_RHOMB;
-    return MAX_ALLOWED_RADIUS;
-  }
+  function inkColor() { return inkMode === 'auto' ? (AUTO_INK[bgColor] || '#003EC0') : inkMode; }
 
-  // Marca
-  function drawMark(g, px, py, cell, color, shape) {
-    const m = cell * markScale, cx = px + cell / 2, cy = py + cell / 2, x = cx - m / 2, y = cy - m / 2;
-    g.fillStyle = color; g.strokeStyle = color;
-    if (shape === 'cuadrado') { g.fillRect(x, y, m, m); return; }
-    if (shape === 'punto') { g.beginPath(); g.arc(cx, cy, m * 0.5, 0, Math.PI * 2); g.fill(); return; }
-    if (shape === 'anillo') { g.lineWidth = Math.max(1, m * 0.24); g.beginPath(); g.arc(cx, cy, m * 0.42, 0, Math.PI * 2); g.stroke(); return; }
-    if (shape === 'cruz') { const t = m / 3; g.fillRect(cx - m/2, cy - t/2, m, t); g.fillRect(cx - t/2, cy - m/2, t, m); return; }
-    if (shape === 'linea') { const t = m / 3; g.fillRect(cx - m/2, cy - t/2, m, t); return; }
-    if (shape === 'rombo') { const h = m / 2; g.beginPath(); g.moveTo(cx, cy - h); g.lineTo(cx + h, cy); g.lineTo(cx, cy + h); g.lineTo(cx - h, cy); g.closePath(); g.fill(); return; }
-    g.fillRect(x, y, m, m);
-  }
+  // ——— Carga de elementos e isótipo ———
+  const elementImgs = [];
+  let isotipoImg = null;
+  let assetsReady = false;
 
-  const els = {
-    concurrency: document.getElementById('concurrency'), speed: document.getElementById('speed'),
-    stickiness: document.getElementById('stickiness'), definicion: document.getElementById('definicion'),
-    deriva: document.getElementById('deriva'), direccion: document.getElementById('direccion'),
-    ramif: document.getElementById('ramif'), giro: document.getElementById('giro'), nucleos: document.getElementById('nucleos'),
-    valConcurrency: document.getElementById('valConcurrency'), valSpeed: document.getElementById('valSpeed'),
-    valStick: document.getElementById('valStick'), valDef: document.getElementById('valDef'),
-    valDrift: document.getElementById('valDrift'), valDir: document.getElementById('valDir'),
-    valEta: document.getElementById('valEta'), valGiro: document.getElementById('valGiro'), valNuc: document.getElementById('valNuc'),
-    statParticles: document.getElementById('statParticles'), statRadius: document.getElementById('statRadius'),
-    statTime: document.getElementById('statTime'), statRate: document.getElementById('statRate'),
-    playBtn: document.getElementById('playBtn'), resetBtn: document.getElementById('resetBtn'),
-    saveBtn: document.getElementById('saveBtn'), edgeNote: document.getElementById('edgeNote'),
-    canvasWrap: document.getElementById('canvasWrap'),
-    seedSegment: document.getElementById('seedSegment'), symSegment: document.getElementById('symSegment'),
-    shapeSegment: document.getElementById('shapeSegment'), rateSegment: document.getElementById('rateSegment'),
-    sizeSegment: document.getElementById('sizeSegment'), latticeSegment: document.getElementById('latticeSegment'),
-    confSegment: document.getElementById('confSegment'),
-    bgSwatches: document.getElementById('bgSwatches'), inkSwatches: document.getElementById('inkSwatches'),
-    obraTitle: document.getElementById('obraTitle'), seedInput: document.getElementById('seedInput'),
-    randBtn: document.getElementById('randBtn')
-  };
-
-  els.concurrency.addEventListener('input', () => { concurrency = +els.concurrency.value; els.valConcurrency.textContent = concurrency; syncWalkerPool(); });
-  els.speed.addEventListener('input', () => { subSteps = +els.speed.value; els.valSpeed.textContent = subSteps; });
-  els.stickiness.addEventListener('input', () => { stickiness = +els.stickiness.value / 100; els.valStick.textContent = Math.round(stickiness*100) + '%'; });
-  els.definicion.addEventListener('input', () => { definicion = +els.definicion.value; els.valDef.textContent = definicion; });
-  els.deriva.addEventListener('input', () => { deriva = +els.deriva.value; driftProb = deriva/100*0.5; els.valDrift.textContent = deriva + '%'; });
-  els.direccion.addEventListener('input', () => { derivaAngle = +els.direccion.value; els.valDir.textContent = derivaAngle + '°'; setDriftVec(); });
-  els.ramif.addEventListener('input', () => { eta = +els.ramif.value / 100; els.valEta.textContent = eta.toFixed(1); });
-  els.giro.addEventListener('input', () => { giro = +els.giro.value; giroProb = Math.abs(giro)/100*0.5; giroSign = giro < 0 ? -1 : 1; els.valGiro.textContent = giro; });
-  els.nucleos.addEventListener('input', () => { nucleos = +els.nucleos.value; els.valNuc.textContent = nucleos; if (seedMode === 'disperso') reset(); });
-  els.seedInput.addEventListener('change', () => { seedNum = Math.max(0, Math.floor(+els.seedInput.value || 0)); reset(); });
-
-  function segPick(seg, attr, fn) {
-    seg.addEventListener('click', (e) => {
-      const b = e.target.closest('button[' + attr + ']'); if (!b) return;
-      seg.querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b));
-      fn(b.getAttribute(attr));
+  function loadImage(src) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error('No se pudo cargar ' + src));
+      img.src = src;
     });
   }
-  segPick(els.seedSegment, 'data-seed', v => { seedMode = v; reset(); });
-  segPick(els.symSegment, 'data-sym', v => { symmetry = +v; reset(); });
-  segPick(els.shapeSegment, 'data-shape', v => { shapeMode = v; redrawStructure(); drawFrame(); });
-  segPick(els.sizeSegment, 'data-size', v => { markScale = +v; redrawStructure(); drawFrame(); });
-  segPick(els.rateSegment, 'data-rate', v => { ritmoRate = RATES[v]; budget = 0; lastLoop = performance.now(); });
-  segPick(els.latticeSegment, 'data-lat', v => { latticeMode = v; setLattice(); reset(); });
-  segPick(els.confSegment, 'data-conf', v => { confMode = v; reset(); });
-  segPick(els.bgSwatches, 'data-c', v => { bgColor = v; applyColors(); redrawStructure(); drawFrame(); });
-  segPick(els.inkSwatches, 'data-c', v => { inkMode = v; redrawStructure(); drawFrame(); });
-
-  function applyColors() { els.canvasWrap.style.background = bgColor; loupeWrap.style.background = bgColor; }
-
-  // Núcleo
-  function spawnRadius() { return Math.min(Math.max(maxRadius + 15, 15), MAX_ALLOWED_RADIUS - 2); }
-  function killRadius() { return Math.min(spawnRadius() + 30, MAX_ALLOWED_RADIUS); }
-  function spawnWalker() { const r = spawnRadius(), a = rng() * Math.PI * 2; return { x: Math.round(CENTER + Math.cos(a)*r), y: Math.round(CENTER + Math.sin(a)*r) }; }
-  function isAdjacentToStructure(x, y) { for (let i = 0; i < NB.length; i++) if (occupied[idx(x+NB[i][0], y+NB[i][1])]) return true; return false; }
-  function emptyNeighbors(x, y) { let occ = 0; for (let i = 0; i < NB.length; i++) if (occupied[idx(x+NB[i][0], y+NB[i][1])]) occ++; return NB.length - occ; }
-  function solidify(x, y) {
-    occupied[idx(x, y)] = 1;
-    drawMark(sctx, x*CELL, y*CELL, CELL, inkColor(), shapeMode);
-    const dc = Math.hypot(x - CENTER, y - CENTER); if (dc > maxRadius) maxRadius = dc;
+  async function loadAssets() {
+    const jobs = [];
+    for (let i = 1; i <= N_ELEMENTS; i++) {
+      const name = i < 100 ? String(i).padStart(2, '0') : String(i);
+      jobs.push(loadImage('assets/elements/element-' + name + '.svg').then(img => { elementImgs[i - 1] = img; }));
+    }
+    jobs.push(loadImage('assets/img/Isotipo-b.svg').then(img => { isotipoImg = img; }));
+    await Promise.all(jobs);
+    assetsReady = true;
   }
-  function commitStick(x, y) {
-    const id = idx(x, y); hits[id]++;
-    if (hits[id] < definicion) return;
-    if (symmetry <= 1) { if (inShape(x, y)) solidify(x, y); }
-    else {
-      const dx = x - CENTER, dy = y - CENTER;
-      for (let k = 0; k < symmetry; k++) {
-        const ang = k * 2 * Math.PI / symmetry, ca = Math.cos(ang), sa = Math.sin(ang);
-        const rx = Math.round(CENTER + dx*ca - dy*sa), ry = Math.round(CENTER + dx*sa + dy*ca);
-        if (rx > 1 && ry > 1 && rx < GRID-2 && ry < GRID-2 && inShape(rx, ry) && !occupied[idx(rx, ry)]) solidify(rx, ry);
+
+  // Recolorea un SVG monocolor dibujándolo en un canvas y compositando el relleno
+  function tintedTile(img, size, color) {
+    const c = document.createElement('canvas');
+    c.width = size; c.height = size;
+    const g = c.getContext('2d');
+    g.drawImage(img, 0, 0, size, size);
+    g.globalCompositeOperation = 'source-in';
+    g.fillStyle = color;
+    g.fillRect(0, 0, size, size);
+    return c;
+  }
+
+  // ——— Composición (determinista según semilla y parámetros) ———
+  function composeCells() {
+    const rng = mulberry32(seedNum >>> 0);
+    const n = gridN;
+    const pool = [];
+    {
+      // subconjunto de "variedad" elementos, barajado con la misma semilla
+      const all = Array.from({ length: N_ELEMENTS }, (_, i) => i);
+      for (let i = all.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [all[i], all[j]] = [all[j], all[i]]; }
+      for (let i = 0; i < Math.min(variety, N_ELEMENTS); i++) pool.push(all[i]);
+    }
+    const cells = new Array(n * n).fill(null);
+    const useB = ink2 !== 'none';
+
+    const srcCell = () => {
+      if (rng() * 100 >= density) return null;
+      return {
+        el: pool[Math.floor(rng() * pool.length)],
+        rot: rotMode === 'giros' ? Math.floor(rng() * 4) : 0,
+        flip: false,
+        b: useB && (rng() * 100 < mix),
+        inv: rng() * 100 < invertPct
+      };
+    };
+    const mirrored = (c) => c && { el: c.el, rot: c.rot, flip: !c.flip, b: c.b, inv: c.inv };
+
+    if (symMode === 'libre') {
+      for (let i = 0; i < n * n; i++) cells[i] = srcCell();
+    } else if (symMode === 'espejo') {
+      const half = Math.ceil(n / 2);
+      for (let y = 0; y < n; y++) for (let x = 0; x < half; x++) {
+        const c = srcCell();
+        cells[y * n + x] = c;
+        cells[y * n + (n - 1 - x)] = (x === n - 1 - x) ? c : mirrored(c);
+      }
+    } else { // cuaterna
+      const half = Math.ceil(n / 2);
+      for (let y = 0; y < half; y++) for (let x = 0; x < half; x++) {
+        const c = srcCell();
+        const xm = n - 1 - x, ym = n - 1 - y;
+        cells[y * n + x] = c;
+        if (xm !== x) cells[y * n + xm] = mirrored(c);
+        if (ym !== y) cells[ym * n + x] = c && { el: c.el, rot: c.rot, flip: c.flip, b: c.b, inv: c.inv, flipY: true };
+        if (xm !== x && ym !== y) cells[ym * n + xm] = c && { el: c.el, rot: c.rot, flip: !c.flip, b: c.b, inv: c.inv, flipY: true };
       }
     }
-    particleCount++;
-    if (maxRadius >= boundRadius() - 3 && !edgeReached) { edgeReached = true; pause(); els.edgeNote.classList.add('show'); }
+    return cells;
   }
-  function pickDir(w) {
-    if (giroProb > 0 && rng() < giroProb) {
-      const sx = Math.sign(w.x - CENTER), sy = Math.sign(w.y - CENTER);
-      const tvx = giroSign * (-sy), tvy = giroSign * sx;
-      if (tvx !== 0 || tvy !== 0) return [tvx, tvy];
-    }
-    if (driftProb > 0 && rng() < driftProb) return driftVec;
-    return NB[(rng() * NB.length) | 0];
-  }
-  function stepWalker(w) {
-    for (let s = 0; s < subSteps; s++) {
-      const d = pickDir(w);
-      const nx = w.x + d[0], ny = w.y + d[1];
-      if (nx < 1 || ny < 1 || nx > GRID-2 || ny > GRID-2 || Math.hypot(nx-CENTER, ny-CENTER) > killRadius()) { const f = spawnWalker(); w.x = f.x; w.y = f.y; continue; }
-      if (occupied[idx(nx, ny)]) continue;
-      if (isAdjacentToStructure(nx, ny)) {
-        let stick = stickiness;
-        if (eta !== 1) { const e = emptyNeighbors(nx, ny); stick = stickiness * Math.pow(Math.max(e, 0.001) / NB.length, eta - 1); }
-        if (rng() < stick) { commitStick(nx, ny); const f = spawnWalker(); w.x = f.x; w.y = f.y; return; }
-        continue;
-      }
-      w.x = nx; w.y = ny;
-    }
-  }
-  function syncWalkerPool() {
-    if (walkers.length < concurrency) while (walkers.length < concurrency) walkers.push(spawnWalker());
-    else if (walkers.length > concurrency) walkers.length = concurrency;
-  }
-  function redrawStructure() {
-    sctx.clearRect(0, 0, RES, RES);
+
+  // ——— Render de la lámina ———
+  function renderPoster(g, W, H, serialText) {
+    const margin = Math.round(W * 0.046);
+    const S = W - 2 * margin;
+    const n = gridN;
+    const gap = (gapRatio * S) / n;
+    const tile = (S - (n - 1) * gap) / n;
+    const tilePx = Math.max(2, Math.round(tile));
+
     const ink = inkColor();
-    for (let y = 1; y < GRID-1; y++) for (let x = 1; x < GRID-1; x++)
-      if (occupied[idx(x, y)]) drawMark(sctx, x*CELL, y*CELL, CELL, ink, shapeMode);
-  }
+    const ink2c = ink2 === 'none' ? ink : ink2;
 
-  // Semillas
-  function plantSeed(x, y) {
-    if (x < 1 || y < 1 || x > GRID-2 || y > GRID-2 || occupied[idx(x, y)] || !inShape(x, y)) return;
-    seeds.push({ x, y }); occupied[idx(x, y)] = 1;
-    drawMark(sctx, x*CELL, y*CELL, CELL, inkColor(), shapeMode);
-    const dc = Math.hypot(x - CENTER, y - CENTER); if (dc > maxRadius) maxRadius = dc;
-  }
-  function initSeeds() {
-    if (seedMode === 'punto') { plantSeed(CENTER, CENTER); }
-    else if (seedMode === 'eje') { for (let dx = -30; dx <= 30; dx++) plantSeed(CENTER + dx, CENTER); }
-    else if (seedMode === 'anillo') { const R = 28; for (let a = 0; a < 360; a += 5) plantSeed(Math.round(CENTER + Math.cos(a*Math.PI/180)*R), Math.round(CENTER + Math.sin(a*Math.PI/180)*R)); }
-    else if (seedMode === 'disperso') { plantSeed(CENTER, CENTER); for (let i = 0; i < nucleos - 1; i++) { const a = rng()*2*Math.PI, r = 20 + rng()*30; plantSeed(Math.round(CENTER + Math.cos(a)*r), Math.round(CENTER + Math.sin(a)*r)); } }
-    particleCount = seeds.length;
-  }
-  canvas.addEventListener('click', (e) => {
-    if (edgeReached) return;
-    const rect = canvas.getBoundingClientRect();
-    const gx = Math.round((e.clientX - rect.left) / rect.width * (GRID - 1));
-    const gy = Math.round((e.clientY - rect.top) / rect.height * (GRID - 1));
-    if (gx < 2 || gy < 2 || gx > GRID-3 || gy > GRID-3 || occupied[idx(gx, gy)] || !inShape(gx, gy)) return;
-    plantSeed(gx, gy); particleCount++; drawFrame();
-  });
+    g.fillStyle = bgColor;
+    g.fillRect(0, 0, W, H);
 
-  // Dibujo
-  function drawFrame() {
-    ctx.clearRect(0, 0, RES, RES);
-    ctx.drawImage(structure, 0, 0);
-    ctx.globalAlpha = 0.32; ctx.fillStyle = inkColor();
-    for (const w of walkers) ctx.fillRect(w.x*CELL, w.y*CELL, CELL, CELL);
-    ctx.globalAlpha = 1;
-    drawLoupe();
-  }
-  function drawLoupe() {
-    lctx.clearRect(0, 0, LSIZE, LSIZE);
-    const ink = inkColor(), x0 = Math.round(CENTER - LWIN / 2), y0 = Math.round(CENTER - LWIN / 2);
-    for (let j = 0; j < LWIN; j++) for (let i = 0; i < LWIN; i++) {
-      const x = x0 + i, y = y0 + j;
-      if (occupied[idx(x, y)]) drawMark(lctx, i*LMAG, j*LMAG, LMAG, ink, shapeMode);
-    }
-  }
+    const cells = composeCells();
+    lastComposition = cells;
 
-  // Estadísticas
-  let lastStatUpdate = 0, lastCountForRate = 1, lastRateTime = performance.now();
-  function updateStats(now) {
-    if (now - lastStatUpdate < 150) return;
-    lastStatUpdate = now;
-    els.statParticles.textContent = particleCount.toLocaleString('es-CL');
-    els.statRadius.textContent = maxRadius.toFixed(1);
-    const totalElapsed = elapsedAccum + (running ? (now - resumeTime) : 0);
-    const secs = Math.floor(totalElapsed / 1000);
-    els.statTime.textContent = `${String(Math.floor(secs/60)).padStart(2,'0')}:${String(secs%60).padStart(2,'0')}`;
-    const dt = (now - lastRateTime) / 1000;
-    if (dt > 0.4) { els.statRate.textContent = `${Math.max(0, Math.round((particleCount - lastCountForRate)/dt))}/s`; lastRateTime = now; lastCountForRate = particleCount; }
-  }
+    // caché de teselas por elemento+color
+    const cache = new Map();
+    const getTile = (el, color) => {
+      const k = el + '|' + color;
+      if (!cache.has(k)) cache.set(k, tintedTile(elementImgs[el], tilePx, color));
+      return cache.get(k);
+    };
 
-  // Bucle
-  function loop(now) {
-    if (!running) return;
-    const dt = Math.min((now - lastLoop) / 1000, 0.1); lastLoop = now;
-    if (ritmoRate > 0) {
-      budget += ritmoRate * dt;
-      const allow = Math.floor(budget);
-      if (allow > 0) {
-        budget -= allow; const start = particleCount; let guard = allow * 500 + 3000;
-        while (particleCount - start < allow && guard-- > 0) { for (const w of walkers) { stepWalker(w); if (particleCount - start >= allow) break; } }
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+      const c = cells[y * n + x];
+      if (!c) continue;
+      const px = margin + x * (tile + gap);
+      const py = margin + y * (tile + gap);
+      const color = c.b ? ink2c : ink;
+
+      g.save();
+      g.translate(px + tile / 2, py + tile / 2);
+      if (c.flip) g.scale(-1, 1);
+      if (c.flipY) g.scale(1, -1);
+      if (c.rot) g.rotate(c.rot * Math.PI / 2);
+      if (c.inv) {
+        g.fillStyle = color;
+        g.fillRect(-tile / 2, -tile / 2, tile, tile);
+        g.drawImage(getTile(c.el, bgColor), -tile / 2, -tile / 2, tile, tile);
+      } else {
+        g.drawImage(getTile(c.el, color), -tile / 2, -tile / 2, tile, tile);
       }
-    } else { for (const w of walkers) stepWalker(w); }
-    drawFrame(); updateStats(now); rafId = requestAnimationFrame(loop);
-  }
-  function play() { if (running || edgeReached) return; running = true; resumeTime = performance.now(); lastLoop = resumeTime; lastRateTime = resumeTime; lastCountForRate = particleCount; budget = 0; els.playBtn.textContent = 'Pausar'; els.canvasWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); rafId = requestAnimationFrame(loop); }
-  function pause() { if (!running) return; running = false; elapsedAccum += performance.now() - resumeTime; els.playBtn.textContent = 'Continuar'; if (rafId) cancelAnimationFrame(rafId); }
-  function reset() {
-    pause();
-    rng = mulberry32(seedNum >>> 0);
-    occupied = new Uint8Array(GRID * GRID); hits = new Uint16Array(GRID * GRID);
-    seeds = []; particleCount = 0; maxRadius = 0; elapsedAccum = 0; edgeReached = false;
-    els.edgeNote.classList.remove('show'); els.playBtn.textContent = 'Iniciar';
-    sctx.clearRect(0, 0, RES, RES);
-    setLattice(); initSeeds();
-    walkers = []; syncWalkerPool(); drawFrame();
-    lastStatUpdate = 0; updateStats(performance.now());
+      g.restore();
+    }
+
+    // ——— Pie: isótipo, título y numeración ———
+    const baseline = H - Math.round(H * 0.042);
+    const isoD = Math.round(W * 0.062);
+    if (isotipoImg) {
+      const iso = tintedTile(isotipoImg, isoD, ink);
+      g.drawImage(iso, Math.round((W - isoD) / 2), baseline - isoD, isoD, isoD);
+    }
+    const fs = Math.round(W * 0.0228);
+    g.fillStyle = ink;
+    g.textBaseline = 'alphabetic';
+    g.font = '500 ' + fs + "px 'Plus Jakarta Sans'";
+    const title = (els.obraTitle.value || '').trim();
+    if (title) { g.textAlign = 'left'; g.fillText(title, margin, baseline); }
+    g.textAlign = 'right';
+    g.fillText(serialText, W - margin, baseline);
   }
 
-  // Numeración — correlativo único compartido entre todos los visitantes,
+  // ——— Numeración — correlativo único compartido entre todos los visitantes,
   // vía un Google Apps Script Web App (URL a completar por Bastos).
-  // Si no está configurado o falla, cae a un contador local del navegador.
+  // Si no está configurado o falla, cae a un contador local del navegador. ———
   const CONTADOR_URL = "";
+  const LS_KEY = 'lamina_abl_serial';
+  function peekSerialLocal() {
+    try { return (parseInt(localStorage.getItem(LS_KEY) || '0', 10) || 0) + 1; }
+    catch (e) { return 1; }
+  }
   function nextSerialLocal() {
-    try { const k = 'lamina_abl_serial'; const n = (parseInt(localStorage.getItem(k) || '0', 10) || 0) + 1; localStorage.setItem(k, String(n)); return n; }
+    try { const n = peekSerialLocal(); localStorage.setItem(LS_KEY, String(n)); return n; }
     catch (e) { return Math.floor(Math.random() * 900) + 100; }
   }
   async function nextSerial() {
@@ -859,90 +653,162 @@
       return nextSerialLocal();
     } catch (e) { return nextSerialLocal(); }
   }
+  const serialText = (n) => 'Nº' + String(n).padStart(2, '0');
 
-  // Exportar afiche 3:4
+  // ——— Lienzo de previsualización ———
+  const canvas = document.getElementById('canvas');
+  const PW = 900, PH = 1200;
+  canvas.width = PW; canvas.height = PH;
+  const ctx = canvas.getContext('2d');
+
+  const els = {
+    obraTitle: document.getElementById('obraTitle'),
+    seedInput: document.getElementById('seedInput'),
+    gridSegment: document.getElementById('gridSegment'),
+    gapSegment: document.getElementById('gapSegment'),
+    rotSegment: document.getElementById('rotSegment'),
+    symSegment: document.getElementById('symSegment'),
+    density: document.getElementById('density'),
+    variety: document.getElementById('variety'),
+    valDensity: document.getElementById('valDensity'),
+    valVariety: document.getElementById('valVariety'),
+    bgSwatches: document.getElementById('bgSwatches'),
+    inkSwatches: document.getElementById('inkSwatches'),
+    ink2Swatches: document.getElementById('ink2Swatches'),
+    mix: document.getElementById('mix'),
+    invert: document.getElementById('invert'),
+    valMix: document.getElementById('valMix'),
+    valInvert: document.getElementById('valInvert'),
+    statGrid: document.getElementById('statGrid'),
+    statFilled: document.getElementById('statFilled'),
+    statDistinct: document.getElementById('statDistinct'),
+    statSerial: document.getElementById('statSerial'),
+    versionBtn: document.getElementById('versionBtn'),
+    randBtn: document.getElementById('randBtn'),
+    saveBtn: document.getElementById('saveBtn'),
+  };
+
+  function updateStats() {
+    els.statGrid.textContent = gridN + '×' + gridN;
+    if (lastComposition) {
+      const filled = lastComposition.filter(Boolean);
+      els.statFilled.textContent = filled.length + '/' + (gridN * gridN);
+      els.statDistinct.textContent = new Set(filled.map(c => c.el)).size;
+    }
+    els.statSerial.textContent = serialText(peekSerialLocal());
+  }
+
+  let renderPending = false;
+  function render() {
+    if (!assetsReady) { renderPending = true; return; }
+    renderPoster(ctx, PW, PH, serialText(peekSerialLocal()));
+    updateStats();
+  }
+
+  // ——— Exportar afiche 3:4 ———
   async function savePlate() {
-    const W = 1800, H = 2400, MK = 6, S = GRID * MK;
-    const bg = bgColor, ink = inkColor();
-    try { await document.fonts.load("400 26px 'Plus Jakarta Sans'"); } catch (e) {}
+    const W = 1800, H = 2400;
+    try { await document.fonts.load("500 41px 'Plus Jakarta Sans'"); } catch (e) {}
     const serialN = await nextSerial();
-    // márgenes: superior y laterales iguales, inferior amplio (proporción lámina)
-    const ax = Math.round((W - S) / 2), ay = ax, cl = ax, cr = ax + S;
-
     const c = document.createElement('canvas'); c.width = W; c.height = H;
-    const g = c.getContext('2d');
-    g.fillStyle = bg; g.fillRect(0, 0, W, H);
-    for (let y = 1; y < GRID - 1; y++) for (let x = 1; x < GRID - 1; x++)
-      if (occupied[idx(x, y)]) drawMark(g, ax + x*MK, ay + y*MK, MK, ink, shapeMode);
+    renderPoster(c.getContext('2d'), W, H, serialText(serialN));
 
-    g.fillStyle = ink; g.textBaseline = 'alphabetic';
-    g.font = "700 16px 'Plus Jakarta Sans'";
-    g.textAlign = 'left';
-    g.fillText('bastos', cl, H - ax - 34);
-    g.font = "400 26px 'Plus Jakarta Sans'";
-    const title = (els.obraTitle.value || '').trim().toLowerCase();
-    if (title) { g.textAlign = 'left'; g.fillText(title, cl, H - ax); }
-    g.textAlign = 'right'; g.fillText('nº ' + String(serialN).padStart(3, '0'), cr, H - ax);
-
+    const title = (els.obraTitle.value || '').trim();
     const slug = title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40);
     const a = document.createElement('a');
     a.download = 'bastos-afiche-' + (slug ? slug + '-' : '') + String(serialN).padStart(3, '0') + '.png';
     a.href = c.toDataURL('image/png'); a.click();
+    render(); // refresca el nº siguiente en pantalla
   }
 
-  // Aleatorizar (baraja parámetros de forma + nueva semilla)
-  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  // ——— UI: segmentados, swatches, sliders ———
+  function bindSegment(seg, attr, apply) {
+    seg.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      seg.querySelectorAll('button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      apply(b.getAttribute(attr));
+      render();
+    }));
+  }
+  function bindSwatches(wrap, apply) {
+    wrap.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      wrap.querySelectorAll('button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      apply(b.dataset.c);
+      render();
+    }));
+  }
   function setSeg(seg, attr, val) { seg.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.getAttribute(attr) === String(val))); }
-  function randomize() {
-    seedMode = pick(['punto', 'punto', 'eje', 'anillo', 'disperso']);
-    shapeMode = pick(['cuadrado', 'punto', 'cruz', 'rombo', 'anillo', 'linea']);
-    markScale = pick([0.8, 1, 1, 1.35]);
-    symmetry = pick([1, 1, 1, 2, 3, 4, 6]);
-    latticeMode = pick(['libre', 'libre', 'cuadrada', 'triangular']);
-    confMode = pick(['libre', 'libre', 'libre', 'circulo', 'cuadrado', 'rombo']);
-    definicion = 1 + Math.floor(Math.random() * 4);
-    eta = +(1.0 + Math.random() * 1.5).toFixed(2);
-    deriva = Math.random() < 0.5 ? 0 : Math.floor(Math.random() * 70);
-    derivaAngle = Math.floor(Math.random() * 8) * 45;
-    giro = Math.random() < 0.55 ? 0 : Math.floor((Math.random() * 2 - 1) * 80);
-    nucleos = 2 + Math.floor(Math.random() * 7);
-    seedNum = Math.floor(Math.random() * 1e9);
-    bgColor = pick(['#F2EDE0', '#F2EDE0', '#FAFAF8', '#003EC0']);
-    inkMode = 'auto';
-    els.bgSwatches.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.c === bgColor));
-    els.inkSwatches.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.c === 'auto'));
-    applyColors();
+  function setSw(wrap, val) { wrap.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.c === String(val))); }
 
-    // reflejar en UI
-    setSeg(els.seedSegment, 'data-seed', seedMode);
-    setSeg(els.shapeSegment, 'data-shape', shapeMode);
-    setSeg(els.sizeSegment, 'data-size', markScale);
-    setSeg(els.symSegment, 'data-sym', symmetry);
-    setSeg(els.latticeSegment, 'data-lat', latticeMode);
-    setSeg(els.confSegment, 'data-conf', confMode);
-    els.definicion.value = definicion; els.valDef.textContent = definicion;
-    els.ramif.value = Math.round(eta * 100); els.valEta.textContent = eta.toFixed(1);
-    els.deriva.value = deriva; els.valDrift.textContent = deriva + '%'; driftProb = deriva/100*0.5;
-    els.direccion.value = derivaAngle; els.valDir.textContent = derivaAngle + '°'; setDriftVec();
-    els.giro.value = giro; els.valGiro.textContent = giro; giroProb = Math.abs(giro)/100*0.5; giroSign = giro < 0 ? -1 : 1;
-    els.nucleos.value = nucleos; els.valNuc.textContent = nucleos;
+  bindSegment(els.gridSegment, 'data-grid', v => { gridN = parseInt(v, 10); });
+  bindSegment(els.gapSegment, 'data-gap', v => { gapRatio = parseFloat(v); });
+  bindSegment(els.rotSegment, 'data-rot', v => { rotMode = v; });
+  bindSegment(els.symSegment, 'data-sym', v => { symMode = v; });
+  bindSwatches(els.bgSwatches, v => { bgColor = v; });
+  bindSwatches(els.inkSwatches, v => { inkMode = v; });
+  bindSwatches(els.ink2Swatches, v => { ink2 = v; });
+
+  els.density.addEventListener('input', () => { density = +els.density.value; els.valDensity.textContent = density + '%'; render(); });
+  els.variety.addEventListener('input', () => { variety = +els.variety.value; els.valVariety.textContent = variety; render(); });
+  els.mix.addEventListener('input', () => { mix = +els.mix.value; els.valMix.textContent = mix + '%'; render(); });
+  els.invert.addEventListener('input', () => { invertPct = +els.invert.value; els.valInvert.textContent = invertPct + '%'; render(); });
+  els.seedInput.addEventListener('input', () => { seedNum = Math.max(0, Math.floor(+els.seedInput.value || 0)); render(); });
+  els.obraTitle.addEventListener('input', render);
+
+  // ——— Botones ———
+  function newVersion() {
+    seedNum = Math.floor(Math.random() * 1e9);
     els.seedInput.value = seedNum;
-    setLattice(); reset(); play();
+    render();
+  }
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function randomize() {
+    gridN = pick([3, 4, 5, 6, 8, 10, 10]);
+    gapRatio = pick([0, 0.08, 0.08, 0.18]);
+    rotMode = pick(['fija', 'fija', 'giros']);
+    symMode = pick(['libre', 'libre', 'libre', 'espejo', 'cuaterna']);
+    density = pick([100, 100, 100, 85, 70, 55]);
+    variety = pick([100, 100, 60, 24, 8]);
+    bgColor = pick(['#F2F3F9', '#F2F3F9', '#F2EDE0', '#FAFAF8', '#003EC0']);
+    inkMode = 'auto';
+    ink2 = pick(['none', 'none', 'none', '#D0452B', '#1B1B1B']);
+    if (ink2 === inkColor()) ink2 = 'none';
+    mix = 10 + Math.floor(Math.random() * 30);
+    invertPct = pick([0, 0, 0, 12, 25]);
+    seedNum = Math.floor(Math.random() * 1e9);
+
+    setSeg(els.gridSegment, 'data-grid', gridN);
+    setSeg(els.gapSegment, 'data-gap', gapRatio);
+    setSeg(els.rotSegment, 'data-rot', rotMode);
+    setSeg(els.symSegment, 'data-sym', symMode);
+    setSw(els.bgSwatches, bgColor);
+    setSw(els.inkSwatches, 'auto');
+    setSw(els.ink2Swatches, ink2);
+    els.density.value = density; els.valDensity.textContent = density + '%';
+    els.variety.value = variety; els.valVariety.textContent = variety;
+    els.mix.value = mix; els.valMix.textContent = mix + '%';
+    els.invert.value = invertPct; els.valInvert.textContent = invertPct + '%';
+    els.seedInput.value = seedNum;
+    render();
   }
 
-  // Eventos
-  els.playBtn.addEventListener('click', () => { if (running) pause(); else play(); });
-  els.resetBtn.addEventListener('click', reset);
+  els.versionBtn.addEventListener('click', newVersion);
   els.randBtn.addEventListener('click', randomize);
   els.saveBtn.addEventListener('click', () => { els.saveBtn.disabled = true; savePlate().finally(() => { els.saveBtn.disabled = false; }); });
-  document.addEventListener('keydown', (e) => {
-    if (e.target.matches('input, select, textarea')) return;
-    if (e.code === 'Space') { e.preventDefault(); if (running) pause(); else play(); }
-    else if (e.key === 'r' || e.key === 'R') { reset(); }
-  });
 
-  els.bgSwatches.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.c === bgColor));
-  setDriftVec(); setLattice(); applyColors(); reset();
+  // ——— Arranque ———
+  Promise.all([
+    loadAssets(),
+    document.fonts ? document.fonts.load("500 21px 'Plus Jakarta Sans'").catch(() => {}) : Promise.resolve()
+  ]).then(() => { render(); })
+    .catch(() => {
+      ctx.fillStyle = '#F2F3F9'; ctx.fillRect(0, 0, PW, PH);
+      ctx.fillStyle = '#666666'; ctx.font = "400 24px 'Plus Jakarta Sans', sans-serif";
+      ctx.textAlign = 'center';
+      ctx.fillText('No se pudieron cargar los elementos.', PW / 2, PH / 2);
+      ctx.fillText('Esta herramienta requiere servirse por https.', PW / 2, PH / 2 + 36);
+    });
 })();
 </script>
 
