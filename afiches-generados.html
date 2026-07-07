@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bastos — Afiches generados</title>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="icon" type="image/svg+xml" href="assets/img/Isotipo-b.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  .af-lead-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .af-link { color: #fff; font-size: 14px; font-weight: 600; letter-spacing: 0.02em; text-decoration: none; border: 2px solid #fff; padding: 10px 16px; white-space: nowrap; }
+  .af-link:hover { background: #fff; color: var(--color-brand, #003ec0); }
+  .af-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 40px; }
+  .af-tile { display: block; width: 100%; padding: 0; margin: 0; border: 0; background: none; cursor: pointer; }
+  .af-tile img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+  .af-tile:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  @media (max-width: 1100px) { .af-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 700px)  { .af-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+
+  .af-viewer { position: fixed; inset: 0; z-index: 60; display: none; }
+  .af-viewer.open { display: block; }
+  .af-viewer-bg { position: absolute; inset: 0; background: rgba(10, 10, 10, 0.88); }
+  .af-viewer img { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); max-width: min(88vw, 900px); max-height: 88vh; }
+  .af-viewer button { position: absolute; z-index: 2; background: none; border: 0; color: #fff; cursor: pointer; font-family: inherit; padding: 12px; }
+  .af-close { top: 16px; right: 20px; font-size: 34px; line-height: 1; font-weight: 300; }
+  .af-prev, .af-next { top: 50%; transform: translateY(-50%); font-size: 40px; font-weight: 300; padding: 24px 18px; }
+  .af-prev { left: 8px; }
+  .af-next { right: 8px; }
+  .af-count { position: absolute; z-index: 2; left: 50%; transform: translateX(-50%); bottom: 18px; color: rgba(255,255,255,0.75); font-size: 13px; font-variant-numeric: tabular-nums; }
+  body.noscroll { overflow: hidden; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <a class="logo-link" href="index.html" aria-label="Inicio"><img class="logo" src="assets/img/Logo-blanco.svg" alt="bastos"></a>
+    <nav>
+      <a href="index.html" class="active">proyectos</a>
+      <a href="servicios.html">servicios</a>
+      <a href="nosotros.html">nosotros</a>
+      <a href="archivo.html">archivo</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </header>
+  <section class="wrap">
+    <h1 class="display">Afiches generados</h1>
+    <div class="ficha af-lead-row">
+      <p class="big archivo-lead">Doscientos originales producidos con el generador de afiches. Cada pieza es única y está numerada.</p>
+      <a class="af-link" href="afiches.html">Generar un afiche</a>
+    </div>
+    <div class="af-grid" id="afGrid"></div>
+  </section>
+  <footer>
+    <div class="foot-top">
+      <div class="foot-col"><div class="k">correo</div><a class="v" href="mailto:info@estudiobastos.com">info@estudiobastos.com</a></div>
+      <div class="foot-col"><div class="k">lugar</div><div class="v">Santiago de Chile</div></div>
+      <div class="foot-col"><div class="k">redes</div><a class="v ig" href="https://instagram.com/estudio_bastos" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>@estudio_bastos</a></div>
+    </div>
+    <div class="foot-bot">
+      <img class="logo" src="assets/img/Logo-blanco.svg" alt="bastos">
+      <div class="marks">
+        <svg viewBox="0 0 256.25 256.25" fill="white"><rect x="18.76" y="146.89" width="90.6" height="90.6" transform="translate(-117.13 101.59) rotate(-45)"/><rect x="18.76" y="18.76" width="90.6" height="90.6" transform="translate(-26.54 64.06) rotate(-45)"/><rect x="146.89" y="146.89" width="90.6" height="90.6" transform="translate(-79.61 192.19) rotate(-45)"/><rect x="146.89" y="18.76" width="90.6" height="90.6" transform="translate(10.99 154.66) rotate(-45)"/></svg>
+        <svg viewBox="0 0 256.21 256.25" fill="white"><path d="M0,153.74h66.26l-46.85,46.85,36.23,36.23,46.83-46.83v66.26h51.23v-66.27l46.87,46.87,36.23-36.23-46.88-46.88h66.29v-51.23h-66.26l46.85-46.85-36.23-36.23-46.87,46.87V0h-51.23v66.29L55.61,19.43,19.38,55.65l46.85,46.85H0v51.23ZM102.47,138.74v-21.21l15.03-15.03h21.19l15.01,15.01v21.23l-14.99,14.99h-21.25l-15-15Z"/></svg>
+        <svg viewBox="0 0 256.25 256.25" fill="white"><rect x="128.12" y="128.12" width="128.12" height="128.12" rx="64.06" ry="64.06"/><rect x="0" y="0" width="128.12" height="128.12" rx="64.06" ry="64.06"/><rect x="128.12" y="0" width="128.12" height="128.12" rx="64.06" ry="64.06"/><rect x="0" y="128.12" width="128.12" height="128.12" rx="64.06" ry="64.06"/></svg>
+        <svg viewBox="0 0 255.77 256.25" fill="white"><path d="M15.54,144.7c21.49-10.18,52.86-16.58,96.73-16.58-43.8,0-75.13-6.38-96.62-16.53-31.08-14.68-11.2-62.72,21.16-51.12,22.36,8.02,49.02,25.66,79.99,56.62-31.14-31.14-48.81-57.95-56.76-80.4C48.57,4.3,96.38-15.48,111.17,15.54c10.25,21.5,16.7,52.94,16.7,96.98,0-43.84,6.39-75.19,16.55-96.68,14.69-31.07,62.68-11.23,51.13,21.14-7.99,22.39-25.64,49.1-56.65,80.11,31-31,57.7-48.65,80.07-56.66,32.36-11.57,52.23,36.41,21.16,51.12-21.48,10.17-52.82,16.56-96.66,16.56,43.91,0,75.29,6.42,96.77,16.61,31.04,14.73,11.18,62.65-21.18,51.11-22.4-7.99-49.12-25.64-80.16-56.71,31.06,31.06,48.72,57.81,56.7,80.23,11.53,32.38-36.41,52.21-51.13,21.15-10.19-21.5-16.6-52.89-16.6-96.81,0,44.05-6.46,75.5-16.71,97-14.79,31.01-62.6,11.22-51.13-21.17,7.95-22.45,25.62-49.26,56.76-80.4-30.99,31.02-57.68,48.67-80.07,56.67-32.36,11.57-52.24-36.41-21.18-51.11Z"/></svg>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div class="af-viewer" id="afViewer" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="af-viewer-bg" data-close></div>
+  <img id="afViewerImg" alt="">
+  <button class="af-close" data-close aria-label="Cerrar">&times;</button>
+  <button class="af-prev" id="afPrev" aria-label="Anterior">&#8249;</button>
+  <button class="af-next" id="afNext" aria-label="Siguiente">&#8250;</button>
+  <div class="af-count" id="afCount"></div>
+</div>
+
+<script src="assets/js/nav.js"></script>
+<script>
+(() => {
+  const NAMES = ["bastos-afiche-001.png", "bastos-afiche-002 (1).png", "bastos-afiche-003.png", "bastos-afiche-004.png", "bastos-afiche-estudio-bastos-005.png", "bastos-afiche-006.png", "bastos-afiche-007 (1).png", "bastos-afiche-008 (1).png", "bastos-afiche-009 (1).png", "bastos-afiche-010 (1).png", "bastos-afiche-011 (1).png", "bastos-afiche-012 (1).png", "bastos-afiche-013 (1).png", "bastos-afiche-014 (1).png", "bastos-afiche-015 (1).png", "bastos-afiche-016 (1).png", "bastos-afiche-017 (1).png", "bastos-afiche-018 (1).png", "bastos-afiche-019.png", "bastos-afiche-020.png", "bastos-afiche-021.png", "bastos-afiche-022.png", "bastos-afiche-023.png", "bastos-afiche-024.png", "bastos-afiche-025.png", "bastos-afiche-026.png", "bastos-afiche-027.png", "bastos-afiche-028.png", "bastos-afiche-029.png", "bastos-afiche-030.png", "bastos-afiche-031.png", "bastos-afiche-032.png", "bastos-afiche-033.png", "bastos-afiche-034.png", "bastos-afiche-035.png", "bastos-afiche-036.png", "bastos-afiche-037.png", "bastos-afiche-038.png", "bastos-afiche-039.png", "bastos-afiche-040.png", "bastos-afiche-041.png", "bastos-afiche-042.png", "bastos-afiche-043.png", "bastos-afiche-044.png", "bastos-afiche-045.png", "bastos-afiche-046.png", "bastos-afiche-047.png", "bastos-afiche-048.png", "bastos-afiche-049.png", "bastos-afiche-050.png", "bastos-afiche-051.png", "bastos-afiche-052.png", "bastos-afiche-053.png", "bastos-afiche-054.png", "bastos-afiche-055.png", "bastos-afiche-056.png", "bastos-afiche-057.png", "bastos-afiche-058.png", "bastos-afiche-059.png", "bastos-afiche-060.png", "bastos-afiche-061.png", "bastos-afiche-062.png", "bastos-afiche-063.png", "bastos-afiche-064.png", "bastos-afiche-065.png", "bastos-afiche-066 (1).png", "bastos-afiche-067 (1).png", "bastos-afiche-068.png", "bastos-afiche-069.png", "bastos-afiche-070.png", "bastos-afiche-071.png", "bastos-afiche-072.png", "bastos-afiche-073.png", "bastos-afiche-074.png", "bastos-afiche-075.png", "bastos-afiche-076.png", "bastos-afiche-077.png", "bastos-afiche-078.png", "bastos-afiche-079.png", "bastos-afiche-080.png", "bastos-afiche-081.png", "bastos-afiche-082.png", "bastos-afiche-083.png", "bastos-afiche-084.png", "bastos-afiche-085.png", "bastos-afiche-086.png", "bastos-afiche-087.png", "bastos-afiche-088.png", "bastos-afiche-089.png", "bastos-afiche-090.png", "bastos-afiche-091.png", "bastos-afiche-092.png", "bastos-afiche-093.png", "bastos-afiche-094.png", "bastos-afiche-095.png", "bastos-afiche-096.png", "bastos-afiche-097.png", "bastos-afiche-098.png", "bastos-afiche-099.png", "bastos-afiche-100.png", "bastos-afiche-101.png", "bastos-afiche-102.png", "bastos-afiche-103.png", "bastos-afiche-104.png", "bastos-afiche-105.png", "bastos-afiche-106.png", "bastos-afiche-107.png", "bastos-afiche-108.png", "bastos-afiche-109.png", "bastos-afiche-110.png", "bastos-afiche-111.png", "bastos-afiche-112.png", "bastos-afiche-113.png", "bastos-afiche-114.png", "bastos-afiche-115.png", "bastos-afiche-116.png", "bastos-afiche-117.png", "bastos-afiche-118.png", "bastos-afiche-119.png", "bastos-afiche-120.png", "bastos-afiche-121.png", "bastos-afiche-122.png", "bastos-afiche-123.png", "bastos-afiche-124.png", "bastos-afiche-125.png", "bastos-afiche-126.png", "bastos-afiche-127.png", "bastos-afiche-128.png", "bastos-afiche-129.png", "bastos-afiche-130.png", "bastos-afiche-131.png", "bastos-afiche-132.png", "bastos-afiche-133.png", "bastos-afiche-134.png", "bastos-afiche-135.png", "bastos-afiche-136.png", "bastos-afiche-137.png", "bastos-afiche-138.png", "bastos-afiche-139.png", "bastos-afiche-140.png", "bastos-afiche-141.png", "bastos-afiche-142.png", "bastos-afiche-143.png", "bastos-afiche-144.png", "bastos-afiche-145.png", "bastos-afiche-146.png", "bastos-afiche-147.png", "bastos-afiche-148.png", "bastos-afiche-149.png", "bastos-afiche-150.png", "bastos-afiche-151.png", "bastos-afiche-152.png", "bastos-afiche-153.png", "bastos-afiche-154.png", "bastos-afiche-155.png", "bastos-afiche-156.png", "bastos-afiche-157.png", "bastos-afiche-158.png", "bastos-afiche-159.png", "bastos-afiche-160.png", "bastos-afiche-161.png", "bastos-afiche-162.png", "bastos-afiche-163.png", "bastos-afiche-164.png", "bastos-afiche-165.png", "bastos-afiche-166.png", "bastos-afiche-167.png", "bastos-afiche-168.png", "bastos-afiche-169.png", "bastos-afiche-170.png", "bastos-afiche-171.png", "bastos-afiche-172.png", "bastos-afiche-173.png", "bastos-afiche-174.png", "bastos-afiche-175.png", "bastos-afiche-176.png", "bastos-afiche-177.png", "bastos-afiche-178.png", "bastos-afiche-179.png", "bastos-afiche-180.png", "bastos-afiche-181.png", "bastos-afiche-182.png", "bastos-afiche-183.png", "bastos-afiche-184.png", "bastos-afiche-185.png", "bastos-afiche-186.png", "bastos-afiche-187.png", "bastos-afiche-188.png", "bastos-afiche-189.png", "bastos-afiche-190.png", "bastos-afiche-191.png", "bastos-afiche-192.png", "bastos-afiche-193.png", "bastos-afiche-194.png", "bastos-afiche-195.png", "bastos-afiche-196.png", "bastos-afiche-197.png", "bastos-afiche-198.png", "bastos-afiche-199.png", "bastos-afiche-200.png"];
+  const DIR = 'assets/afichesBastos/';
+  const src = (f) => DIR + encodeURIComponent(f);
+  const num = (f) => { const m = f.match(/(\d+)(?:\s*\(\d+\))?\.png$/); return m ? parseInt(m[1], 10) : 0; };
+
+  const grid = document.getElementById('afGrid');
+  const frag = document.createDocumentFragment();
+  NAMES.forEach((f, i) => {
+    const b = document.createElement('button');
+    b.className = 'af-tile';
+    b.setAttribute('aria-label', 'Ver afiche nº ' + String(num(f)).padStart(3, '0'));
+    const img = document.createElement('img');
+    img.src = src(f);
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.alt = 'Afiche nº ' + String(num(f)).padStart(3, '0');
+    b.appendChild(img);
+    b.addEventListener('click', () => open(i));
+    frag.appendChild(b);
+  });
+  grid.appendChild(frag);
+
+  const viewer = document.getElementById('afViewer');
+  const vImg = document.getElementById('afViewerImg');
+  const vCount = document.getElementById('afCount');
+  let cur = -1;
+
+  function show(i) {
+    cur = (i + NAMES.length) % NAMES.length;
+    const f = NAMES[cur];
+    vImg.src = src(f);
+    vImg.alt = 'Afiche nº ' + String(num(f)).padStart(3, '0');
+    vCount.textContent = 'nº ' + String(num(f)).padStart(3, '0') + ' — ' + (cur + 1) + ' de ' + NAMES.length;
+    // precarga vecinos
+    [cur - 1, cur + 1].forEach(j => { const p = new Image(); p.src = src(NAMES[(j + NAMES.length) % NAMES.length]); });
+  }
+  function open(i) { show(i); viewer.classList.add('open'); viewer.setAttribute('aria-hidden', 'false'); document.body.classList.add('noscroll'); }
+  function close() { viewer.classList.remove('open'); viewer.setAttribute('aria-hidden', 'true'); document.body.classList.remove('noscroll'); vImg.src = ''; cur = -1; }
+
+  viewer.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', close));
+  document.getElementById('afPrev').addEventListener('click', () => show(cur - 1));
+  document.getElementById('afNext').addEventListener('click', () => show(cur + 1));
+  document.addEventListener('keydown', (e) => {
+    if (!viewer.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(cur - 1);
+    else if (e.key === 'ArrowRight') show(cur + 1);
+  });
+})();
+</script>
+</body>
+</html>
