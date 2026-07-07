@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bastos — Afiches (autor)</title>
+<link rel="icon" type="image/svg+xml" href="assets/img/Isotipo-b.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gen-ink: #111111;
+    --text-primary: #0a0a0a;
+    --text-secondary: #666666;
+    --text-placeholder: #999999;
+    --border-subtle: #e8e8e8;
+    --border-strong: #cccccc;
+    --white: #ffffff;
+  }
+* { box-sizing: border-box; }
+
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--color-brand);
+    color: var(--text-primary, #0a0a0a);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  body { display: flex; flex-direction: column; min-height: 100vh; }
+
+  .wrap-afiches { background: var(--white, #ffffff); }
+  footer .foot-col .v { color: #fff; }
+  .stage {
+    width: 100%;
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 56px 64px 72px;
+    flex: 1;
+  }
+
+  .top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    padding-bottom: 28px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border-subtle, #e8e8e8);
+    flex-wrap: wrap;
+  }
+
+  .title-block h1 {
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0 0 10px 0;
+    color: var(--text-primary, #0a0a0a);
+  }
+  .title-block h1 em {
+    font-style: normal;
+    color: var(--gen-ink, #111111);
+  }
+  .title-block p {
+    margin: 0;
+    color: var(--text-secondary, #666666);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 58ch;
+  }
+
+  .console {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* ——— Lienzo ——— */
+  .canvas-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: var(--white, #ffffff);
+    border: 1px solid var(--border-subtle, #e8e8e8);
+    overflow: hidden;
+  }
+  canvas { display: block; width: 100%; height: 100%; }
+
+  /* ——— Panel ——— */
+  .panel { display: flex; flex-direction: column; gap: 32px; }
+
+  .panel h2 {
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary, #666666);
+    margin: 0 0 14px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-subtle, #e8e8e8);
+  }
+
+  .stage-col { position: sticky; top: 24px; align-self: start; }
+
+  .statsbar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-subtle, #e8e8e8);
+  }
+  .stat .label {
+    display: block;
+    font-size: 11px;
+    color: var(--text-secondary, #666666);
+    margin-bottom: 2px;
+  }
+  .stat .value {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-primary, #0a0a0a);
+  }
+
+  details.fine { border: 1px solid var(--border-subtle, #e8e8e8); padding: 0 16px; }
+  details.fine summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary, #666666);
+    padding: 14px 0;
+  }
+  details.fine summary::-webkit-details-marker { display: none; }
+  details.fine summary::after { content: '+'; float: right; font-weight: 400; }
+  details.fine[open] summary::after { content: '−'; }
+  details.fine .controls { padding: 4px 0 20px; }
+
+  .controls { display: flex; flex-direction: column; gap: 20px; }
+
+  .control label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-secondary, #666666);
+    margin-bottom: 8px;
+  }
+  .control label .val {
+    color: var(--text-primary, #0a0a0a);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 2px;
+    background: var(--border-strong, #cccccc);
+    outline: none;
+    margin: 6px 0;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 0;
+    background: var(--gen-ink, #111111);
+    cursor: pointer;
+    margin-top: -6px;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 14px; height: 14px;
+    border: none;
+    border-radius: 0;
+    background: var(--gen-ink, #111111);
+    cursor: pointer;
+  }
+  input[type="range"]:focus-visible { outline: 2px solid var(--gen-ink, #111111); outline-offset: 4px; }
+
+  /* Segmentado */
+  .segment {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 2px solid var(--gen-ink, #111111);
+  }
+  .segment button {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 9px 8px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: var(--gen-ink, #111111);
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+  .segment button:hover { opacity: 0.85; }
+  .segment button.active {
+    background: var(--gen-ink, #111111);
+    color: var(--white, #ffffff);
+  }
+
+  /* Botones */
+  .buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
+  .btn {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 12px 10px;
+    border-radius: 0;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary {
+    background: var(--gen-ink, #111111);
+    color: var(--white, #ffffff);
+    border: 2px solid var(--gen-ink, #111111);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--gen-ink, #111111);
+    border: 2px solid var(--gen-ink, #111111);
+  }
+  .btn-ghost {
+    grid-column: 1 / -1;
+    background: transparent;
+    color: var(--text-secondary, #666666);
+    border: 2px solid var(--border-strong, #cccccc);
+  }
+  .btn-ghost:hover { border-color: var(--gen-ink, #111111); color: var(--gen-ink, #111111); opacity: 1; }
+  .btn:disabled { opacity: 0.4; cursor: default; }
+
+  @media (max-width: 900px) {
+    .stage { padding: 40px 24px 56px; }
+    .console { grid-template-columns: 1fr; gap: 36px; }
+  }
+</style>
+</head>
+<body>
+<style>
+  .gate { position: fixed; inset: 0; z-index: 100; background: var(--color-brand, #003ec0); display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .gate-box { width: 100%; max-width: 320px; }
+  .gate-box .k { font-size: 12px; font-weight: 300; letter-spacing: 0.15em; color: rgba(255,255,255,0.7); margin-bottom: 12px; text-transform: lowercase; }
+  .gate-box input { width: 100%; box-sizing: border-box; padding: 12px 14px; border: 2px solid #fff; background: transparent; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; letter-spacing: 0.02em; outline: none; }
+  .gate-box input::placeholder { color: rgba(255,255,255,0.5); }
+  .gate-box button { width: 100%; margin-top: 12px; padding: 12px 14px; border: 2px solid #fff; background: #fff; color: var(--color-brand, #003ec0); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; cursor: pointer; }
+  .gate-box .msg { min-height: 18px; margin-top: 10px; font-size: 13px; color: #fff; }
+</style>
+<div class="gate" id="gate">
+  <div class="gate-box">
+    <div class="k">clave de acceso</div>
+    <input type="password" id="gateInput" placeholder="clave" autocomplete="off" autofocus>
+    <button type="button" id="gateBtn">entrar</button>
+    <div class="msg" id="gateMsg"></div>
+  </div>
+</div>
+<script>
+  // ——— Reja de acceso ———
+  // NOTA: esto NO es seguridad real. Al ser un sitio estático y público, la clave
+  // queda visible en el código fuente. Solo evita el ingreso casual. Cambia el valor.
+  (() => {
+    const CLAVE = "bastosbastos";
+    const gate = document.getElementById('gate');
+    const input = document.getElementById('gateInput');
+    const msg = document.getElementById('gateMsg');
+    function entrar() {
+      if (input.value === CLAVE) { gate.style.display = 'none'; }
+      else { msg.textContent = 'clave incorrecta'; input.value = ''; input.focus(); }
+    }
+    document.getElementById('gateBtn').addEventListener('click', entrar);
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') entrar(); });
+  })();
+</script>
+<div class="page">
+  <header>
+    <a class="logo-link" href="index.html" aria-label="Inicio"><img class="logo" src="assets/img/Logo-blanco.svg" alt="bastos"></a>
+    <nav>
+      <a href="index.html">proyectos</a>
+      <a href="servicios.html">servicios</a>
+      <a href="nosotros.html">nosotros</a>
+      <a href="archivo.html">archivo</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </header>
+  <section class="wrap wrap-afiches">
+
+<style>
+  .segment.seg3 { grid-template-columns: repeat(3, 1fr); }
+  .segment.seg4 { grid-template-columns: repeat(4, 1fr); }
+  .segment.seg5 { grid-template-columns: repeat(5, 1fr); }
+  .segment.seg6 { grid-template-columns: repeat(6, 1fr); }
+  .segment.seg3 button, .segment.seg4 button, .segment.seg5 button, .segment.seg6 button { font-size: 11px; padding: 8px 3px; letter-spacing: 0; }
+  .control.tight label { margin-bottom: 6px; }
+  .swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+  .sw { width: 32px; height: 32px; border: 1px solid rgba(0,0,0,0.18); background: var(--c, #fff); cursor: pointer; padding: 0; border-radius: 0; }
+  .sw.active { outline: 2px solid #111111; outline-offset: 2px; }
+  .sw-auto { background: #ffffff; font-size: 12px; font-weight: 700; color: #111111; }
+  .sw-none { background: #ffffff; font-size: 14px; font-weight: 400; color: #999999; }
+  .text-field { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid #cfcfcf; background: #ffffff; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; letter-spacing: 0.01em; color: #111111; outline: none; }
+  .text-field:focus { border-color: #111111; }
+  .text-field::placeholder { color: #a8a8a8; }
+  @media (max-width: 900px) { .stage-col { position: static; } }
+</style>
+
+<div class="stage">
+
+  <div class="top">
+    <div class="title-block">
+      <h1>Afiches <em>bastos</em></h1>
+      <p>Composición sobre grilla con los elementos de la marca. Cada combinación produce un afiche distinto. Genera tu propio original 3:4 descargable.</p>
+    </div>
+  </div>
+
+  <div class="console">
+
+    <div class="stage-col" id="stageCol">
+      <div class="canvas-wrap" id="canvasWrap">
+        <canvas id="canvas"></canvas>
+      </div>
+
+      <div class="statsbar">
+        <div class="stat"><span class="label">grilla</span><span class="value" id="statGrid">—</span></div>
+        <div class="stat"><span class="label">celdas llenas</span><span class="value" id="statFilled">—</span></div>
+        <div class="stat"><span class="label">elementos distintos</span><span class="value" id="statDistinct">—</span></div>
+      </div>
+
+      <div class="buttons">
+        <button class="btn btn-primary" id="versionBtn">Otra versión</button>
+        <button class="btn btn-secondary" id="randBtn">Aleatorizar</button>
+        <button class="btn btn-ghost" id="saveBtn">Descargar afiche</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div>
+        <h2>obra</h2>
+        <div class="control tight">
+          <label>Título</label>
+          <input type="text" id="obraTitle" class="text-field" placeholder="texto izquierda" maxlength="60" autocomplete="off">
+        </div>
+        <div class="control tight" style="margin-top:16px">
+          <label>Texto derecha</label>
+          <input type="text" id="rightText" class="text-field" placeholder="texto derecha" maxlength="60" autocomplete="off">
+        </div>
+      </div>
+
+      <div>
+        <h2>azar</h2>
+        <div class="control tight">
+          <label>Semilla</label>
+          <input type="number" id="seedInput" class="text-field" value="1" min="0" step="1" autocomplete="off">
+        </div>
+      </div>
+
+      <div>
+        <h2>composición</h2>
+        <div class="controls">
+          <div class="control tight">
+            <label>Grilla</label>
+            <div class="segment seg6" id="gridSegment">
+              <button type="button" data-grid="3">3×3</button>
+              <button type="button" data-grid="4">4×4</button>
+              <button type="button" data-grid="5">5×5</button>
+              <button type="button" data-grid="6">6×6</button>
+              <button type="button" data-grid="8">8×8</button>
+              <button type="button" data-grid="10" class="active">10×10</button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Junta</label>
+            <div class="segment seg3" id="gapSegment">
+              <button type="button" data-gap="0">continua</button>
+              <button type="button" data-gap="0.08" class="active">fina</button>
+              <button type="button" data-gap="0.18">amplia</button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Giros</label>
+            <div class="segment" id="rotSegment">
+              <button type="button" data-rot="fija" class="active">fija</button>
+              <button type="button" data-rot="giros">giros 90°</button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Simetría</label>
+            <div class="segment seg3" id="symSegment">
+              <button type="button" data-sym="libre" class="active">libre</button>
+              <button type="button" data-sym="espejo">espejo</button>
+              <button type="button" data-sym="cuaterna">cuaterna</button>
+            </div>
+          </div>
+          <div class="control">
+            <label>Densidad <span class="val" id="valDensity">100%</span></label>
+            <input type="range" id="density" min="30" max="100" value="100">
+          </div>
+          <div class="control">
+            <label>Variedad <span class="val" id="valVariety">100</span></label>
+            <input type="range" id="variety" min="1" max="100" value="100">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2>color</h2>
+        <div class="controls">
+          <div class="control tight">
+            <label>Papel</label>
+            <div class="swatches" id="bgSwatches">
+              <button type="button" class="sw active" data-c="#F2F3F9" style="--c:#F2F3F9"></button>
+              <button type="button" class="sw" data-c="#F2EDE0" style="--c:#F2EDE0"></button>
+              <button type="button" class="sw" data-c="#FAFAF8" style="--c:#FAFAF8"></button>
+              <button type="button" class="sw" data-c="#003EC0" style="--c:#003EC0"></button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Tinta</label>
+            <div class="swatches" id="inkSwatches">
+              <button type="button" class="sw sw-auto active" data-c="auto">A</button>
+              <button type="button" class="sw" data-c="#003EC0" style="--c:#003EC0"></button>
+              <button type="button" class="sw" data-c="#D0452B" style="--c:#D0452B"></button>
+              <button type="button" class="sw" data-c="#1B1B1B" style="--c:#1B1B1B"></button>
+              <button type="button" class="sw" data-c="#F2EDE0" style="--c:#F2EDE0"></button>
+            </div>
+          </div>
+          <div class="control tight">
+            <label>Segunda tinta</label>
+            <div class="swatches" id="ink2Swatches">
+              <button type="button" class="sw sw-none active" data-c="none">—</button>
+              <button type="button" class="sw" data-c="#003EC0" style="--c:#003EC0"></button>
+              <button type="button" class="sw" data-c="#D0452B" style="--c:#D0452B"></button>
+              <button type="button" class="sw" data-c="#1B1B1B" style="--c:#1B1B1B"></button>
+              <button type="button" class="sw" data-c="#F2EDE0" style="--c:#F2EDE0"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="fine">
+        <summary>ajustes finos</summary>
+        <div class="controls">
+          <div class="control">
+            <label>Mezcla <span class="val" id="valMix">30%</span></label>
+            <input type="range" id="mix" min="5" max="50" value="30">
+          </div>
+          <div class="control">
+            <label>Inversión <span class="val" id="valInvert">0%</span></label>
+            <input type="range" id="invert" min="0" max="100" value="0">
+          </div>
+        </div>
+      </details>
+
+    </div>
+
+  </div>
+</div>
+
+  </section>
+  <footer>
+    <div class="foot-top">
+      <div class="foot-col"><div class="k">correo</div><a class="v" href="mailto:info@estudiobastos.com">info@estudiobastos.com</a></div>
+      <div class="foot-col"><div class="k">lugar</div><div class="v">Santiago de Chile</div></div>
+      <div class="foot-col"><div class="k">redes</div><a class="v ig" href="https://instagram.com/estudio_bastos" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>@estudio_bastos</a></div>
+    </div>
+    <div class="foot-bot">
+      <img class="logo" src="assets/img/Logo-blanco.svg" alt="bastos">
+      <div class="marks">
+        <svg viewBox="0 0 256.25 256.25" fill="white"><rect x="18.76" y="146.89" width="90.6" height="90.6" transform="translate(-117.13 101.59) rotate(-45)"/><rect x="18.76" y="18.76" width="90.6" height="90.6" transform="translate(-26.54 64.06) rotate(-45)"/><rect x="146.89" y="146.89" width="90.6" height="90.6" transform="translate(-79.61 192.19) rotate(-45)"/><rect x="146.89" y="18.76" width="90.6" height="90.6" transform="translate(10.99 154.66) rotate(-45)"/></svg>
+        <svg viewBox="0 0 256.21 256.25" fill="white"><path d="M0,153.74h66.26l-46.85,46.85,36.23,36.23,46.83-46.83v66.26h51.23v-66.27l46.87,46.87,36.23-36.23-46.88-46.88h66.29v-51.23h-66.26l46.85-46.85-36.23-36.23-46.87,46.87V0h-51.23v66.29L55.61,19.43,19.38,55.65l46.85,46.85H0v51.23ZM102.47,138.74v-21.21l15.03-15.03h21.19l15.01,15.01v21.23l-14.99,14.99h-21.25l-15-15Z"/></svg>
+        <svg viewBox="0 0 256.25 256.25" fill="white"><rect x="128.12" y="128.12" width="128.12" height="128.12" rx="64.06" ry="64.06"/><rect x="0" y="0" width="128.12" height="128.12" rx="64.06" ry="64.06"/><rect x="128.12" y="0" width="128.12" height="128.12" rx="64.06" ry="64.06"/><rect x="0" y="128.12" width="128.12" height="128.12" rx="64.06" ry="64.06"/></svg>
+        <svg viewBox="0 0 255.77 256.25" fill="white"><path d="M15.54,144.7c21.49-10.18,52.86-16.58,96.73-16.58-43.8,0-75.13-6.38-96.62-16.53-31.08-14.68-11.2-62.72,21.16-51.12,22.36,8.02,49.02,25.66,79.99,56.62-31.14-31.14-48.81-57.95-56.76-80.4C48.57,4.3,96.38-15.48,111.17,15.54c10.25,21.5,16.7,52.94,16.7,96.98,0-43.84,6.39-75.19,16.55-96.68,14.69-31.07,62.68-11.23,51.13,21.14-7.99,22.39-25.64,49.1-56.65,80.11,31-31,57.7-48.65,80.07-56.66,32.36-11.57,52.23,36.41,21.16,51.12-21.48,10.17-52.82,16.56-96.66,16.56,43.91,0,75.29,6.42,96.77,16.61,31.04,14.73,11.18,62.65-21.18,51.11-22.4-7.99-49.12-25.64-80.16-56.71,31.06,31.06,48.72,57.81,56.7,80.23,11.53,32.38-36.41,52.21-51.13,21.15-10.19-21.5-16.6-52.89-16.6-96.81,0,44.05-6.46,75.5-16.71,97-14.79,31.01-62.6,11.22-51.13-21.17,7.95-22.45,25.62-49.26,56.76-80.4-30.99,31.02-57.68,48.67-80.07,56.67-32.36,11.57-52.24-36.41-21.18-51.11Z"/></svg>
+      </div>
+    </div>
+  </footer>
+</div>
+<script src="assets/js/nav.js"></script>
+
+<script>
+(() => {
+  'use strict';
+
+  // ——— Constantes de lámina (proporciones medidas del afiche de referencia) ———
+  // W:H = 3:4. Margen lateral/superior = 4.6% de W. Grilla cuadrada.
+  // Isótipo: diámetro 6.2% de W, centrado, base alineada a la línea del texto.
+  // Línea de texto: baseline a 4.2% de H desde el borde inferior.
+  const N_ELEMENTS = 100;
+  const AUTO_INK = { '#F2F3F9':'#003EC0', '#F2EDE0':'#003EC0', '#FAFAF8':'#1B1B1B', '#003EC0':'#F2F3F9' };
+
+  // PRNG reproducible
+  function mulberry32(a) { return function() { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+  // ——— Estado / parámetros ———
+  let seedNum = 1;
+  let gridN = 10;
+  let gapRatio = 0.08;         // proporción de la junta respecto al paso
+  let rotMode = 'fija';        // 'fija' | 'giros'
+  let symMode = 'libre';       // 'libre' | 'espejo' | 'cuaterna'
+  let density = 100;           // % de celdas llenas
+  let variety = 100;           // nº de elementos distintos en el sorteo
+  let bgColor = '#F2F3F9';
+  let inkMode = 'auto';
+  let ink2 = 'none';
+  let mix = 30;                // % de celdas con segunda tinta
+  let invertPct = 0;           // % de celdas invertidas
+
+  let lastComposition = null;  // celdas de la última corrida (para estadísticas)
+
+  function inkColor() { return inkMode === 'auto' ? (AUTO_INK[bgColor] || '#003EC0') : inkMode; }
+
+  // ——— Carga de elementos e isótipo ———
+  const elementImgs = [];
+  let isotipoImg = null;
+  let assetsReady = false;
+
+  function loadImage(src) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error('No se pudo cargar ' + src));
+      img.src = src;
+    });
+  }
+  async function loadAssets() {
+    const jobs = [];
+    for (let i = 1; i <= N_ELEMENTS; i++) {
+      const name = i < 100 ? String(i).padStart(2, '0') : String(i);
+      jobs.push(loadImage('assets/elements/element-' + name + '.svg').then(img => { elementImgs[i - 1] = img; }));
+    }
+    jobs.push(loadImage('assets/img/Isotipo-b.svg').then(img => { isotipoImg = img; }));
+    await Promise.all(jobs);
+    assetsReady = true;
+  }
+
+  // Recolorea un SVG monocolor dibujándolo en un canvas y compositando el relleno
+  function tintedTile(img, size, color) {
+    const c = document.createElement('canvas');
+    c.width = size; c.height = size;
+    const g = c.getContext('2d');
+    g.drawImage(img, 0, 0, size, size);
+    g.globalCompositeOperation = 'source-in';
+    g.fillStyle = color;
+    g.fillRect(0, 0, size, size);
+    return c;
+  }
+
+  // ——— Composición (determinista según semilla y parámetros) ———
+  function composeCells() {
+    const rng = mulberry32(seedNum >>> 0);
+    const n = gridN;
+    const pool = [];
+    {
+      // subconjunto de "variedad" elementos, barajado con la misma semilla
+      const all = Array.from({ length: N_ELEMENTS }, (_, i) => i);
+      for (let i = all.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [all[i], all[j]] = [all[j], all[i]]; }
+      for (let i = 0; i < Math.min(variety, N_ELEMENTS); i++) pool.push(all[i]);
+    }
+    const cells = new Array(n * n).fill(null);
+    const useB = ink2 !== 'none';
+
+    const srcCell = () => {
+      if (rng() * 100 >= density) return null;
+      return {
+        el: pool[Math.floor(rng() * pool.length)],
+        rot: rotMode === 'giros' ? Math.floor(rng() * 4) : 0,
+        flip: false,
+        b: useB && (rng() * 100 < mix),
+        inv: rng() * 100 < invertPct
+      };
+    };
+    const mirrored = (c) => c && { el: c.el, rot: c.rot, flip: !c.flip, b: c.b, inv: c.inv };
+
+    if (symMode === 'libre') {
+      for (let i = 0; i < n * n; i++) cells[i] = srcCell();
+    } else if (symMode === 'espejo') {
+      const half = Math.ceil(n / 2);
+      for (let y = 0; y < n; y++) for (let x = 0; x < half; x++) {
+        const c = srcCell();
+        cells[y * n + x] = c;
+        cells[y * n + (n - 1 - x)] = (x === n - 1 - x) ? c : mirrored(c);
+      }
+    } else { // cuaterna
+      const half = Math.ceil(n / 2);
+      for (let y = 0; y < half; y++) for (let x = 0; x < half; x++) {
+        const c = srcCell();
+        const xm = n - 1 - x, ym = n - 1 - y;
+        cells[y * n + x] = c;
+        if (xm !== x) cells[y * n + xm] = mirrored(c);
+        if (ym !== y) cells[ym * n + x] = c && { el: c.el, rot: c.rot, flip: c.flip, b: c.b, inv: c.inv, flipY: true };
+        if (xm !== x && ym !== y) cells[ym * n + xm] = c && { el: c.el, rot: c.rot, flip: !c.flip, b: c.b, inv: c.inv, flipY: true };
+      }
+    }
+    return cells;
+  }
+
+  // ——— Render de la lámina ———
+  function renderPoster(g, W, H) {
+    const margin = Math.round(W * 0.046);
+    const S = W - 2 * margin;
+    const n = gridN;
+    const gap = (gapRatio * S) / n;
+    const tile = (S - (n - 1) * gap) / n;
+    const tilePx = Math.max(2, Math.round(tile));
+
+    const ink = inkColor();
+    const ink2c = ink2 === 'none' ? ink : ink2;
+
+    g.fillStyle = bgColor;
+    g.fillRect(0, 0, W, H);
+
+    const cells = composeCells();
+    lastComposition = cells;
+
+    // caché de teselas por elemento+color
+    const cache = new Map();
+    const getTile = (el, color) => {
+      const k = el + '|' + color;
+      if (!cache.has(k)) cache.set(k, tintedTile(elementImgs[el], tilePx, color));
+      return cache.get(k);
+    };
+
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+      const c = cells[y * n + x];
+      if (!c) continue;
+      const px = margin + x * (tile + gap);
+      const py = margin + y * (tile + gap);
+      const color = c.b ? ink2c : ink;
+
+      g.save();
+      g.translate(px + tile / 2, py + tile / 2);
+      if (c.flip) g.scale(-1, 1);
+      if (c.flipY) g.scale(1, -1);
+      if (c.rot) g.rotate(c.rot * Math.PI / 2);
+      if (c.inv) {
+        g.fillStyle = color;
+        g.fillRect(-tile / 2, -tile / 2, tile, tile);
+        g.drawImage(getTile(c.el, bgColor), -tile / 2, -tile / 2, tile, tile);
+      } else {
+        g.drawImage(getTile(c.el, color), -tile / 2, -tile / 2, tile, tile);
+      }
+      g.restore();
+    }
+
+    // ——— Pie: isótipo, título y numeración ———
+    const baseline = H - Math.round(H * 0.042);
+    const isoD = Math.round(W * 0.062);
+    if (isotipoImg) {
+      const iso = tintedTile(isotipoImg, isoD, ink);
+      g.drawImage(iso, Math.round((W - isoD) / 2), baseline - isoD, isoD, isoD);
+    }
+    const fs = Math.round(W * 0.0228);
+    g.fillStyle = ink;
+    g.textBaseline = 'alphabetic';
+    g.font = '500 ' + fs + "px 'Plus Jakarta Sans'";
+    const title = (els.obraTitle.value || '').trim();
+    if (title) { g.textAlign = 'left'; g.fillText(title, margin, baseline); }
+    const rtext = (els.rightText.value || '').trim();
+    if (rtext) { g.textAlign = 'right'; g.fillText(rtext, W - margin, baseline); }
+  }
+
+  // ——— Lienzo de previsualización ———
+  const canvas = document.getElementById('canvas');
+  const PW = 900, PH = 1200;
+  canvas.width = PW; canvas.height = PH;
+  const ctx = canvas.getContext('2d');
+
+  const els = {
+    obraTitle: document.getElementById('obraTitle'),
+    rightText: document.getElementById('rightText'),
+    seedInput: document.getElementById('seedInput'),
+    gridSegment: document.getElementById('gridSegment'),
+    gapSegment: document.getElementById('gapSegment'),
+    rotSegment: document.getElementById('rotSegment'),
+    symSegment: document.getElementById('symSegment'),
+    density: document.getElementById('density'),
+    variety: document.getElementById('variety'),
+    valDensity: document.getElementById('valDensity'),
+    valVariety: document.getElementById('valVariety'),
+    bgSwatches: document.getElementById('bgSwatches'),
+    inkSwatches: document.getElementById('inkSwatches'),
+    ink2Swatches: document.getElementById('ink2Swatches'),
+    mix: document.getElementById('mix'),
+    invert: document.getElementById('invert'),
+    valMix: document.getElementById('valMix'),
+    valInvert: document.getElementById('valInvert'),
+    statGrid: document.getElementById('statGrid'),
+    statFilled: document.getElementById('statFilled'),
+    statDistinct: document.getElementById('statDistinct'),
+    versionBtn: document.getElementById('versionBtn'),
+    randBtn: document.getElementById('randBtn'),
+    saveBtn: document.getElementById('saveBtn'),
+  };
+
+  function updateStats() {
+    els.statGrid.textContent = gridN + '×' + gridN;
+    if (lastComposition) {
+      const filled = lastComposition.filter(Boolean);
+      els.statFilled.textContent = filled.length + '/' + (gridN * gridN);
+      els.statDistinct.textContent = new Set(filled.map(c => c.el)).size;
+    }
+  }
+
+  let renderPending = false;
+  function render() {
+    if (!assetsReady) { renderPending = true; return; }
+    renderPoster(ctx, PW, PH);
+    updateStats();
+  }
+
+  // ——— Exportar afiche 3:4 ———
+  async function savePlate() {
+    const W = 1800, H = 2400;
+    try { await document.fonts.load("500 41px 'Plus Jakarta Sans'"); } catch (e) {}
+    const c = document.createElement('canvas'); c.width = W; c.height = H;
+    renderPoster(c.getContext('2d'), W, H);
+
+    const base = ((els.obraTitle.value || '').trim() || (els.rightText.value || '').trim());
+    const slug = base.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40);
+    const a = document.createElement('a');
+    a.download = 'bastos-afiche' + (slug ? '-' + slug : '') + '.png';
+    a.href = c.toDataURL('image/png'); a.click();
+  }
+
+  // ——— UI: segmentados, swatches, sliders ———
+  function bindSegment(seg, attr, apply) {
+    seg.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      seg.querySelectorAll('button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      apply(b.getAttribute(attr));
+      render();
+    }));
+  }
+  function bindSwatches(wrap, apply) {
+    wrap.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      wrap.querySelectorAll('button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      apply(b.dataset.c);
+      render();
+    }));
+  }
+  function setSeg(seg, attr, val) { seg.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.getAttribute(attr) === String(val))); }
+  function setSw(wrap, val) { wrap.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.c === String(val))); }
+
+  bindSegment(els.gridSegment, 'data-grid', v => { gridN = parseInt(v, 10); });
+  bindSegment(els.gapSegment, 'data-gap', v => { gapRatio = parseFloat(v); });
+  bindSegment(els.rotSegment, 'data-rot', v => { rotMode = v; });
+  bindSegment(els.symSegment, 'data-sym', v => { symMode = v; });
+  bindSwatches(els.bgSwatches, v => { bgColor = v; });
+  bindSwatches(els.inkSwatches, v => { inkMode = v; });
+  bindSwatches(els.ink2Swatches, v => { ink2 = v; });
+
+  els.density.addEventListener('input', () => { density = +els.density.value; els.valDensity.textContent = density + '%'; render(); });
+  els.variety.addEventListener('input', () => { variety = +els.variety.value; els.valVariety.textContent = variety; render(); });
+  els.mix.addEventListener('input', () => { mix = +els.mix.value; els.valMix.textContent = mix + '%'; render(); });
+  els.invert.addEventListener('input', () => { invertPct = +els.invert.value; els.valInvert.textContent = invertPct + '%'; render(); });
+  els.seedInput.addEventListener('input', () => { seedNum = Math.max(0, Math.floor(+els.seedInput.value || 0)); render(); });
+  els.obraTitle.addEventListener('input', render);
+  els.rightText.addEventListener('input', render);
+
+  // ——— Botones ———
+  function newVersion() {
+    seedNum = Math.floor(Math.random() * 1e9);
+    els.seedInput.value = seedNum;
+    render();
+  }
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function randomize() {
+    gridN = pick([3, 4, 5, 6, 8, 10, 10]);
+    gapRatio = pick([0, 0.08, 0.08, 0.18]);
+    rotMode = pick(['fija', 'fija', 'giros']);
+    symMode = pick(['libre', 'libre', 'libre', 'espejo', 'cuaterna']);
+    density = pick([100, 100, 100, 85, 70, 55]);
+    variety = pick([100, 100, 60, 24, 8]);
+    bgColor = pick(['#F2F3F9', '#F2F3F9', '#F2EDE0', '#FAFAF8', '#003EC0']);
+    inkMode = 'auto';
+    ink2 = pick(['none', 'none', 'none', '#D0452B', '#1B1B1B']);
+    if (ink2 === inkColor()) ink2 = 'none';
+    mix = 10 + Math.floor(Math.random() * 30);
+    invertPct = pick([0, 0, 0, 12, 25]);
+    seedNum = Math.floor(Math.random() * 1e9);
+
+    setSeg(els.gridSegment, 'data-grid', gridN);
+    setSeg(els.gapSegment, 'data-gap', gapRatio);
+    setSeg(els.rotSegment, 'data-rot', rotMode);
+    setSeg(els.symSegment, 'data-sym', symMode);
+    setSw(els.bgSwatches, bgColor);
+    setSw(els.inkSwatches, 'auto');
+    setSw(els.ink2Swatches, ink2);
+    els.density.value = density; els.valDensity.textContent = density + '%';
+    els.variety.value = variety; els.valVariety.textContent = variety;
+    els.mix.value = mix; els.valMix.textContent = mix + '%';
+    els.invert.value = invertPct; els.valInvert.textContent = invertPct + '%';
+    els.seedInput.value = seedNum;
+    render();
+  }
+
+  els.versionBtn.addEventListener('click', newVersion);
+  els.randBtn.addEventListener('click', randomize);
+  els.saveBtn.addEventListener('click', () => { els.saveBtn.disabled = true; savePlate().finally(() => { els.saveBtn.disabled = false; }); });
+
+  // ——— Arranque ———
+  Promise.all([
+    loadAssets(),
+    document.fonts ? document.fonts.load("500 21px 'Plus Jakarta Sans'").catch(() => {}) : Promise.resolve()
+  ]).then(() => { render(); })
+    .catch(() => {
+      ctx.fillStyle = '#F2F3F9'; ctx.fillRect(0, 0, PW, PH);
+      ctx.fillStyle = '#666666'; ctx.font = "400 24px 'Plus Jakarta Sans', sans-serif";
+      ctx.textAlign = 'center';
+      ctx.fillText('No se pudieron cargar los elementos.', PW / 2, PH / 2);
+      ctx.fillText('Esta herramienta requiere servirse por https.', PW / 2, PH / 2 + 36);
+    });
+})();
+</script>
+
+</body>
+
+</html>
