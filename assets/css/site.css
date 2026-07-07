@@ -72,6 +72,16 @@ nav a.active { color: #fff; font-weight: 600; }
 .svc h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
 .svc p { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.78); }
 
+/* ——— Taller: dos columnas ——— */
+.taller-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr); gap: 72px; align-items: start; margin-top: 8px; }
+.taller-text { max-width: 640px; }
+.taller-media { position: sticky; top: 40px; }
+.taller-media img { display: block; width: 100%; height: auto; }
+@media (max-width: 900px) {
+  .taller-cols { grid-template-columns: 1fr; gap: 40px; }
+  .taller-media { position: static; order: -1; max-width: 460px; }
+}
+
 /* ——— Prosa editorial (taller, textos) ——— */
 .prose { max-width: 720px; }
 .prose p { font-size: 18px; line-height: 1.6; color: rgba(255,255,255,0.82); margin-bottom: 20px; }
