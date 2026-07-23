@@ -186,11 +186,11 @@ footer { padding: 56px 80px 48px; border-top: 1px solid rgba(255,255,255,0.18); 
 .pmodal-meta .v { font-size: 16px; font-weight: 600; }
 .pmodal-desc { font-size: 17px; line-height: 1.6; color: #333; max-width: 64ch; margin-bottom: 36px; white-space: pre-line; }
 .pmodal-imgs { }
-.pgallery-main { position: relative; background: #fff; border: 1px solid rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; height: 60vh; max-height: 560px; overflow: hidden; }
-.pgallery-main img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; cursor: zoom-in; }
-.pzoom { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; background: rgba(10,10,10,0.9); padding: 40px; cursor: zoom-out; }
+.pgallery-main { position: relative; display: flex; align-items: center; justify-content: center; height: 60vh; max-height: 560px; overflow: hidden; }
+.pgallery-main img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; cursor: zoom-in; background: #fff; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+.pzoom { position: fixed; inset: 0; z-index: 200; display: none; align-items: flex-start; justify-content: center; background: rgba(10,10,10,0.9); padding: 40px; cursor: zoom-out; overflow-y: auto; }
 .pzoom.open { display: flex; }
-.pzoom img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+.pzoom img { max-width: 100%; width: auto; height: auto; display: block; margin: auto 0; cursor: zoom-out; }
 .pgallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(31,31,35,0.55); color: #fff; font-size: 20px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .pgallery-arrow:hover { background: rgba(31,31,35,0.8); }
 .pgallery-arrow.prev { left: 12px; }
